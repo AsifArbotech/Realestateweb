@@ -1,0 +1,146 @@
+<section class="content home">
+
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">                
+                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light"  data-toggle="modal" data-target="#addUserModel" type="button">
+                    <i class="zmdi zmdi-plus"></i> Add User
+                </button>
+                               
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12">
+                <div class="card weather2">
+                   
+                    <table class="table table-striped  m-b-0">
+                        <tbody>
+                            <tr>
+                            <td>UserID</td>
+                            <td class="font-medium">UserName</td>
+                            <td>MobileNo</td>
+                            <td class="text-align:centre">Email</td>
+                            <td>Status</td>
+                            <td>view</td>
+                        </tr>
+                        <tr *ngFor="let item of getUsersItems()">
+                            <td>{{item.id}}</td>
+                            <td class="font-medium">{{item.username}}</td>
+                            <td>{{item.mobileno}}</td>
+                            <td class="text-align:centre">{{item.emailid}}</td>
+                            <td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>
+                            <td>
+                                <button class="btn btn-primary btn-icon btn-round" data-toggle="modal" data-target="#editUserModel" type="button">
+                                    <i class="zmdi zmdi-edit" (click)="getUser(item.id)"></i>
+                                </button>
+                                <button class="btn btn-primary btn-icon btn-round " type="button">
+                                    <i class="zmdi zmdi-delete" (click)="deleteUser(item.username)"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                                      
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Login modal-->
+
+<!--Add User Modal Start -->
+<div id="addUserModel" class="modal fade">
+	<div class="modal-dialog modal-login">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header text-center l-cyan" style="display: block !important;">				
+                   
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title text-center">Add User</h4>
+				</div>
+				<div class="modal-body">
+                    <div class="row  clearfix">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" [(ngModel)]="model.username" name="username" #username="ngModel" placeholder="UserName" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label>MobileNo</label>
+                                <input type="text" class="form-control" [(ngModel)]="model.mobileno" name="username" #mobileno="ngModel" placeholder="MobileNo" required="required">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Eamil Id</label>
+                                <input type="email" class="form-control" [(ngModel)]="model.emailid" name="username" #emailid="ngModel" placeholder="Eamil" required="required">
+                            </div>
+                           
+                            <div class="form-group">
+                                <div class="clearfix">
+                                    <label>Password</label>
+                                </div>
+                                <input type="password" class="form-control" [(ngModel)]="model.password" name="username" #password="ngModel" placeholder="password" required="required">
+                            </div>
+                        </div>
+                        
+                    </div>				
+				</div>
+				<div class="modal-footer justify-content-between">
+                   
+					<input type="submit" class="btn btn-primary btn-round" (click)="postUser()" value="Save">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>     
+<!--Add User Modal Ends -->
+
+<!--Edit User Modal Start -->
+<div id="editUserModel" class="modal fade">
+	<div class="modal-dialog modal-login">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header text-center l-cyan" style="display: block !important;">				
+                   
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title text-center">Edit User</h4>
+				</div>
+				<div class="modal-body">
+                    <div class="row  clearfix">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" name="username" value={{usersListItems.username}} placeholder="UserName" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label>MobileNo</label>
+                                <input type="text" class="form-control" name="username" value={{usersListItems.mobileno}} placeholder="MobileNo" required="required">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Eamil Id</label>
+                                <input type="email" class="form-control" name="username" value={{usersListItems.emailid}} placeholder="Eamil" required="required">
+                            </div>
+                           
+                            <div class="form-group">
+                                <div class="clearfix">
+                                    <label>Password</label>
+                                </div>
+                                <input type="password" class="form-control" name="username" value={{usersListItems.password}} placeholder="password" required="required">
+                            </div>
+                        </div>
+                        
+                    </div>				
+				</div>
+				<div class="modal-footer justify-content-between">
+                   
+					<input type="submit" class="btn btn-primary btn-round" (click)=updateUser(usersListItems.id) value="Save">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>     
+<!--Edit User Modal Ends -->

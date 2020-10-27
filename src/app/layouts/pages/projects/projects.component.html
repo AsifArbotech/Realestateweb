@@ -1,0 +1,194 @@
+<section class="content home">
+
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">                
+                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light"  data-toggle="modal" data-target="#AddProject" type="button">
+                    <i class="zmdi zmdi-plus"></i> Add Project
+                </button>
+                               
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12">
+                <div class="card weather2">
+                    <table class="table table-striped  m-b-0">
+                        <tbody>
+                            <tr>
+                            <td>Project ID</td>
+                            <td class="font-medium">Project Name</td>
+                            <td>Location Address</td>
+                            <td>LandMark</td>
+                            <td>Survey No</td>
+                            <td>Village Name</td>
+                            <td>Mandal Name</td>
+                            <td>District Name</td>
+                            <td>State Name</td>
+                            <td>PinCode</td>
+                            <td>Note</td>
+                            <td>View</td>
+                        </tr>
+                        <tr *ngFor="let item of getProjecttItems()">
+                            <td>{{item.projectid}}</td>
+                            <td class="font-medium">{{item.projectname}}</td>
+                            <td>{{item.locationaddress}}</td>
+                            <td>{{item.landmark}}</td>
+                            <td>{{item.surveynos}}</td>
+                            <td>{{item.villagename}}</td>
+                            <td>{{item.mandalname}}</td>
+                            <td>{{item.districtname}}</td>
+                            <td>{{item.statename}}</td>
+                            <td>{{item.pincode}}</td>
+                            <td>{{item.notes}}</td>
+                            <!--<td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>-->
+                            <td>
+                                <button class="btn btn-primary btn-icon btn-round " type="button">
+                                    <i class="zmdi zmdi-edit" (click)="getClient(item.clientid)"></i>
+                                </button>
+                                <button class="btn btn-primary btn-icon btn-round " type="button">
+                                    <i class="zmdi zmdi-delete" (click)="deleteDept(item.clientid,item.clientname)"></i>
+                                </button>
+                                <button class="btn btn-primary btn-icon btn-round " type="button"  data-toggle="modal" data-target="#PreviewProject">
+                                    <i class="zmdi zmdi-eye" (click)="getproject(item)"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                                      
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Add Project Modal Start-->
+<div id="AddProject" class="modal fade">
+	<div class="modal-dialog modal-login">
+		<div class="modal-content">
+				<div class="modal-header text-center l-cyan" style="display: block !important;">				
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title text-center">New Project</h4>
+				</div>
+				<div class="modal-body">
+                    <div class="row  clearfix">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Project Name</label>
+                                <input type="text" class="form-control" [(ngModel)]="model.projectname" name="username" #projectname="ngModel" placeholder="Project Name" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label>LandMark</label>
+                                <input type="text" class="form-control" [(ngModel)]="model.landmark" name="username" #landmark="ngModel" placeholder="LandMark" required="required">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Location Address</label>
+                                <input type="email" class="form-control" [(ngModel)]="model.locationaddress" name="username" #locationaddress="ngModel" placeholder="Location Address" required="required">
+                            </div>
+                        <div class="form-group">
+                            <label>Survey No</label>
+                            <input type="text" class="form-control" [(ngModel)]="model.surveynos" name="username" #surveynos="ngModel" placeholder="Survey No" required="required">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label>Village Name</label>
+                            <input type="email" class="form-control" [(ngModel)]="model.villagename" name="username" #villagename="ngModel" placeholder="Village Name" required="required">
+                        </div>
+                    <div class="form-group">
+                        <label>District Name</label>
+                        <input type="text" class="form-control" [(ngModel)]="model.districtname" name="username" #districtname="ngModel" placeholder="District Name" required="required">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label>State Name</label>
+                        <input type="email" class="form-control" [(ngModel)]="model.statename" name="username" #statename="ngModel" placeholder="State Name" required="required">
+                    </div>
+                <div class="form-group">
+                    <label>PinCode</label>
+                    <input type="text" class="form-control" [(ngModel)]="model.pincode" name="username" #pincode="ngModel" placeholder="PinCode" required="required">
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label>Note</label>
+                    <input type="email" class="form-control" [(ngModel)]="model.notes" name="username" #notes="ngModel" placeholder="Note" required="required">
+                </div>
+            </div>
+                    </div>					
+                    <div class="row clearfix">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <button type="button" class="btn btn-primary btn-round" (click)="postproject()">Save</button>
+                        </div>
+                    </div>
+                </div>
+		</div>
+	</div>
+</div>    
+<!--Add Project Modal End-->
+
+<!--Preview Project Modal Start-->
+<div id="PreviewProject" class="modal fade">
+	<div class="modal-dialog modal-login">
+		<div class="modal-content">
+				<div class="modal-header text-center l-cyan" style="display: block !important;">				
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title text-center">Preview Project</h4>
+				</div>
+				<div class="modal-body">
+                    <div class="row  clearfix">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Project Name</label>
+                                <input type="text" class="form-control" value={{projectsListItems.projectname}}  required="required" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label>LandMark</label>
+                                <input type="text" class="form-control" value={{projectsListItems.landmark}} required="required" disabled>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Location Address</label>
+                                <input type="email" class="form-control" value={{projectsListItems.locationaddress}} required="required" disabled>
+                            </div>
+                        <div class="form-group">
+                            <label>Survey No</label>
+                            <input type="text" class="form-control" value={{projectsListItems.surveynos}} required="required" disabled>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label>Village Name</label>
+                            <input type="email" class="form-control" value={{projectsListItems.villagename}} required="required" disabled>
+                        </div>
+                    <div class="form-group">
+                        <label>District Name</label>
+                        <input type="text" class="form-control" value={{projectsListItems.districtname}} required="required" disabled>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label>State Name</label>
+                        <input type="email" class="form-control" value={{projectsListItems.statename}} required="required" disabled>
+                    </div>
+                <div class="form-group">
+                    <label>PinCode</label>
+                    <input type="text" class="form-control" value={{projectsListItems.pincode}} required="required" disabled>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label>Note</label>
+                    <input type="email" class="form-control" value={{projectsListItems.notes}} required="required" disabled>
+                </div>
+            </div>
+          </div>					
+        </div>
+	  </div>
+	</div>
+</div> 
+<!--Preview Project Modal End-->

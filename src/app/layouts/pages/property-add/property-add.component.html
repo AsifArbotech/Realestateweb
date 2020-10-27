@@ -1,0 +1,323 @@
+<section class="content home">
+    <div class="container-fluid home-bg">
+       
+           <div class="header">
+                <h2><strong>Add</strong> Unit</h2>
+            </div>
+            
+                <div class="row clearfix">
+                    
+                    <div class="col-lg-12 col-sm-12 col-md-12" style="border:1px solid blue">
+                        <h2>Basic Information</h2>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label>Plot No</label>
+                                <input type="text" class="form-control" [(ngModel)]="pantryDetails.plotno" #plotno="ngModel" placeholder="Phaseno" required="required">
+                            </div>
+                    </div>
+                   <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>Phase No</label>
+                            <input type="text" class="form-control" [(ngModel)]="pantryDetails.phaseno" #phaseno="ngModel" placeholder="Phaseno" required="required">
+                        </div>
+                    </div>
+                   
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>Block No</label>
+                            <input type="text" class="form-control" [(ngModel)]="pantryDetails.blockno" #blockno="ngModel" placeholder="Blockno" required="required">
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>Survey No</label>
+                            <input type="text" class="form-control" [(ngModel)]="pantryDetails.surveyno" #surveyno="ngModel" placeholder="surveyno" required="required">
+                        </div>
+                    </div>
+                
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>Landmark</label>
+                            <input type="text" class="form-control" [(ngModel)]="pantryDetails.landmark" #landmark="ngModel" placeholder="landmark" required="required">
+                        </div>
+                    </div>
+                
+                
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>plotsite</label>
+                            <input type="text" class="form-control" [(ngModel)]="pantryDetails.plotsite" #plotsite="ngModel" placeholder="plotsite" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>siteunits</label>
+                            <input type="text" class="form-control" [(ngModel)]="pantryDetails.siteunits" #siteunits="ngModel" placeholder="siteunits" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>crossplot</label>
+                            <input type="text" class="form-control" placeholder="crossplot" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>notessuperuser</label>
+                            <input type="text" class="form-control" placeholder="notessuperuser" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>notesmanagement</label>
+                            <input type="text" class="form-control" placeholder="notesmanagement" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>notessalesteam</label>
+                            <input type="text" class="form-control" placeholder="notessalesteam" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>facing</label>
+                            <input type="text" class="form-control" placeholder="facing" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>plotdimension</label>
+                            <input type="text" class="form-control" placeholder="plotdimension" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>ownerid</label>
+                            <input type="text" class="form-control" placeholder="ownerid" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>facingsite</label>
+                            <input type="text" class="form-control" placeholder="facingsite" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>roadsite</label>
+                            <input type="text" class="form-control" placeholder="roadsite" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>cornerplot</label>
+                            <input type="text" class="form-control" placeholder="cornerplot" required="required">
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row clearfix">  
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>cornerplotdimension</label>
+                            <input type="text" class="form-control" placeholder="cornerplotdimension" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>parksideplot</label>
+                            <input type="text" class="form-control" placeholder="parksideplot" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>soldout</label>
+                            <input type="text" class="form-control" placeholder="soldout" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>salesdate</label>
+                            <input type="text" class="form-control" placeholder="salesdate" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>onhold</label>
+                            <input type="text" class="form-control" placeholder="onhold" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>holddate</label>
+                            <input type="text" class="form-control" placeholder="holddate" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>holddurationindays</label>
+                            <input type="text" class="form-control" placeholder="holddurationindays" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>holderidagentid</label>
+                            <input type="text" class="form-control" placeholder="holderidagentid" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>dispute</label>
+                            <input type="text" class="form-control" placeholder="dispute" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>disputenotes</label>
+                            <input type="text" class="form-control" placeholder="disputenotes" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>nocissued</label>
+                            <input type="text" class="form-control" placeholder="nocissued" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>noccopy</label>
+                            <input type="text" class="form-control" placeholder="noccopy" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>plotsoldamount</label>
+                            <input type="text" class="form-control" placeholder="plotsoldamount" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>amountpaid</label>
+                            <input type="text" class="form-control" placeholder="amountpaid" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>amountbalance</label>
+                            <input type="text" class="form-control" placeholder="amountbalance" required="required">
+                        </div>
+                    </div>
+                
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>instalments</label>
+                            <input type="text" class="form-control" placeholder="instalments" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>instalmentid</label>
+                            <input type="text" class="form-control" placeholder="instalmentid" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>instalmentterm</label>
+                            <input type="text" class="form-control" placeholder="instalmentterm" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>agreementdone</label>
+                            <input type="text" class="form-control" placeholder="agreementdone" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>agreementscancopylink</label>
+                            <input type="text" class="form-control" placeholder="agreementscancopylink" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>registrationid</label>
+                            <input type="text" class="form-control" placeholder="registrationid" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>registrationdone</label>
+                            <input type="text" class="form-control" placeholder="registrationdone" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>registrationscancopylink</label>
+                            <input type="text" class="form-control" placeholder="registrationscancopylink" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>itrdone</label>
+                            <input type="text" class="form-control" placeholder="itrdone" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>itrno</label>
+                            <input type="text" class="form-control" placeholder="itrno" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>resell</label>
+                            <input type="text" class="form-control" placeholder="resell" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>resellerid</label>
+                            <input type="text" class="form-control" placeholder="resellerid" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>agreement</label>
+                            <input type="text" class="form-control" placeholder="agreement" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>agreementid</label>
+                            <input type="text" class="form-control" placeholder="agreementid" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>reagreement</label>
+                            <input type="text" class="form-control" placeholder="reagreement" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>reagreementid</label>
+                            <input type="text" class="form-control" placeholder="reagreementid" required="required">
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+
+                    <div class="col-lg-3 col-md-3 col-sm-12 offset-3 text-center">
+                        <button type="button" class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light">Add</button>
+                    </div>
+                   <div class="col-lg-3 col-md-3 col-sm-12  text-center">
+                        <button type="button" class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light">Save</button>
+                                            </div>
+                </div>
+        
+       
+
+    </div>
+</section>
