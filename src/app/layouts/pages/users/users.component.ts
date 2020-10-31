@@ -12,7 +12,7 @@ import { NotifierService } from 'angular-notifier';
 export class UsersComponent implements OnInit {
 
   public usersListItems: Array<AddUser>;
-  public users: AddUser;
+  public usersItems: AddUser;
   model: any = {};
   page = 1;
   pageSize = 10;

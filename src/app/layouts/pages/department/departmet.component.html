@@ -103,12 +103,12 @@
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="form-group">
                                 <label>Departmentname</label>
-                                <input type="text" class="form-control" placeholder="Departmentname" [(ngModel)]="departmentsListItems.departmentname" #departmentname="ngModel" required="required">
+                                <input type="text" class="form-control" placeholder="Departmentname" [(ngModel)]="departmentsItems.departmentname" #departmentname="ngModel" required="required">
                             </div>
-                            <!--<div class="form-group">
+                           <div class="form-group"> 
                                 <label>Description</label>
                                 <textarea type="text" class="form-control" placeholder="Description" required="required"></textarea>
-                            </div>-->
+                            </div>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <label>status</label>
@@ -121,7 +121,7 @@
                     </div>				
                     <div class="row clearfix">
                         <div class="col-lg-4 col-md-4 col-sm-12">
-                            <button type="button" class="btn btn-primary btn-round" (click)="updateDept(departmentsListItems.id)">Save</button>
+                            <button type="button" class="btn btn-primary btn-round" (click)="updateDept(departmentsItems.id)">Save</button>
                         </div>
                     </div>
                 </div>

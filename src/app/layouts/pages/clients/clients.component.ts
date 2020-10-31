@@ -12,6 +12,7 @@ import { NotifierService } from 'angular-notifier';
 export class ClientsComponent implements OnInit {
 
   public clientsListItems: Array<Client>;
+  public clientsItems: Client;
   model: any = {};
   page = 1;
   pageSize = 10;

@@ -12,6 +12,7 @@ import { NotifierService } from 'angular-notifier';
 export class DepartmetComponent implements OnInit {
 
   public departmentsListItems: Array<Department>;
+  public departmentsItems: Department;
   model: any = {};
   page = 1;
   pageSize = 10;

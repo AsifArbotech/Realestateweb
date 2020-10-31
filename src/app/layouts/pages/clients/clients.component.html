@@ -101,23 +101,23 @@
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Client Name</label>
-                                <input type="text" class="form-control" [(ngModel)]="clientsListItems.clientname" name="username" #clientname="ngModel" placeholder="Client Name" required="required">
+                                <input type="text" class="form-control" [(ngModel)]="clientsItems.clientname" name="username" #clientname="ngModel" placeholder="Client Name" required="required">
                             </div>
                             <div class="form-group">
                                 <label>Clent Reference</label>
-                                <input type="text" class="form-control" [(ngModel)]="clientsListItems.clientreference" name="username" #clientreference="ngModel" placeholder="Clent Reference" required="required">
+                                <input type="text" class="form-control" [(ngModel)]="clientsItems.clientreference" name="username" #clientreference="ngModel" placeholder="Clent Reference" required="required">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Agent Refernece</label>
-                                <input type="email" class="form-control" [(ngModel)]="clientsListItems.agentreference" name="username" #agentreference="ngModel" placeholder="Agent Refernece" required="required">
+                                <input type="email" class="form-control" [(ngModel)]="clientsItems.agentreference" name="username" #agentreference="ngModel" placeholder="Agent Refernece" required="required">
                             </div>
                         </div>
                     </div>				
                     <div class="row clearfix">
                         <div class="col-lg-4 col-md-4 col-sm-12">
-                            <button type="button" class="btn btn-primary btn-round" (click)="updateDept(clientsListItems.id)">Save</button>
+                            <button type="button" class="btn btn-primary btn-round" (click)="updateDept(clientsItems.clientid)">Save</button>
                         </div>
                     </div>
                 </div>

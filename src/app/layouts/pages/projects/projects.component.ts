@@ -12,7 +12,7 @@ import { NotifierService } from 'angular-notifier';
 export class ProjectsComponent implements OnInit {
 
   public projectsListItems: Array<Project>;
-  Projectpreview: ProjectPreview;
+  public projectsItems: Project;
   model: any = {};
   page = 1;
   pageSize = 10;

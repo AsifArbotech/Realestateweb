@@ -143,109 +143,47 @@
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Project Name</label>
-                                <input type="text" class="form-control" [(ngModel)]="Projectpreview.projectname" name="notes" required="required" disabled>
+                                <input type="text" class="form-control" value={{projectsItems.projectname}}  required="required" disabled>
                             </div>
                             <div class="form-group">
                                 <label>LandMark</label>
-                                <input type="text" class="form-control" [(ngModel)]="Projectpreview.landmark" name="landmark" required="required" disabled>
+                                <input type="text" class="form-control" value={{projectsItems.landmark}} required="required" disabled>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Location Address</label>
-                                <input type="text" class="form-control" [(ngModel)]="Projectpreview.locationaddress" name="locationaddress" required="required" disabled>
+                                <input type="email" class="form-control" value={{projectsItems.locationaddress}} required="required" disabled>
                             </div>
                         <div class="form-group">
                             <label>Survey No</label>
-                            <input type="text" class="form-control" [(ngModel)]="Projectpreview.surveynos" name="surveynos" required="required" disabled>
+                            <input type="text" class="form-control" value={{projectsItems.surveynos}} required="required" disabled>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="form-group">
                             <label>Village Name</label>
-                            <input type="email" class="form-control" [(ngModel)]="Projectpreview.villagename" name="villagename" required="required" disabled>
+                            <input type="email" class="form-control" value={{projectsItems.villagename}} required="required" disabled>
                         </div>
                     <div class="form-group">
                         <label>District Name</label>
-                        <input type="text" class="form-control" [(ngModel)]="Projectpreview.districtname" name="districtname" required="required" disabled>
+                        <input type="text" class="form-control" value={{projectsItems.districtname}} required="required" disabled>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="form-group">
                         <label>State Name</label>
-                        <input type="email" class="form-control" [(ngModel)]="Projectpreview.statename" name="statename" required="required" disabled>
+                        <input type="email" class="form-control" value={{projectsItems.statename}} required="required" disabled>
                     </div>
                 <div class="form-group">
                     <label>PinCode</label>
-                    <input type="text" class="form-control" [(ngModel)]="Projectpreview.pincode" name="pincode" required="required" disabled>
+                    <input type="text" class="form-control" value={{projectsItems.pincode}} required="required" disabled>
                 </div>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="form-group">
                     <label>Note</label>
-                    <input type="email" class="form-control" [(ngModel)]="Projectpreview.notes" name="notes" required="required" disabled>
-                </div>
-            </div>
-          </div>					
-        </div>
-	  </div>
-	</div>
-</div> 
-<!--Preview Project Modal End-->
-
-<div id="EditProject" class="modal fade">
-	<div class="modal-dialog modal-login">
-		<div class="modal-content">
-				<div class="modal-header text-center l-cyan" style="display: block !important;">				
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title text-center">Edit Project</h4>
-				</div>
-				<div class="modal-body">
-                    <div class="row  clearfix">
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Project Name</label>
-                                <input type="text" class="form-control" value={{projectsListItems.projectname}}  required="required" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label>LandMark</label>
-                                <input type="text" class="form-control" value={{projectsListItems.landmark}} required="required" disabled>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Location Address</label>
-                                <input type="email" class="form-control" value={{projectsListItems.locationaddress}} required="required" disabled>
-                            </div>
-                        <div class="form-group">
-                            <label>Survey No</label>
-                            <input type="text" class="form-control" value={{projectsListItems.surveynos}} required="required" disabled>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="form-group">
-                            <label>Village Name</label>
-                            <input type="email" class="form-control" value={{projectsListItems.villagename}} required="required" disabled>
-                        </div>
-                    <div class="form-group">
-                        <label>District Name</label>
-                        <input type="text" class="form-control" value={{projectsListItems.districtname}} required="required" disabled>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="form-group">
-                        <label>State Name</label>
-                        <input type="email" class="form-control" value={{projectsListItems.statename}} required="required" disabled>
-                    </div>
-                <div class="form-group">
-                    <label>PinCode</label>
-                    <input type="text" class="form-control" value={{projectsListItems.pincode}} required="required" disabled>
-                </div>
-            </div>
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="form-group">
-                    <label>Note</label>
-                    <input type="email" class="form-control" value={{projectsListItems.notes}} required="required" disabled>
+                    <input type="email" class="form-control" value={{projectsItems.notes}} required="required" disabled>
                 </div>
             </div>
           </div>					
