@@ -17,6 +17,7 @@
                         <tbody>
                             <tr>
                             <td>UserID</td>
+                            <td class="font-medium">Name</td>
                             <td class="font-medium">UserName</td>
                             <td>MobileNo</td>
                             <td class="text-align:centre">Email</td>
@@ -25,16 +26,17 @@
                         </tr>
                         <tr *ngFor="let item of getUsersItems()">
                             <td>{{item.id}}</td>
+                            <td class="font-medium">{{item.name}}</td>
                             <td class="font-medium">{{item.username}}</td>
                             <td>{{item.mobileno}}</td>
                             <td class="text-align:centre">{{item.emailid}}</td>
                             <td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>
                             <td>
-                                <button class="btn btn-primary btn-icon btn-round" data-toggle="modal" data-target="#editUserModel" type="button">
-                                    <i class="zmdi zmdi-edit" (click)="getUser(item.id)"></i>
+                                <button class="btn btn-primary btn-icon btn-round" (click)="getUser(item.id)" data-toggle="modal" data-target="#editUserModel" type="button">
+                                    <i class="zmdi zmdi-edit" ></i>
                                 </button>
-                                <button class="btn btn-primary btn-icon btn-round " type="button">
-                                    <i class="zmdi zmdi-delete" (click)="deleteUser(item.id,item.username)"></i>
+                                <button class="btn btn-primary btn-icon btn-round " (click)="deleteUser(item.id,item.username)" type="button">
+                                    <i class="zmdi zmdi-delete" ></i>
                                 </button>
                             </td>
                         </tr>
@@ -112,24 +114,24 @@
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Username</label>
-                                <!-- <input type="text" class="form-control" name="username" value={{usersItems.username}} placeholder="UserName" required="required"> -->
+                                <input type="text" class="form-control" name="username" value={{usersItems.username}}  placeholder="UserName" required="required">
                             </div>
                             <div class="form-group">
                                 <label>MobileNo</label>
-                                <!-- <input type="text" class="form-control" name="username" value={{usersItems.mobileno}} placeholder="MobileNo" required="required"> -->
+                                <input type="text" class="form-control" name="mobileno"  [(ngModel)]="usersItems.mobileno" placeholder="MobileNo" required="required">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Eamil Id</label>
-                                <!-- <input type="email" class="form-control" name="username" value={{usersItems.emailid}} placeholder="Eamil" required="required"> -->
+                                <input type="email" class="form-control" name="emailid" value={{usersItems.emailid}} placeholder="Eamil" required="required">
                             </div>
                            
                             <div class="form-group">
                                 <div class="clearfix">
                                     <label>Password</label>
                                 </div>
-                                <!-- <input type="password" class="form-control" name="username" value={{usersItems.password}} placeholder="password" required="required"> -->
+                                <input type="password" class="form-control" name="password" value={{usersItems.password}} placeholder="password" required="required">
                             </div>
                         </div>
                         
@@ -137,7 +139,7 @@
 				</div>
 				<div class="modal-footer justify-content-between">
                    
-					<!-- <input type="submit" class="btn btn-primary btn-round" (click)=updateUser(usersItems.id) value="Save"> -->
+					<input type="submit" class="btn btn-primary btn-round" (click)=updateUser() value="Save">
 				</div>
 			</form>
 		</div>

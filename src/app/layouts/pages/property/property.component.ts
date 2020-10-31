@@ -17,17 +17,18 @@ export class PropertyComponent implements OnInit {
   pageSize = 10;
 
   constructor(private router: Router,
-              private apiservice:ApiService,
-              private notifier: NotifierService) { }
+    private apiservice: ApiService,
+    private notifier: NotifierService) { }
 
   ngOnInit(): void {
     this.getPropertyList();
   }
 
-  getPropertyList(){
+  getPropertyList() {
+    debugger;
     this.apiservice.getProperties().subscribe(
-      (response:any)=>{
-        this.propertyListItems=response
+      (response: any) => {
+        this.propertyListItems = response
       },
       error => {
         console.log(error);
@@ -37,14 +38,15 @@ export class PropertyComponent implements OnInit {
   }
 
   getPropertytItems() {
-    if (this.propertyListItems.length > this.pageSize) {
-      return this.propertyListItems.slice(
-        (this.page - 1) * this.pageSize,
-        this.page * this.pageSize
-      );
-    } else {
-      return this.propertyListItems;
-    }
+    if (this.propertyListItems)
+      if (this.propertyListItems.length > this.pageSize) {
+        return this.propertyListItems.slice(
+          (this.page - 1) * this.pageSize,
+          this.page * this.pageSize
+        );
+      } else {
+        return this.propertyListItems;
+      }
   }
 
 }

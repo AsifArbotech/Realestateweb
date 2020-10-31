@@ -12,26 +12,27 @@ import { NotifierService } from 'angular-notifier';
 export class UsersComponent implements OnInit {
 
   public usersListItems: Array<AddUser>;
-  public usersItems: AddUser;
+  public usersItems: AddUser=new AddUser();
+  users: any;
   model: any = {};
   page = 1;
   pageSize = 10;
 
   constructor(private router: Router,
-              private apiservice:ApiService,
-              private notifier: NotifierService) {
-                this.clearfields();
-                this.usersListItems;
-               }
+    private apiservice: ApiService,
+    private notifier: NotifierService) {
+    this.clearfields();
+    this.usersListItems;
+  }
 
   ngOnInit() {
     this.getUsers();
   }
 
-  getUsers(){
+  getUsers() {
     this.apiservice.getUsers().subscribe(
-      (items:Array<AddUser>)=>{
-        this.usersListItems=items
+      (items: Array<AddUser>) => {
+        this.usersListItems = items
       },
       error => {
         console.log(error);
@@ -41,20 +42,21 @@ export class UsersComponent implements OnInit {
   }
 
   getUsersItems() {
-    if (this.usersListItems.length > this.pageSize) {
-      return this.usersListItems.slice(
-        (this.page - 1) * this.pageSize,
-        this.page * this.pageSize
-      );
-    } else {
-      return this.usersListItems;
-    }
+    if (this.usersListItems)
+      if (this.usersListItems.length > this.pageSize) {
+        return this.usersListItems.slice(
+          (this.page - 1) * this.pageSize,
+          this.page * this.pageSize
+        );
+      } else {
+        return this.usersListItems;
+      }
   }
 
-  getUser(id){
+  getUser(id) {
     this.apiservice.getUser(id).subscribe(
-      (items:AddUser)=>{
-        this.users=items
+      (items: AddUser) => {
+        this.usersItems = items;
       },
       error => {
         console.log(error);
@@ -63,64 +65,67 @@ export class UsersComponent implements OnInit {
     )
   }
 
-  postUser(){
-    var param = { Username: this.model.username, Password: this.model.password, Emailid: this.model.emailid, Mobile: this.model.mobileno }
+  postUser() {
+    var param = { Name: "Asif", Username: this.model.username, Password: this.model.password, Emailid: this.model.emailid, Mobileno: this.model.mobileno }
     this.apiservice.AddUser(param)
-      .subscribe((response:any)=>{
+      .subscribe((response: any) => {
         if (response) {
-          if(response.ResponseCode == 0){
-            this.notifier.notify("error", response.ResponseMessage);
-          }else if(response.ResponseCode == 1){
-            this.notifier.notify("success", response.ResponseMessage);
+          if (response.responseCode == 0) {
+            this.notifier.notify("error", response.responseMsg);
+          } else if (response.responseCode == 1) {
+            this.notifier.notify("success", response.responseMsg);
             this.clearfields();
+            this.getUsers();
           }
-        else{
+          else {
             this.notifier.notify("error", "Something went wrong");
           }
-        } 
+        }
       })
   }
 
-  deleteUser(id,name){
-    
-    if (confirm("Do You wish to Delete the User - " + name + "?")){
-      this.apiservice.DeleteUser(id)
-      .subscribe((response:any)=>{
-        if (response) {
-          if(response.ResponseCode == 0){
-            this.notifier.notify("error", response.ResponseMessage);
-          }else if(response.ResponseCode == 1){
-            this.notifier.notify("success", response.ResponseMessage);
-      }
-    }
-    })
-  }
-}
+  deleteUser(id, name) {
 
-updateUser(id){
-  this.apiservice.EditUser(id)
-      .subscribe((response:any)=>{
-        this.usersListItems=response
-        if (response) {
-          if(response.ResponseCode == 0){
-            this.notifier.notify("error", response.ResponseMessage);
-          }else if(response.ResponseCode == 1){
-            this.notifier.notify("success", response.ResponseMessage);
-      }
+    if (confirm("Do You wish to Delete the User - " + name + "?")) {
+      this.apiservice.DeleteUser(id)
+        .subscribe((response: any) => {
+          if (response) {
+            if (response.responseCode == 0) {
+              this.notifier.notify("error", response.responseMsg);
+            } else if (response.responseCode == 1) {
+              this.notifier.notify("success", response.responseMsg);
+              this.getUsers();
+            }
+          }
+        })
     }
-  })
-}
+  }
+
+  updateUser() {
+    this.apiservice.EditUser(this.usersItems)
+      .subscribe((response: any) => {
+        this.usersListItems = response
+        if (response) {
+          if (response.responseCode == 0) {
+            this.notifier.notify("error", response.responseMsg);
+          } else if (response.responseCode == 1) {
+            this.notifier.notify("success", response.responseMsg);
+            this.getUsers();
+          }
+        }
+      })
+  }
 
   onNavigate(url: string) {
     this.router.navigateByUrl(url);
   }
 
-  clearfields(){
+  clearfields() {
     this.model = {
-      username:"",
-      password:"",
-      emailid:"",
-      mobileno:""
+      username: "",
+      password: "",
+      emailid: "",
+      mobileno: ""
     }
   }
 }
