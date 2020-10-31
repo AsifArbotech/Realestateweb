@@ -12,6 +12,7 @@ import { NotifierService } from 'angular-notifier';
 export class ProjectsComponent implements OnInit {
 
   public projectsListItems: Array<Project>;
+  Projectpreview: ProjectPreview;
   model: any = {};
   page = 1;
   pageSize = 10;
@@ -20,7 +21,21 @@ export class ProjectsComponent implements OnInit {
               private apiservice:ApiService,
               private notifier: NotifierService) { 
                 this.clearfields();
-              }
+
+              this.Projectpreview = {
+                projectid:0,
+                projectname:"",
+                locationaddress:"",
+                landmark:"",
+                surveynos:"",
+                villagename:"",
+                mandalname:"",
+                districtname:"",
+                statename:"",
+                pincode:"", 
+                notes:"",
+              }  
+            }
 
   ngOnInit(): void {
     this.getProjectsList();
@@ -49,10 +64,10 @@ export class ProjectsComponent implements OnInit {
     }
   }
 
-  getproject(project:Project){
-    this.apiservice.getProject(project.projectid).subscribe(
+  getproject(item:any){
+    this.apiservice.getProject(item.projectid).subscribe(
       (response:any) =>{
-        this.projectsListItems=response;
+        this.Projectpreview=response;
       },
       error => {
         console.log(error);
@@ -62,7 +77,7 @@ export class ProjectsComponent implements OnInit {
   }
    
   postproject(){
-    var param = { ProjectName: this.model.projectname , LocationAddres: this.model.locationaddress ,LandMark: this.model.landmark, SurveyNo: this.model.surveynos, VillageName: this.model.villagename, MandalName: this.model.mandalname, DistrictName: this.model.districtname, StateName: this.model.statename, PinCode: this.model.pincode, Note: this.model.notes  }
+    var param = { ProjectName: this.model.projectname , LocationAddress: this.model.locationaddress ,LandMark: this.model.landmark, SurveyNos: this.model.surveynos, VillageName: this.model.villagename, MandalName: this.model.mandalname, DistrictName: this.model.districtname, StateName: this.model.statename, PinCode: this.model.pincode, Notes: this.model.notes  }
     this.apiservice.AddProject(param)
     .subscribe((response:any)=>{
       if (response) {
@@ -81,8 +96,8 @@ export class ProjectsComponent implements OnInit {
 
   
 deleteProject(id, name){
-  if (confirm("Do You wish to Delete the Department - " + name + "?")){
-    this.apiservice.DeleteClient(id)
+  if (confirm("Do You wish to Delete the Project - " + name + "?")){
+    this.apiservice.DeleteProject(id)
     .subscribe((response:any)=>{
       if (response) {
         if(response.ResponseCode == 0){
@@ -109,6 +124,18 @@ clearfields(){
     notes:"",
   }
  }
+}
 
-
+interface ProjectPreview{
+  projectid: number;
+  projectname: string;
+  locationaddress: string;
+  landmark: string;
+  surveynos: string;
+  villagename: string;
+  mandalname: string;
+  districtname: string;
+  statename: string;
+  pincode: string;
+  notes: string;
 }

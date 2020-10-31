@@ -1,0 +1,159 @@
+<section class="content home">
+
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">                
+                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light"  data-toggle="modal" data-target="#AddBooking" type="button">
+                    <i class="zmdi zmdi-plus"></i> Add Booking Cancellation
+                </button>
+                               
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12">
+                <div class="card weather2">
+                    <table class="table table-striped  m-b-0">
+                        <tbody>
+                            <tr>
+                            <td>Booking No</td>
+                            <td class="font-medium">Project</td>
+                            <td>Unit</td>
+                            <td>Customer Name</td>
+                            <td>Booking Amount</td>
+                            <td>Associate</td>
+                            <td>Assign To</td>
+                            <td>View</td>
+                        </tr>
+                        <tr>
+                            <td>123</td>
+                            <td class="font-medium">Ghories</td>
+                            <td>Pleasent</td>
+                            <td>Ghories</td>
+                            <td>30000</td>
+                            <td>Arshad</td>
+                            <td>Asif</td>
+                            <td>Asim</td>
+                            <!--<td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>-->
+                            <td>
+                                <button class="btn btn-primary btn-icon btn-round " type="button" data-toggle="modal" data-target="#EditBooking">
+                                    <i class="zmdi zmdi-edit" ></i>
+                                </button>
+                                <button class="btn btn-primary btn-icon btn-round " type="button">
+                                    <i class="zmdi zmdi-delete" ></i>
+                                </button>
+                                <button class="btn btn-primary btn-icon btn-round " type="button"  data-toggle="modal" data-target="#PreviewProject">
+                                    <i class="zmdi zmdi-eye" ></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Add Booking Modal Start-->
+<div id="AddBooking" class="modal fade">
+	<div class="modal-dialog modal-login">
+		<div class="modal-content">
+				<div class="modal-header text-center l-cyan" style="display: block !important;">				
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title text-center">New Booking</h4>
+				</div>
+				<div class="modal-body">
+                    <div class="row  clearfix">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label>Booking No</label>
+                                <input type="text" class="form-control" placeholder="Booking No" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label>Project</label>
+                                <input type="text" class="form-control" placeholder="Project" required="required">
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label>Unit</label>
+                                <input type="text" class="form-control" placeholder="Unit" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label>Customer Name</label>
+                                <input type="text" class="form-control" placeholder="Customer Name" required="required">
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label>Associate</label>
+                                <input type="text" class="form-control" placeholder="Associate" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label>Assign To</label>
+                                <input type="text" class="form-control" placeholder="Assign To" required="required">
+                            </div>
+                        </div>
+                    </div>				
+                    <div class="row clearfix">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <button type="button" class="btn btn-primary btn-round">Save</button>
+                        </div>
+                    </div>
+                </div>
+		</div>
+	</div>
+</div>    
+<!--Add Booking Modal End-->
+
+<!--Edit Booking Modal Start-->
+<div id="EditBooking" class="modal fade">
+	<div class="modal-dialog modal-login">
+		<div class="modal-content">
+				<div class="modal-header text-center l-cyan" style="display: block !important;">				
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title text-center">Edit Booking</h4>
+				</div>
+				<div class="modal-body">
+                    <div class="row  clearfix">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label>Booking No</label>
+                                <input type="text" class="form-control" placeholder="Booking No" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label>Project</label>
+                                <input type="text" class="form-control" placeholder="Project" required="required">
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label>Unit</label>
+                                <input type="text" class="form-control" placeholder="Unit" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label>Customer Name</label>
+                                <input type="text" class="form-control" placeholder="Customer Name" required="required">
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label>Associate</label>
+                                <input type="text" class="form-control" placeholder="Associate" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label>Assign To</label>
+                                <input type="text" class="form-control" placeholder="Assign To" required="required">
+                            </div>
+                        </div>
+                    </div>				
+                    <div class="row clearfix">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <button type="button" class="btn btn-primary btn-round">Save</button>
+                        </div>
+                    </div>
+                </div>
+		</div>
+	</div>
+</div>    
+<!--Edit Booking Modal End-->

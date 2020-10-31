@@ -25,6 +25,17 @@ import { ProjectsComponent } from './layouts/pages/projects/projects.component';
 import { PropertyComponent } from './layouts/pages/property/property.component';
 import { PropertyAddComponent } from './layouts/pages/property-add/property-add.component';
 import { PropertyEditComponent } from './layouts/pages/property-edit/property-edit.component';
+import { CreatebookingComponent } from './layouts/pages/createbooking/createbooking.component';
+import { BookingcancellationComponent } from './layouts/pages/bookingcancellation/bookingcancellation.component';
+import { BookingtransferComponent } from './layouts/pages/bookingtransfer/bookingtransfer.component';
+import { ContractcreateComponent } from './layouts/pages/contractcreate/contractcreate.component';
+import { ContractrenewalComponent } from './layouts/pages/contractrenewal/contractrenewal.component';
+import { ContractterminateComponent } from './layouts/pages/contractterminate/contractterminate.component';
+import { SalesenquireComponent } from './layouts/pages/salesenquire/salesenquire.component';
+import { SalesinvoiceComponent } from './layouts/pages/salesinvoice/salesinvoice.component';
+import { SalesquotationComponent } from './layouts/pages/salesquotation/salesquotation.component';
+import { PdcComponent } from './layouts/pages/pdc/pdc.component';
+import { AssociateComponent } from './layouts/pages/associate/associate.component';
 import { RoutingModule } from './routing.module';
 
 
@@ -42,7 +53,18 @@ import { RoutingModule } from './routing.module';
     ProjectsComponent,
     PropertyComponent,
     PropertyAddComponent,
-    PropertyEditComponent
+    PropertyEditComponent,
+    CreatebookingComponent,
+    BookingcancellationComponent,
+    BookingtransferComponent,
+    ContractcreateComponent,
+    ContractrenewalComponent,
+    ContractterminateComponent,
+    SalesenquireComponent,
+    SalesinvoiceComponent,
+    SalesquotationComponent,
+    PdcComponent,
+    AssociateComponent
   ],
   imports: [
     BrowserModule,

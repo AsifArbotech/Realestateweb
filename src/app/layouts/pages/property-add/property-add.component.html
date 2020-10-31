@@ -1,323 +1,342 @@
 <section class="content home">
     <div class="container-fluid home-bg">
-       
-           <div class="header">
-                <h2><strong>Add</strong> Unit</h2>
+        <div class="header">
+             <h2><strong>Add</strong> Unit  </h2>
+         </div>
+         <div class="container" style="border:1px solid blue">
+             <div class="form-group">
+                 <h4>Basic Information</h4>
+             </div>
+             <div class="row clearfix">
+                <div class="col-sm-12 col-lg-6 col-md-6">
+                   <div class="form-group row">
+                        <label  class="col-sm-4 col-form-label">Plot No</label>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" [(ngModel)]="model.plotno" #plotno="ngModel" placeholder="Plot No">
+                        </div>
+                      </div>
+                   <div class="form-group row">
+                     <label  class="col-sm-4 col-form-label">Phase No</label>
+                     <div class="col-sm-8">
+                       <input type="text" class="form-control" [(ngModel)]="model.phaseno" #phaseno="ngModel" placeholder="Phase No">
+                     </div>
+                   </div>
+                   <div class="form-group row">
+                     <label  class="col-sm-4 col-form-label">Block No</label>
+                     <div class="col-sm-8">
+                       <input type="text" class="form-control" [(ngModel)]="model.blockno" #blockno="ngModel" placeholder="Block No">
+                     </div>
+                   </div>
+                   <div class="form-group row">
+                     <label  class="col-sm-4 col-form-label">Site Units</label>
+                     <div class="col-sm-8">
+                       <input type="text" class="form-control" [(ngModel)]="model.siteunits" #siteunits="ngModel" placeholder="Site Units">
+                     </div>
+                   </div>
+                   <div class="form-group row">
+                     <label  class="col-sm-4 col-form-label">Cross Plot</label>
+                     <div class="col-sm-8">
+                       <input type="text" class="form-control" [(ngModel)]="model.crossplot" #crossplot="ngModel" placeholder="Cross Plot">
+                     </div>
+                   </div>
+                   <div class="form-group row">
+                     <label  class="col-sm-4 col-form-label">Facing</label>
+                     <div class="col-sm-8">
+                       <input type="text" class="form-control" [(ngModel)]="model.facing" #facing="ngModel" placeholder="Facing">
+                     </div>
+                   </div>
+                   <div class="form-group row">
+                     <label  class="col-sm-4 col-form-label">Plot Dimension</label>
+                     <div class="col-sm-8">
+                       <input type="text" class="form-control" [(ngModel)]="model.plotdimension" #plotdimension="ngModel" placeholder="Plot Dimension">
+                     </div>
+                   </div>
+                   <div class="form-group row">
+                     <label  class="col-sm-4 col-form-label">Owner Id</label>
+                     <div class="col-sm-8">
+                       <input type="text" class="form-control" [(ngModel)]="model.ownerid" #ownerid="ngModel" placeholder="Owner Id">
+                     </div>
+                   </div>
+                   <div class="form-group row">
+                     <label  class="col-sm-4 col-form-label">Facing Site</label>
+                     <div class="col-sm-8">
+                       <input type="text" class="form-control" [(ngModel)]="model.facingsite" #facingsite="ngModel" placeholder="Facing Site">
+                     </div>
+                   </div>
+                </div>
+                <div class="col-sm-12 col-lg-6 col-md-6">
+                 <div class="form-group row">
+                     <label  class="col-sm-4 col-form-label">Survey No</label>
+                     <div class="col-sm-8">
+                       <input type="text" class="form-control" [(ngModel)]="model.surveyno" #surveyno="ngModel" placeholder="Survey No">
+                     </div>
+                   </div>
+                   <div class="form-group row">
+                     <label  class="col-sm-4 col-form-label">Landmark</label>
+                     <div class="col-sm-8">
+                       <input type="text" class="form-control" [(ngModel)]="model.landmark" #landmark="ngModel" placeholder="Landmark">
+                     </div>
+                   </div>
+                   <div class="form-group row">
+                     <label  class="col-sm-4 col-form-label">Plot Site</label>
+                     <div class="col-sm-8">
+                       <input type="text" class="form-control" [(ngModel)]="model.plotsite" #plotsite="ngModel" placeholder="Plot Site">
+                     </div>
+                   </div>
+                   <div class="form-group row">
+                     <label  class="col-sm-4 col-form-label">Notes SuperUser</label>
+                     <div class="col-sm-8">
+                       <input type="text" class="form-control" [(ngModel)]="model.notessuperuser" #notessuperuser="ngModel" placeholder="Notes SuperUser">
+                     </div>
+                   </div>
+                   <div class="form-group row">
+                     <label  class="col-sm-4 col-form-label">Notes Management</label>
+                     <div class="col-sm-8">
+                       <input type="text" class="form-control" [(ngModel)]="model.notesmanagemen" #notesmanagemen="ngModel" placeholder="Notes Management">
+                     </div>
+                   </div>
+                   <div class="form-group row">
+                     <label  class="col-sm-4 col-form-label">Notes SalesTeam</label>
+                     <div class="col-sm-8">
+                       <input type="text" class="form-control" [(ngModel)]="model.notessalesteam" #notessalesteam="ngModel" placeholder="Notes SalesTeam">
+                     </div>
+                   </div>
+                   <div class="form-group row">
+                     <label  class="col-sm-4 col-form-label">Road Site</label>
+                     <div class="col-sm-8">
+                       <input type="text" class="form-control" [(ngModel)]="model.roadsite" #roadsite="ngModel" placeholder="Road Site">
+                     </div>
+                   </div>
+                   <div class="form-group row">
+                     <label  class="col-sm-4 col-form-label">Corner Plot</label>
+                     <div class="col-sm-8">
+                       <input type="text" class="form-control" [(ngModel)]="model.cornerplot" #cornerplot="ngModel" placeholder="Corner Plot">
+                     </div>
+                   </div>
+             </div>
+              
+              </div>
+         </div>
+             <br>
+             <div class="container" style="border:1px solid blue">
+                 <div class="form-group">
+                     <h4>Plot Information</h4>
+                 </div>
+                 <div class="row clearfix">
+                    <div class="col-sm-12 col-lg-6 col-md-6">
+                     <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">CornerPlot Dimension</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.cornerplotdimensions" #cornerplotdimensions="ngModel" placeholder="CornerPlot Dimension">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">ParkSide plot</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.parksideplot" #parksideplot="ngModel" placeholder="ParkSide plot">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">SoldOut</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.soldout" #soldout="ngModel" placeholder="SoldOut">
+                         </div>
+                       </div>
+                       <!--<div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Sales Date</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.salesdate" #salesdate="ngModel" placeholder="Sales Date">
+                         </div>
+                       </div>-->
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">OnHold</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.onhold" #onhold="ngModel" placeholder="OnHold">
+                         </div>
+                       </div>
+                       <!--<div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Hold Date</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.holddate" #holddate="ngModel" placeholder="Hold Date">
+                         </div>
+                       </div>-->
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Hold DurationInDays</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.holddurationindays" #holddurationindays="ngModel" placeholder="Hold DurationInDays">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">HolderId AgentId</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.holderidagentid" #holderidagentid="ngModel" placeholder="HolderId AgentId">
+                         </div>
+                       </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 col-md-6">
+                     <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Dispute</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.dispute" #dispute="ngModel" placeholder="Dispute">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Dispute Notes</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.disputenotes" #disputenotes="ngModel" placeholder="Dispute Notes">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Noc Issued</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.nocissued" #nocissued="ngModel" placeholder="Noc Issued">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Noc Copy</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.noccopy" #noccopy="ngModel" placeholder="Noc Copy">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Plot Sold Amount</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.plotsoldamount" #plotsoldamount="ngModel" placeholder="Plot Sold Amount">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Amount Paid</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.amountpaid" #amountpaid="ngModel" placeholder="mount Paid">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Amount Balance</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.amountbalance" #amountbalance="ngModel" placeholder="Amount Balance">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Instalments</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.instalments" #instalments="ngModel" placeholder="Instalments">
+                         </div>
+                       </div>
+                 </div>
+                  
+                  </div>
+             </div>
+             
+             <br>
+             <div class="container" style="border:1px solid blue">
+                 <div class="form-group">
+                     <h4>Advance Information</h4>
+                 </div>
+                 <div class="row clearfix">
+                    <div class="col-sm-12 col-lg-6 col-md-6">
+                     <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Instalment Id</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.instalmentid" #instalmentid="ngModel" placeholder="Instalment Id">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Instalment Term</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.instalmentterm" #instalmentterm="ngModel" placeholder="Instalment Term">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Agreement Done</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.agreementdone" #agreementdone="ngModel" placeholder="Agreement Done">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Agreement ScancopyLink</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.agreementscancopylink" #agreementscancopylink="ngModel" placeholder="Agreement ScancopyLink">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Registration Id</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.registrationid" #registrationid="ngModel" placeholder="Registration Id">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Registration Done</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.registrationdone" #registrationdone="ngModel" placeholder="registrationdone">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Registration Scancopylink</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.registrationscancopylink" #registrationscancopylink="ngModel" placeholder="Registration Scancopylink">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Itr Done</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.itrdone" #itrdone="ngModel" placeholder="Itr Done">
+                         </div>
+                       </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 col-md-6">
+                     <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Itr No</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.itrno" #itrno="ngModel" placeholder="Itr No">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Re-Sell</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.resell" #resell="ngModel" placeholder="Re-Sell">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Re-SellerId</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.resellerid" #resellerid="ngModel" placeholder="Re-SellerId">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Agreement</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.greement" #agreement="ngModel" placeholder="Agreement">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Agreement Id</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.agreementid" #agreementid="ngModel" placeholder="Agreement Id">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Re-Agreement</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.reagreement" #reagreement="ngModel" placeholder="Re-Agreement">
+                         </div>
+                       </div>
+                       <div class="form-group row">
+                         <label  class="col-sm-4 col-form-label">Re-AgreementId</label>
+                         <div class="col-sm-8">
+                           <input type="text" class="form-control" [(ngModel)]="model.reagreementid" #reagreementid="ngModel" placeholder="Re-AgreementId">
+                         </div>
+                       </div>
+                       
+                 </div>
+                  
+                  </div>
+             </div>
+             <br>
+             <div class="row clearfix">
+
+                 <div class="col-lg-4 col-md-4 col-sm-12 offset-4 text-center">
+                      <button type="button" class="btn l-cyan btn-round btn-lg  waves-effect waves-light" (click)="postUnit()">Save</button>
+                </div>
             </div>
-            
-                <div class="row clearfix">
-                    
-                    <div class="col-lg-12 col-sm-12 col-md-12" style="border:1px solid blue">
-                        <h2>Basic Information</h2>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                            <div class="form-group">
-                                <label>Plot No</label>
-                                <input type="text" class="form-control" [(ngModel)]="property.plotno" #plotno="ngModel" placeholder="Phaseno" required="required">
-                            </div>
-                    </div>
-                   <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>Phase No</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.phaseno" #phaseno="ngModel" placeholder="Phaseno" required="required">
-                        </div>
-                    </div>
-                   
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>Block No</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.blockno" #blockno="ngModel" placeholder="Blockno" required="required">
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>Survey No</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.surveyno" #surveyno="ngModel" placeholder="surveyno" required="required">
-                        </div>
-                    </div>
-                
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>Landmark</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.landmark" #landmark="ngModel" placeholder="landmark" required="required">
-                        </div>
-                    </div>
-                
-                
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>PlotSite</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.plotsite" #plotsite="ngModel" placeholder="plotsite" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>SiteUnit</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.siteunits" #siteunits="ngModel" placeholder="siteunits" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>Crossplot</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.crossplot" #crossplot="ngModel"  placeholder="crossplot" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>notessuperuser</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.notessuperuser" #notessuperuser="ngModel" placeholder="notessuperuser" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>Notes Management</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.notesmanagemen" #notesmanagemen="ngModel"  placeholder="notesmanagement" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>Notes Salesteam</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.notessalesteam" #notessalesteam="ngModel"  placeholder="notessalesteam" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>Facing</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.facing" #facing="ngModel" placeholder="facing" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>Plot Dimension</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.plotdimension" #plotdimension="ngModel" placeholder="plotdimension" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>Owner Id</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.ownerid" #ownerid="ngModel" placeholder="ownerid" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>Facing Site</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.facingsite" #facingsite="ngModel" placeholder="facingsite" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>Road Site</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.roadsite" #roadsite="ngModel" placeholder="roadsite" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>Corner Plot</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.cornerplot" #cornerplot="ngModel" placeholder="cornerplot" required="required">
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <div class="row clearfix">  
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>Corner Plot Dimension</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.cornerplotdimensions" #cornerplotdimensions="ngModel" placeholder="cornerplotdimension" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>Park Side Plot</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.parksideplot" #parksideplot="ngModel" placeholder="parksideplot" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>Soldout</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.soldout" #soldout="ngModel" placeholder="soldout" required="required">
-                        </div>
-                    </div>
-                    <!--<div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>salesdate</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.cornerplot" #cornerplot="ngModel" placeholder="salesdate" required="required">
-                        </div>
-                    </div>-->
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>Onhold</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.onhold" #onhold="ngModel" placeholder="onhold" required="required">
-                        </div>
-                    </div>
-                    <!--<div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>holddate</label>
-                            <input type="text" class="form-control" placeholder="holddate" required="required">
-                        </div>
-                    </div>-->
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>Hold Duration Indays</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.soldout" #soldout="ngModel" placeholder="holddurationindays" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>Holderidagentid</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.soldout" #soldout="ngModel" placeholder="holderidagentid" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>dispute</label>
-                            <input type="text" class="form-control" [(ngModel)]="property.soldout" #soldout="ngModel" placeholder="dispute" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>disputenotes</label>
-                            <input type="text" class="form-control" placeholder="disputenotes" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>nocissued</label>
-                            <input type="text" class="form-control" placeholder="nocissued" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>noccopy</label>
-                            <input type="text" class="form-control" placeholder="noccopy" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>plotsoldamount</label>
-                            <input type="text" class="form-control" placeholder="plotsoldamount" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>amountpaid</label>
-                            <input type="text" class="form-control" placeholder="amountpaid" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>amountbalance</label>
-                            <input type="text" class="form-control" placeholder="amountbalance" required="required">
-                        </div>
-                    </div>
-                
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>instalments</label>
-                            <input type="text" class="form-control" placeholder="instalments" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>instalmentid</label>
-                            <input type="text" class="form-control" placeholder="instalmentid" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>instalmentterm</label>
-                            <input type="text" class="form-control" placeholder="instalmentterm" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>agreementdone</label>
-                            <input type="text" class="form-control" placeholder="agreementdone" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>agreementscancopylink</label>
-                            <input type="text" class="form-control" placeholder="agreementscancopylink" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>registrationid</label>
-                            <input type="text" class="form-control" placeholder="registrationid" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>registrationdone</label>
-                            <input type="text" class="form-control" placeholder="registrationdone" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>registrationscancopylink</label>
-                            <input type="text" class="form-control" placeholder="registrationscancopylink" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>itrdone</label>
-                            <input type="text" class="form-control" placeholder="itrdone" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>itrno</label>
-                            <input type="text" class="form-control" placeholder="itrno" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>resell</label>
-                            <input type="text" class="form-control" placeholder="resell" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>resellerid</label>
-                            <input type="text" class="form-control" placeholder="resellerid" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>agreement</label>
-                            <input type="text" class="form-control" placeholder="agreement" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>agreementid</label>
-                            <input type="text" class="form-control" placeholder="agreementid" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>reagreement</label>
-                            <input type="text" class="form-control" placeholder="reagreement" required="required">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>reagreementid</label>
-                            <input type="text" class="form-control" placeholder="reagreementid" required="required">
-                        </div>
-                    </div>
-                </div>
-                <div class="row clearfix">
-
-                    <div class="col-lg-3 col-md-3 col-sm-12 offset-3 text-center">
-                        <button type="button" class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light">Add</button>
-                    </div>
-                   <div class="col-lg-3 col-md-3 col-sm-12  text-center">
-                        <button type="button" class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light">Save</button>
-                                            </div>
-                </div>
-        
-       
-
     </div>
 </section>

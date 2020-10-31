@@ -34,7 +34,7 @@
                                     <i class="zmdi zmdi-edit" (click)="getUser(item.id)"></i>
                                 </button>
                                 <button class="btn btn-primary btn-icon btn-round " type="button">
-                                    <i class="zmdi zmdi-delete" (click)="deleteUser(item.username)"></i>
+                                    <i class="zmdi zmdi-delete" (click)="deleteUser(item.id,item.username)"></i>
                                 </button>
                             </td>
                         </tr>
@@ -112,24 +112,24 @@
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Username</label>
-                                <input type="text" class="form-control" name="username" value={{usersListItems.username}} placeholder="UserName" required="required">
+                                <input type="text" #username class="form-control" name="username" value={{users.username}} placeholder="UserName" required="required">
                             </div>
                             <div class="form-group">
                                 <label>MobileNo</label>
-                                <input type="text" class="form-control" name="username" value={{usersListItems.mobileno}} placeholder="MobileNo" required="required">
+                                <input type="text" class="form-control" name="username" value={{users.mobileno}} placeholder="MobileNo" required="required">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Eamil Id</label>
-                                <input type="email" class="form-control" name="username" value={{usersListItems.emailid}} placeholder="Eamil" required="required">
+                                <input type="email" class="form-control" name="username" value={{users.emailid}} placeholder="Eamil" required="required">
                             </div>
                            
                             <div class="form-group">
                                 <div class="clearfix">
                                     <label>Password</label>
                                 </div>
-                                <input type="password" class="form-control" name="username" value={{usersListItems.password}} placeholder="password" required="required">
+                                <input type="password" class="form-control" name="username" value={{users.password}} placeholder="password" required="required">
                             </div>
                         </div>
                         
@@ -137,7 +137,7 @@
 				</div>
 				<div class="modal-footer justify-content-between">
                    
-					<input type="submit" class="btn btn-primary btn-round" (click)=updateUser(usersListItems.id) value="Save">
+					<input type="submit" class="btn btn-primary btn-round" (click)=updateUser(users.id) value="Save">
 				</div>
 			</form>
 		</div>

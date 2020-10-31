@@ -54,15 +54,15 @@ export class ApiService {
   }
 
   getUser(id){
-    return this.http.get(this.BASEURL+ '/Users/GetAllUsers?ID=' + id, this.getAuthHeadersJSON());
+    return this.http.get(this.BASEURL+ '/Users/GetUsersbyID?ID=' + id, this.getAuthHeadersJSON());
   }
 
   AddUser(data:any){
     return this.http.post(this.BASEURL+'/Users/AddUser',data,this.getAuthHeadersJSON());
   }
 
-  DeleteUser(data:any){
-    return this.http.post(this.BASEURL+'/Users/DeleteUser', data ,this.getAuthHeadersJSON());
+  DeleteUser(id:any){
+    return this.http.get(this.BASEURL+'/Users/DeleteUser?ID='+id ,this.getAuthHeadersJSON());
   }
 
   EditUser(id){
@@ -81,8 +81,8 @@ export class ApiService {
     return this.http.post(this.BASEURL+'/Departments/AddDepartment',data,this.getAuthHeadersJSON());
   }
 
-  DeleteDepartment(data:any){
-    return this.http.post(this.BASEURL+'/Departments/DeleteDepartment', data,this.getAuthHeadersJSON());
+  DeleteDepartment(id){
+    return this.http.get(this.BASEURL+'/Departments/DeleteDepartment?ID='+id,this.getAuthHeadersJSON());
   }
 
   EditDept(id){
@@ -98,7 +98,7 @@ export class ApiService {
   }
 
   DeleteRole(id){
-    return this.http.post(this.BASEURL+'/Roles/DeleteRoles?ID='+ id,this.getAuthHeadersJSON());
+    return this.http.get(this.BASEURL+'/Roles/DeleteRoles?ID='+ id,this.getAuthHeadersJSON());
   }
 
   getClients(){
@@ -113,8 +113,8 @@ export class ApiService {
     return this.http.post(this.BASEURL+'/Client/EditClient',id,this.getAuthHeadersJSON());
   }
 
-  DeleteClient(data){
-    return this.http.post(this.BASEURL+'/Client/DeleteClient?ID=' , data , this.getAuthHeadersJSON());
+  DeleteClient(id){
+    return this.http.post(this.BASEURL+'/Client/DeleteClient?ID='+id , this.getAuthHeadersJSON());
   }
 
   getClient(id){
@@ -133,12 +133,20 @@ export class ApiService {
     return this.http.get(this.BASEURL+ '/Project/GetProjectByID?ID=' + id, this.getAuthHeadersJSON());
   }
 
+  DeleteProject(id){
+    return this.http.get(this.BASEURL+ '/Project/DeleteProject?ID=' + id, this.getAuthHeadersJSON());
+  }
+
   getProperties(){
     return this.http.get(this.BASEURL+ '/Property/GetAllProperty', this.getAuthHeadersJSON());
   }
 
   AddProperty(data){
     return this.http.post(this.BASEURL+'/Property/AddProperty',data,this.getAuthHeadersJSON());
+  }
+
+  DeleteProperty(id){
+    return this.http.get(this.BASEURL+ '/Property/DeleteProperty?ID=' + id, this.getAuthHeadersJSON());
   }
 
   getOwners(){

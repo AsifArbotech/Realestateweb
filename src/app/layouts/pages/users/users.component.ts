@@ -12,6 +12,7 @@ import { NotifierService } from 'angular-notifier';
 export class UsersComponent implements OnInit {
 
   public usersListItems: Array<AddUser>;
+  public users: AddUser;
   model: any = {};
   page = 1;
   pageSize = 10;
@@ -52,8 +53,8 @@ export class UsersComponent implements OnInit {
 
   getUser(id){
     this.apiservice.getUser(id).subscribe(
-      (items:AddUser[])=>{
-        this.usersListItems=items
+      (items:AddUser)=>{
+        this.users=items
       },
       error => {
         console.log(error);
@@ -80,10 +81,10 @@ export class UsersComponent implements OnInit {
       })
   }
 
-  deleteUser(name){
-    var param = { Id: this.model.id, Username: this.model.username, Password: this.model.password, Emailid: this.model.emailid, Mobile: this.model.mobileno }
+  deleteUser(id,name){
+    
     if (confirm("Do You wish to Delete the User - " + name + "?")){
-      this.apiservice.DeleteUser(param)
+      this.apiservice.DeleteUser(id)
       .subscribe((response:any)=>{
         if (response) {
           if(response.ResponseCode == 0){
