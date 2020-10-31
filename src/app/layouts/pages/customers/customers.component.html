@@ -1,0 +1,127 @@
+<section class="content home">
+
+  <div class="container-fluid">
+    <div class="row clearfix">
+      <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">
+        <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light" (click)="NewCustomer()" data-toggle="modal" data-target="#AddCustomers" type="button">
+          <i class="zmdi zmdi-plus"></i> Add Customers
+        </button>
+
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12">
+        <div class="card weather2">
+
+          <table class="table table-striped  m-b-0">
+            <thead>
+              <tr>
+                <th hidden>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Customer Ref</th>
+                <th>Client Ref</th>
+                <th>Temp Address</th>
+                <th>Permanent Address</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of getCustomerslistItems()">
+                <td hidden>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.mobile}}</td>
+                <td>{{item.customerreference}}</td>
+                <td>{{item.consultantreference}}</td>
+                <td>{{item.tempaddress}}</td>
+                <td>{{item.permanentaddress}}</td>
+                <td>{{item.status}}</td>
+                <td>
+                  <button class="btn btn-primary btn-icon btn-round" (click)="EditCustomer(item.id)" data-toggle="modal" data-target="#AddCustomers" type="button">
+                    <i class="zmdi zmdi-edit"></i>
+                  </button>
+                  <button class="btn btn-primary btn-icon btn-round " (click)="DeleteCustomer(item.id)" type="button">
+                    <i class="zmdi zmdi-delete"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--Add Department Modal Start-->
+<div id="AddCustomers" class="modal fade-out">
+  <div class="modal-dialog modal-login">
+    <div class="modal-content">
+      <div class="modal-header text-center l-cyan" style="display: block !important;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title text-center">{{ActionType}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row  clearfix">
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <input type="hidden" [(ngModel)]="Customer.id" name="ID" #ID="ngModel" />
+              <label>Customer Name</label>
+              <input type="text" class="form-control" [(ngModel)]="Customer.name" name="NAME" #NAME="ngModel" placeholder="Associate Name" required="required">
+            </div>
+            <div class="form-group">
+              <label>Customer Email</label>
+              <input type="email" class="form-control" [(ngModel)]="Customer.email" name="EMAIL" #EMAIL="ngModel" placeholder="Associate Email" required="required">
+            </div>
+
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <label>Customer Mobile</label>
+              <input type="text" class="form-control" [(ngModel)]="Customer.mobile" name="MOBILE" #MOBILE="ngModel" placeholder="Associate Mobile" required="required">
+            </div>
+
+            <div class="form-group">
+              <label>Customer Ref</label>
+              <input type="text" class="form-control" [(ngModel)]="Customer.customerreference" name="CUSTOMERREFERENCE" #CUSTOMERREFERENCE="ngModel" placeholder="Associate Mobile" required="required">
+            </div>
+
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="form-group">
+              <label>Consultant Ref</label>>
+              <select class="form-control" [(ngModel)]="Customer.consultantreference" name="CONSULTANTREFERENCE" #CONSULTANTREFERENCE="ngModel">
+                <option value="1">Associate</option>
+                <option value="2">Broker</option>
+                <option value="3">Consultant</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="form-group">
+              <label>Temp Address</label>
+              <input type="text" class="form-control" [(ngModel)]="Customer.tempaddress" name="TEMPADDRESS" #TEMPADDRESS="ngModel" placeholder="Associate Address" required="required">
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="form-group">
+              <label>Permanent Address</label>
+              <input type="text" class="form-control" [(ngModel)]="Customer.permanentaddress" name="PERMANENTADDRESS" #PERMANENTADDRESS="ngModel" placeholder="Associate Address" required="required">
+            </div>
+          </div>
+        </div>
+        <div class="row clearfix">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <button type="button" class="btn btn-primary btn-round" (click)="AddCustomer()">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Add Client Modal End-->
