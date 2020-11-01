@@ -20,7 +20,7 @@ import { DepartmetComponent } from './layouts/pages/department/departmet.compone
 import { UsersComponent } from './layouts/pages/users/users.component';
 import { HeaderComponent } from './layouts/common/header/header.component';
 import { RolesComponent } from './layouts/pages/roles/roles.component';
-import { ClientsComponent } from './layouts/pages/clients/clients.component';
+import { CustomersComponent } from './layouts/pages/customers/customers.component';
 import { OwnersComponent } from './layouts/pages/owners/owners.component';
 import { ProjectsComponent } from './layouts/pages/projects/projects.component';
 import { PropertyComponent } from './layouts/pages/property/property.component';
@@ -50,7 +50,7 @@ import { MatDatepickerModule, MatNativeDateModule,  MatInputModule} from '@angul
     UsersComponent,
     HeaderComponent,
     RolesComponent,
-    ClientsComponent,
+    CustomersComponent,
     OwnersComponent,
     ProjectsComponent,
     PropertyComponent,

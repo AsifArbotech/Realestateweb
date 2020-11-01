@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 
 export class ApiService {
-  
+
   private BASEURL: any = '';
   public error: any;
 
@@ -26,9 +26,9 @@ export class ApiService {
     if (currentUser && currentUser.access_token) {
       this.headers.append('Authorization', 'Bearer ' + currentUser.token);
     }
-   }
+  }
 
-   getAuthHeaders() {
+  getAuthHeaders() {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser && currentUser.access_token) {
       return { headers: { 'Authorization': 'Bearer ' + currentUser.access_token } };
@@ -49,88 +49,91 @@ export class ApiService {
     return { headers: { 'Content-Type': 'application/json' } }
   }
 
-  getUsers(){
-    return this.http.get(this.BASEURL+ '/Users/GetAllUsers', this.getAuthHeadersJSON());
+  getUsers() {
+    return this.http.get(this.BASEURL + '/Users/GetAllUsers', this.getAuthHeadersJSON());
   }
 
-  getUser(id){
-    return this.http.get(this.BASEURL+ '/Users/GetUsersbyID?ID=' + id, this.getAuthHeadersJSON());
+  getUser(id) {
+    return this.http.get(this.BASEURL + '/Users/GetUsersbyID?ID=' + id, this.getAuthHeadersJSON());
   }
 
-  AddUser(data:any){
-    return this.http.post(this.BASEURL+'/Users/AddUser',data,this.getAuthHeadersJSON());
+  AddUser(data: any) {
+    return this.http.post(this.BASEURL + '/Users/AddUser', data, this.getAuthHeadersJSON());
   }
 
-  DeleteUser(id:any){
-    return this.http.get(this.BASEURL+'/Users/DeleteUser?ID='+id ,this.getAuthHeadersJSON());
+  DeleteUser(id: any) {
+    return this.http.get(this.BASEURL + '/Users/DeleteUser?ID=' + id, this.getAuthHeadersJSON());
   }
 
-  EditUser(id){
-    return this.http.post(this.BASEURL+'/Users/EditUser',id,this.getAuthHeadersJSON());
+  EditUser(id) {
+    return this.http.post(this.BASEURL + '/Users/EditUser', id, this.getAuthHeadersJSON());
   }
 
-  getDepartments(){
-    return this.http.get(this.BASEURL+ '/Departments/GetAllDepartment', this.getAuthHeadersJSON());
+  getDepartments() {
+    return this.http.get(this.BASEURL + '/Departments/GetAllDepartment', this.getAuthHeadersJSON());
   }
 
-  getDepartment(id){
-    return this.http.get(this.BASEURL+ '/Departments/GetAllDepartment?ID=' + id, this.getAuthHeadersJSON());
+  getDepartment(id) {
+    return this.http.get(this.BASEURL + '/Departments/GetAllDepartment?ID=' + id, this.getAuthHeadersJSON());
   }
 
-  AddDepartment(data:any){
-    return this.http.post(this.BASEURL+'/Departments/AddDepartment',data,this.getAuthHeadersJSON());
+  AddDepartment(data: any) {
+    return this.http.post(this.BASEURL + '/Departments/AddDepartment', data, this.getAuthHeadersJSON());
   }
 
-  DeleteDepartment(id){
-    return this.http.get(this.BASEURL+'/Departments/DeleteDepartment?ID='+id,this.getAuthHeadersJSON());
+  DeleteDepartment(id) {
+    return this.http.get(this.BASEURL + '/Departments/DeleteDepartment?ID=' + id, this.getAuthHeadersJSON());
   }
 
-  EditDept(id){
-    return this.http.post(this.BASEURL+'/Departments/EditDepartment',id,this.getAuthHeadersJSON());
+  EditDept(id) {
+    return this.http.post(this.BASEURL + '/Departments/EditDepartment', id, this.getAuthHeadersJSON());
   }
 
-  getRoles(){
-    return this.http.get(this.BASEURL+ '/Roles/GetAllRoles', this.getAuthHeadersJSON());
+  getRoles() {
+    return this.http.get(this.BASEURL + '/Roles/GetAllRoles', this.getAuthHeadersJSON());
   }
 
-  AddRole(data:any){
-    return this.http.post(this.BASEURL+'/Roles/AddRole',data,this.getAuthHeadersJSON());
+  AddRole(data: any) {
+    return this.http.post(this.BASEURL + '/Roles/AddRole', data, this.getAuthHeadersJSON());
   }
 
-  DeleteRole(id){
-    return this.http.get(this.BASEURL+'/Roles/DeleteRoles?ID='+ id,this.getAuthHeadersJSON());
+  DeleteRole(id) {
+    return this.http.get(this.BASEURL + '/Roles/DeleteRoles?ID=' + id, this.getAuthHeadersJSON());
   }
 
-  getClients(){
-    return this.http.get(this.BASEURL+ '/Client/GetAllClient', this.getAuthHeadersJSON());
+  getCustomers() {
+    return this.http.get(this.BASEURL + '/Customer/GetAllCustomer', this.getAuthHeadersJSON());
   }
 
-  AddClient(data){
-    return this.http.post(this.BASEURL+'/Client/AddClient',data,this.getAuthHeadersJSON());
+  AddCustomers(data) {
+    if (data.id) {
+      return this.http.post(this.BASEURL + '/Customer/EditCustomer', data, this.getAuthHeadersJSON());
+    }
+    return this.http.post(this.BASEURL + '/Customer/AddCustomer', data, this.getAuthHeadersJSON());
   }
 
-  EditClient(id){
-    return this.http.post(this.BASEURL+'/Client/EditClient',id,this.getAuthHeadersJSON());
+  //EditCCustomers(id) {
+  //  return this.http.post(this.BASEURL + '/Client/EditClient', id, this.getAuthHeadersJSON());
+  //}
+
+  DeleteCustomers(id) {
+    return this.http.post(this.BASEURL + '/Customer/DeleteCustomer?ID=' + id, this.getAuthHeadersJSON());
   }
 
-  DeleteClient(id){
-    return this.http.post(this.BASEURL+'/Client/DeleteClient?ID='+id , this.getAuthHeadersJSON());
+  getCustomer(id) {
+    return this.http.get(this.BASEURL + '/Customer/GetCustomerById?ID=' + id, this.getAuthHeadersJSON());
   }
 
-  getClient(id){
-    return this.http.get(this.BASEURL+ '/Client/GetAllClient?ID=' + id, this.getAuthHeadersJSON());
+  getProjects() {
+    return this.http.get(this.BASEURL + '/Project/GetAllProject', this.getAuthHeadersJSON());
   }
 
-  getProjects(){
-    return this.http.get(this.BASEURL+ '/Project/GetAllProject', this.getAuthHeadersJSON());
+  AddProject(data) {
+    return this.http.post(this.BASEURL + '/Project/AddProject', data, this.getAuthHeadersJSON());
   }
 
-  AddProject(data){
-    return this.http.post(this.BASEURL+'/Project/AddProject',data,this.getAuthHeadersJSON());
-  }
-
-  getProject(id){
-    return this.http.get(this.BASEURL+ '/Project/GetProjectByID?ID=' + id, this.getAuthHeadersJSON());
+  getProject(id) {
+    return this.http.get(this.BASEURL + '/Project/GetProjectByID?ID=' + id, this.getAuthHeadersJSON());
   }
 
   EditProject(data){
@@ -141,36 +144,55 @@ export class ApiService {
     return this.http.get(this.BASEURL+ '/Project/DeleteProject?ID=' + id, this.getAuthHeadersJSON());
   }
 
-  getProperties(){
-    return this.http.get(this.BASEURL+ '/Property/GetAllProperty', this.getAuthHeadersJSON());
+  AddProperty(data) {
+    return this.http.post(this.BASEURL + '/Property/AddProperty', data, this.getAuthHeadersJSON());
   }
 
-  getProperty(id){
-    return this.http.get(this.BASEURL+ '/Property/GetPropertyByID?ID=' + id, this.getAuthHeadersJSON());
+  DeleteProperty(id) {
+    return this.http.get(this.BASEURL + '/Property/DeleteProperty?ID=' + id, this.getAuthHeadersJSON());
   }
 
-  EditProperty(data){
-    return this.http.post(this.BASEURL+'/Property/EditProperty',data,this.getAuthHeadersJSON());
+  getOwners() {
+    return this.http.get(this.BASEURL + '/Owners/GetAllOwners', this.getAuthHeadersJSON());
   }
 
-  AddProperty(data){
-    return this.http.post(this.BASEURL+'/Property/AddProperty',data,this.getAuthHeadersJSON());
+  AddOwner(data) {
+    return this.http.post(this.BASEURL + '/Owners/AddOwner', data, this.getAuthHeadersJSON());
   }
 
-  DeleteProperty(id){
-    return this.http.get(this.BASEURL+ '/Property/DeleteProperty?ID=' + id, this.getAuthHeadersJSON());
+  //Add Consultant or Associate
+  AddAssociate(associate) {
+    if (associate.id) {
+      return this.http.post(this.BASEURL + '/Consultant/EditConsultant', associate, this.getAuthHeadersJSON());
+    }
+    else
+      return this.http.post(this.BASEURL + '/Consultant/AddConsultant', associate, this.getAuthHeadersJSON());
   }
 
-  getOwners(){
-    return this.http.get(this.BASEURL+ '/Owners/GetAllOwners', this.getAuthHeadersJSON());
+  getAssociates() {
+    return this.http.get(this.BASEURL + '/Consultant/GetAllConsultant', this.getAuthHeadersJSON());
   }
 
-  getOwner(id){
-    return this.http.get(this.BASEURL+ '/Owners/GetOwnersByID?ID=' + id, this.getAuthHeadersJSON());
+  getAssociateByID(ID) {
+    return this.http.get(this.BASEURL + '/Consultant/GetConsultantById?ID=' + ID, this.getAuthHeadersJSON());
   }
 
-  AddOwner(data){
-    return this.http.post(this.BASEURL + '/Owners/AddOwner', data ,this.getAuthHeadersJSON());
+  DeleteAssociateByID(ID) {
+    return this.http.get(this.BASEURL + '/Consultant/DeleteConsultant?ID=' + ID, this.getAuthHeadersJSON());
+  }
+
+
+  //  Sales Enquire Services
+  AddSalesEnquire(Enquire) {
+    if (Enquire.id) {
+      return this.http.post(this.BASEURL + '/SalesEnquire/EditSalesEnquire', Enquire, this.getAuthHeadersJSON());
+    }
+    else
+      return this.http.post(this.BASEURL + '/SalesEnquire/AddSalesEnquire', Enquire, this.getAuthHeadersJSON());
+  }
+
+  getSalesEnquireList() {
+    return this.http.get(this.BASEURL + '/SalesEnquire/GetAllSalesEnquire', this.getAuthHeadersJSON());
   }
 
   EditOwner(data){
