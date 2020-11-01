@@ -38,7 +38,6 @@ import { SalesquotationComponent } from './layouts/pages/salesquotation/salesquo
 import { PdcComponent } from './layouts/pages/pdc/pdc.component';
 import { AssociateComponent } from './layouts/pages/associate/associate.component';
 import { RoutingModule } from './routing.module';
-import { MatDatepickerModule, MatNativeDateModule,  MatInputModule} from '@angular/material';
 
 
 @NgModule({
@@ -76,9 +75,6 @@ import { MatDatepickerModule, MatNativeDateModule,  MatInputModule} from '@angul
     NotifierModule.withConfig(customNotifierOptions),
     FormsModule,
     NgbModal,
-    MatDatepickerModule, 
-    MatNativeDateModule,  
-    MatInputModule
 
   ],
   providers: [

@@ -144,6 +144,14 @@ export class ApiService {
     return this.http.get(this.BASEURL+ '/Project/DeleteProject?ID=' + id, this.getAuthHeadersJSON());
   }
 
+  getProperty(id){
+    return this.http.get(this.BASEURL+ '/Property/GetPropertyByID?ID=' + id, this.getAuthHeadersJSON());
+  }
+
+  EditProperty(data){
+    return this.http.post(this.BASEURL+'/Property/EditProperty',data,this.getAuthHeadersJSON());
+  }
+
   AddProperty(data) {
     return this.http.post(this.BASEURL + '/Property/AddProperty', data, this.getAuthHeadersJSON());
   }
@@ -154,6 +162,10 @@ export class ApiService {
 
   getOwners() {
     return this.http.get(this.BASEURL + '/Owners/GetAllOwners', this.getAuthHeadersJSON());
+  }
+
+  getOwner(id){
+    return this.http.get(this.BASEURL+ '/Owners/GetOwnersByID?ID=' + id, this.getAuthHeadersJSON());
   }
 
   AddOwner(data) {
@@ -194,6 +206,11 @@ export class ApiService {
   getSalesEnquireList() {
     return this.http.get(this.BASEURL + '/SalesEnquire/GetAllSalesEnquire', this.getAuthHeadersJSON());
   }
+
+  getSalesQuotList() {
+    return this.http.get(this.BASEURL + '/SalesQuotation/GetAllSalesQuotation', this.getAuthHeadersJSON());
+  }
+
 
   EditOwner(data){
     return this.http.post(this.BASEURL+'/Owners/EditOwners',data,this.getAuthHeadersJSON());
