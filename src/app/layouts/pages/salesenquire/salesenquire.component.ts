@@ -99,7 +99,7 @@ export class SalesenquireComponent implements OnInit {
           else {
             this.notifier.notify("error", "Something went wrong");
           }
-          this.salesenquire = new Salesenquire();
+          this.clearfields();
           this.getSalesEnquireList();
         }
       })
@@ -108,6 +108,35 @@ export class SalesenquireComponent implements OnInit {
 
   }
 
+  EditSalesEnquire(id) {
+    this.ActionType = "Edit Sales Enquire";
+    this.GetAllSuggesstion();
+    this.apiservice.getSalesEnquireByID(id).subscribe(
+      (response: Salesenquire) => {
+       // response.createdon = new Date(response.createdon.toString().split('T')[0]);
+        response.createdon =response.createdon;
+        this.salesenquire = response;
+        (<HTMLInputElement>document.getElementById('Projectid')).value = this.projectsListItems.find(f => f.projectid == this.salesenquire.projectid).projectname;
+        (<HTMLInputElement>document.getElementById('Customerid')).value = this.customerslist.find(f => f.id == this.salesenquire.customerid).name;
+        (<HTMLInputElement>document.getElementById('Propertyid')).value = this.propertyListItems.find(f => f.id == this.salesenquire.unitid).plotno;
+        (<HTMLInputElement>document.getElementById('Associateid')).value = this.AssociateList.find(f => f.id == this.salesenquire.consultantid).name;
+      },
+      error => {
+        console.log(error);
+        this.notifier.notify("error", "Something went wrong");
+      }
+    )
+
+    this.ActionType = "Edit Sales Enquire";
+  }
+
+  clearfields() {
+    (<HTMLInputElement>document.getElementById('Projectid')).value = "";
+    (<HTMLInputElement>document.getElementById('Customerid')).value = "";
+    (<HTMLInputElement>document.getElementById('Propertyid')).value = "";
+    (<HTMLInputElement>document.getElementById('Associateid')).value = "";
+    this.salesenquire = new Salesenquire();
+  }
 
 
 
@@ -124,6 +153,22 @@ export class SalesenquireComponent implements OnInit {
       this.getAssociateList();
   }
 
+
+  DeleteSalesEnquire(id) {
+    if (confirm("Do You wish to Delete the Enquire?")) {
+      this.apiservice.DeleteSalesEnquireByID(id)
+        .subscribe((response: any) => {
+          if (response) {
+            if (response.responseCode == 0) {
+              this.notifier.notify("error", response.responseMsg);
+            } else if (response.responseCode == 1) {
+              this.notifier.notify("success", response.responseMsg);
+              this.getSalesEnquireList();
+            }
+          }
+        })
+    }
+  }
 
   getCustomerssuggesstionlist() {
     this.apiservice.getCustomers().subscribe(

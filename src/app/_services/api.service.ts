@@ -195,4 +195,12 @@ export class ApiService {
     return this.http.get(this.BASEURL + '/SalesEnquire/GetAllSalesEnquire', this.getAuthHeadersJSON());
   }
 
+  getSalesEnquireByID(ID) {
+    return this.http.get(this.BASEURL + '/SalesEnquire/GetSalesEnquireById?ID=' + ID, this.getAuthHeadersJSON());
+  }
+
+  DeleteSalesEnquireByID(ID) {
+    return this.http.get(this.BASEURL + '/SalesEnquire/DeleteSalesEnquire?ID=' + ID, this.getAuthHeadersJSON());
+  }
+
 }
