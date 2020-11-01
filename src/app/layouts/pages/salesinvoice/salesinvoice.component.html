@@ -1,163 +1,133 @@
 <section class="content home">
 
-    <div class="container-fluid">
-        <div class="row clearfix">
-            <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">                
-                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light"  data-toggle="modal" data-target="#AddsalesInv" type="button">
-                    <i class="zmdi zmdi-plus"></i> Add Sales Invoice
-                </button>
-                               
-            </div>
-        </div>
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12">
-                <div class="card weather2">
-                    <table class="table table-striped  m-b-0">
-                        <tbody>
-                            <tr>
-                            <td>Invoice No</td>
-                            <td>Customer Name</td>
-                            <td>Project</td>
-                            <td>Unit</td>
-                            <td>Invoice Date</td>
-                            <td>Amount</td>
-                            <td>Remark</td>
-                            <td>View</td>
-                        </tr>
-                        <tr>
-                            <td>123</td>                            
-                            <td>Arshad</td>
-                            <td>Ghoris</td>
-                            <td>Pleasent</td>
-                            <td>26-10-2020</td>
-                            <td>23,000</td>
-                            <td>Good</td>
-                            <!--<td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>-->
-                            <td>
-                                <button class="btn btn-primary btn-icon btn-round " type="button" data-toggle="modal" data-target="#EditsalesInv"> 
-                                    <i class="zmdi zmdi-edit" ></i>
-                                </button>
-                                <button class="btn btn-primary btn-icon btn-round " type="button">
-                                    <i class="zmdi zmdi-delete" ></i>
-                                </button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+  <div class="container-fluid">
+    <div class="row clearfix">
+      <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">
+        <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light" (click)="GetAllSuggesstion()" data-toggle="modal" data-target="#AddsalesEnq" type="button">
+          <i class="zmdi zmdi-plus"></i> Add Sales Invoice
+        </button>
+
+      </div>
     </div>
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12">
+        <div class="card weather2">
+          <table class="table table-striped  m-b-0">
+            <thead>
+              <tr>
+                <th hidden>ID</th>
+                <th>Sales Invoice No.</th>
+                <th>Customer Name</th>
+                <th>Date</th>
+                <th>Project</th>
+                <th>Plot No.</th>
+                <th>Associate Name</th>
+                <th>Amount</th>
+                <th>Remark</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of getSalesinvoicelistItems()">
+                <td hidden>{{item.salesinvoiceid}}</td>
+                <td>{{item.salesinvoiceno}}</td>
+                <td>{{item.customername}}</td>
+                <td>{{item.createdon.split('T')[0]}}</td>
+                <td>{{item.projectname}}</td>
+                <td>{{item.plotno}}</td>
+                <td>{{item.consultantname}}</td>
+                <td>{{item.amount}}</td>
+                <td>{{item.remark}}</td>
+                <td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>
+                <td>
+                  <button class="btn btn-primary btn-icon btn-round" (click)="EditSalesinvoice(item.salesinvoiceid)" data-toggle="modal" data-target="#AddsalesEnq" type="button">
+                    <i class="zmdi zmdi-edit"></i>
+                  </button>
+                  <button class="btn btn-primary btn-icon btn-round " (click)="DeleteSalesinvoice(item.salesinvoiceid)" type="button">
+                    <i class="zmdi zmdi-delete"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<div id="AddsalesInv" class="modal fade">
-	<div class="modal-dialog modal-login">
-		<div class="modal-content">
-				<div class="modal-header text-center l-cyan" style="display: block !important;">				
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title text-center">New Sales Invoice </h4>
-				</div>
-				<div class="modal-body">
-                    <div class="row  clearfix">
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Invoice No</label>
-                                <input type="text" class="form-control" placeholder="Invoice No" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>Customer Name</label>
-                                <input type="text" class="form-control" placeholder="Customer Name" required="required">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Project</label>
-                                <input type="email" class="form-control" placeholder="Project" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>Unit</label>
-                                <input type="text" class="form-control" placeholder="Unit" required="required">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Invoice Date</label>
-                                <input type="email" class="form-control" placeholder="Invoice Date" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>Amount</label>
-                                <input type="text" class="form-control" placeholder="Amount" required="required">
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="form-group">
-                                <label>Remark</label>
-                                <input type="text" class="form-control" placeholder="Remark" required="required">
-                            </div>
-                        </div>
-                    </div>					
-                    <div class="row clearfix">
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <button type="button" class="btn btn-primary btn-round" >Save</button>
-                        </div>
-                    </div>
-                </div>
-		</div>
-	</div>
-</div>    
+<div id="AddsalesEnq" class="modal fade">
+  <div class="modal-dialog modal-login">
+    <div class="modal-content">
+      <div class="modal-header text-center l-cyan" style="display: block !important;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title text-center">{{ActionType}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row  clearfix">
+          <div class="col-lg-12 col-md-12 col-sm-12" *ngIf="ActionType!='Add Sales Invoice'">
+            <label>invoice No :{{salesinvoice.invoiceno}}</label>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="form-group">
+              <input type="hidden" [(ngModel)]="salesinvoice.id" name="ID" #ID="ngModel" />
+              <label>Quatation No.</label>
+              <input type="text" class="form-control" list="salesquatationlist" id="salesquatationno" value="{{quotationno}}" (keyup)="getquatationdetails($event)" placeholder="Project" required="required">
+              <datalist id="salesquatationlist">
+                <option *ngFor="let item of salesquatationlist">{{item.salesquotationno}}</option>
+              </datalist>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <input type="hidden" [(ngModel)]="salesinvoice.id" name="ID" #ID="ngModel" />
+              <label>Project</label>
+              <input type="text" class="form-control" id="Projectid" placeholder="Project" value="{{projectname}}" required="required" disabled>
+             
+            </div>
+            <div class="form-group">
+              <label>Customer Name</label>
+              <input type="text" class="form-control" id="Customerid" placeholder="Customer Name" value="{{customername}}" required="required" disabled>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <label>Unit</label>
+              <input type="text" class="form-control" id="Propertyid" placeholder="Unit" value="{{unit}}" required="required" disabled>
+            </div>
+            <div class="form-group">
+              <label>Date</label>
+              <input type="email" class="form-control" placeholder="Invoice Date" [(ngModel)]="salesinvoice.createdon" name="CREATEDON" #CREATEDON="ngModel" required="required">
+            </div>
+          </div>
 
-<div id="EditsalesInv" class="modal fade">
-	<div class="modal-dialog modal-login">
-		<div class="modal-content">
-				<div class="modal-header text-center l-cyan" style="display: block !important;">				
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title text-center">Edit Sales Invoice </h4>
-				</div>
-				<div class="modal-body">
-                    <div class="row  clearfix">
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Invoice No</label>
-                                <input type="text" class="form-control" placeholder="Invoice No" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>Customer Name</label>
-                                <input type="text" class="form-control" placeholder="Customer Name" required="required">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Project</label>
-                                <input type="email" class="form-control" placeholder="Project" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>Unit</label>
-                                <input type="text" class="form-control" placeholder="Unit" required="required">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Invoice Date</label>
-                                <input type="email" class="form-control" placeholder="Invoice Date" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>Amount</label>
-                                <input type="text" class="form-control" placeholder="Amount" required="required">
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="form-group">
-                                <label>Remark</label>
-                                <input type="text" class="form-control" placeholder="Remark" required="required">
-                            </div>
-                        </div>
-                    </div>					
-                    <div class="row clearfix">
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <button type="button" class="btn btn-primary btn-round" >Save</button>
-                        </div>
-                    </div>
-                </div>
-		</div>
-	</div>
-</div>    
+          <div class="col-lg-6 col-md-6 col-sm-12">
+
+            <div class="form-group">
+              <label>Amount</label>
+              <input type="text" class="form-control" placeholder="Amount" [(ngModel)]="salesinvoice.amount" name="AMOUNT" #AMOUNT="ngModel" required="required">
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <label>Associate Name</label>
+              <input type="text" class="form-control" id="Associateid" placeholder="Associate Name" value="{{associatename}}" required="required" disabled>
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="form-group">
+              <label>Remark</label>
+              <input type="text" class="form-control" [(ngModel)]="salesinvoice.remark" name="REMARK" #REMARK="ngModel" placeholder="Remark" required="required">
+            </div>
+          </div>
+        </div>
+        <div class="row clearfix">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <button type="button" class="btn btn-primary btn-round" (click)="Saveinvoice()">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
