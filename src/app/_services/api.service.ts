@@ -133,12 +133,24 @@ export class ApiService {
     return this.http.get(this.BASEURL+ '/Project/GetProjectByID?ID=' + id, this.getAuthHeadersJSON());
   }
 
+  EditProject(data){
+    return this.http.post(this.BASEURL+'/Project/EditProject',data,this.getAuthHeadersJSON());
+  }
+
   DeleteProject(id){
     return this.http.get(this.BASEURL+ '/Project/DeleteProject?ID=' + id, this.getAuthHeadersJSON());
   }
 
   getProperties(){
     return this.http.get(this.BASEURL+ '/Property/GetAllProperty', this.getAuthHeadersJSON());
+  }
+
+  getProperty(id){
+    return this.http.get(this.BASEURL+ '/Property/GetPropertyByID?ID=' + id, this.getAuthHeadersJSON());
+  }
+
+  EditProperty(data){
+    return this.http.post(this.BASEURL+'/Property/EditProperty',data,this.getAuthHeadersJSON());
   }
 
   AddProperty(data){
@@ -153,8 +165,23 @@ export class ApiService {
     return this.http.get(this.BASEURL+ '/Owners/GetAllOwners', this.getAuthHeadersJSON());
   }
 
+  getOwner(id){
+    return this.http.get(this.BASEURL+ '/Owners/GetOwnersByID?ID=' + id, this.getAuthHeadersJSON());
+  }
+
   AddOwner(data){
     return this.http.post(this.BASEURL + '/Owners/AddOwner', data ,this.getAuthHeadersJSON());
   }
 
+  EditOwner(data){
+    return this.http.post(this.BASEURL+'/Owners/EditOwners',data,this.getAuthHeadersJSON());
+  }
+
+  DeleteOwner(id){
+    return this.http.get(this.BASEURL+ '/Owners/DeleteOwners?ID=' + id, this.getAuthHeadersJSON());
+  }
+
+  AddSalesQuot(data){
+    return this.http.post(this.BASEURL + '/SalesQuotation/AddSalesQuotation', data ,this.getAuthHeadersJSON());
+  }
 }

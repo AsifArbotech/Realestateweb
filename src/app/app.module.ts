@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NotifierModule } from "angular-notifier";
+import customNotifierOptions from './notifier.config';
 import { FormsModule } from '@angular/forms';
-//import customNotifierOptions from './notifier.config';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthenticationService } from './_services/authentication.service';
 import { ApiService } from './_services/api.service';
@@ -37,6 +38,7 @@ import { SalesquotationComponent } from './layouts/pages/salesquotation/salesquo
 import { PdcComponent } from './layouts/pages/pdc/pdc.component';
 import { AssociateComponent } from './layouts/pages/associate/associate.component';
 import { RoutingModule } from './routing.module';
+import { MatDatepickerModule, MatNativeDateModule,  MatInputModule} from '@angular/material';
 
 
 @NgModule({
@@ -71,8 +73,13 @@ import { RoutingModule } from './routing.module';
     AppRoutingModule,
     RoutingModule,
     HttpClientModule,
-    NotifierModule,
+    NotifierModule.withConfig(customNotifierOptions),
     FormsModule,
+    NgbModal,
+    MatDatepickerModule, 
+    MatNativeDateModule,  
+    MatInputModule
+
   ],
   providers: [
     AppConfig,

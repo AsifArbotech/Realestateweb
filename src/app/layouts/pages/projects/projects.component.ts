@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Project } from '../../../_models/project'
 import { ApiService } from '../../../_services/api.service';
 import { NotifierService } from 'angular-notifier';
@@ -13,29 +14,16 @@ export class ProjectsComponent implements OnInit {
 
   public projectsListItems: Array<Project>;
   public projectsItems: Project=new Project();
-  public Projectpreview: ProjectPreview;
+  
   model: any = {};
   page = 1;
   pageSize = 10;
 
   constructor(private router: Router,
     private apiservice: ApiService,
-    private notifier: NotifierService) {
+    private notifier: NotifierService,
+    private modalService: NgbModal) {
     this.clearfields();
-
-    this.Projectpreview = {
-      projectid: 0,
-      projectname: "",
-      locationaddress: "",
-      landmark: "",
-      surveynos: "",
-      villagename: "",
-      mandalname: "",
-      districtname: "",
-      statename: "",
-      pincode: "",
-      notes: "",
-    }
   }
 
   ngOnInit(): void {
@@ -80,7 +68,19 @@ export class ProjectsComponent implements OnInit {
   }
 
   updateProject(){
-
+    this.apiservice.EditProject(this.projectsItems)
+      .subscribe((response: any) => {
+        this.projectsItems = response
+        if (response) {
+          if (response.responseCode == 0) {
+            this.notifier.notify("error", response.responseMsg);
+          } else if (response.responseCode == 1) {
+            this.modalService.dismissAll();
+            this.notifier.notify("success", response.responseMsg);
+            this.getProjectsList();
+          }
+        }
+      })
   }
 
   postproject() {
@@ -91,6 +91,7 @@ export class ProjectsComponent implements OnInit {
           if (response.responseCode == 0) {
             this.notifier.notify("error", response.responseMsg);
           } else if (response.responseCode == 1) {
+            this.modalService.dismissAll();
             this.notifier.notify("success", response.responseMsg);
             this.clearfields();
             this.getProjectsList()
@@ -118,6 +119,12 @@ export class ProjectsComponent implements OnInit {
         })
     }
   }
+
+  openModal(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    }, (reason) => {
+    });
+  };
 
   clearfields() {
     this.model = {

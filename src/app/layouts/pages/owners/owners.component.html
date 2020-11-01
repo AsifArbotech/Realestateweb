@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">                
-                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light"  data-toggle="modal" data-target="#AddOwner" type="button">
+                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light"  (click)="openModal(addOwnerModel)" type="button">
                     <i class="zmdi zmdi-plus"></i> Add Owners
                 </button>
                                
@@ -15,7 +15,6 @@
                     <table class="table table-striped  m-b-0">
                         <tbody>
                             <tr>
-                            <td>Owner Id</td>
                             <td class="font-medium">Owner Name</td>
                             <td>Owner Reference</td>
                             <td>Address Id</td>
@@ -25,7 +24,6 @@
                             <td>View</td>
                         </tr>
                         <tr *ngFor="let item of getOwnerslistItems()">
-                            <td>{{item.ownerid}}</td>
                             <td class="font-medium">{{item.ownername}}</td>
                             <td>{{item.ownerreference}}</td>
                             <td>{{item.addressid}}</td>
@@ -34,11 +32,11 @@
                             <td>{{item.notes}}</td>
                             <!--<td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>-->
                             <td>
-                                <button class="btn btn-primary btn-icon btn-round " type="button">
-                                    <i class="zmdi zmdi-edit" (click)="getClient(item.clientid)"></i>
+                                <button class="btn btn-primary btn-icon btn-round " type="button" (click)="openModal(editOwnerModel)">
+                                    <i class="zmdi zmdi-edit" (click)="getOwner(item.ownerid)"></i>
                                 </button>
                                 <button class="btn btn-primary btn-icon btn-round " type="button">
-                                    <i class="zmdi zmdi-delete" (click)="deleteDept(item.clientid,item.clientname)"></i>
+                                    <i class="zmdi zmdi-delete" (click)="deleteOwner(item.ownerid,item.ownername)"></i>
                                 </button>
                             </td>
                         </tr>
@@ -51,12 +49,11 @@
     </div>
 </section>
 
-<!--Add Owner Modal Start-->
-<div id="AddOwner" class="modal fade">
-	<div class="modal-dialog modal-login">
+<ng-template #addOwnerModel let-modal>
+    <div class="modal-dialog modal-login">
 		<div class="modal-content">
 				<div class="modal-header text-center l-cyan" style="display: block !important;">				
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <button type="button" class="close" (click)="modal.dismiss('Cross click')">&times;</button>
                     <h4 class="modal-title text-center">New Owner</h4>
 				</div>
 				<div class="modal-body">
@@ -100,5 +97,54 @@
                 </div>
 		</div>
 	</div>
-</div>    
-<!--Add Owner Modal End-->
+</ng-template>
+
+<ng-template #editOwnerModel let-modal>
+    <div class="modal-dialog modal-login">
+		<div class="modal-content">
+				<div class="modal-header text-center l-cyan" style="display: block !important;">				
+                    <button type="button" class="close" (click)="modal.dismiss('Cross click')">&times;</button>
+                    <h4 class="modal-title text-center">Edit Owner</h4>
+				</div>
+				<div class="modal-body">
+                    <div class="row  clearfix">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Owner Name</label>
+                                <input type="text" class="form-control" [(ngModel)]="ownerItems.ownername" name="ownername" #ownername="ngModel" placeholder="Owner Name" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label>Owner Reference</label>
+                                <input type="text" class="form-control" [(ngModel)]="ownerItems.ownerreference" name="ownerreference" #ownerreference="ngModel" placeholder="Owner Reference" required="required">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <!--<div class="form-group">
+                                <label>Address Id</label>
+                                <input type="email" class="form-control" [(ngModel)]="ownerItems.addressid" name="addressid" #addressid="ngModel" placeholder="Adress Id" required="required">
+                            </div>-->
+                            <div class="form-group">
+                                <label>Owner Adharno</label>
+                                <input type="text" class="form-control" [(ngModel)]="ownerItems.owneraadharno" name="owneraadharno" #owneraadharno="ngModel" placeholder="Owner Adhar" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label>Owner Id Proof</label>
+                                <input type="email" class="form-control" [(ngModel)]="ownerItems.owneridproof" name="owneridproof" #owneridproof="ngModel" placeholder="Owner Id Proof" required="required">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Note</label>
+                                <input type="text" class="form-control" [(ngModel)]="ownerItems.notes" name="notes" #notes="ngModel" placeholder="Note" required="required">
+                            </div>
+                        </div>
+                    </div>					
+                    <div class="row clearfix">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <button type="button" class="btn btn-primary btn-round" (click)="updateOwner()">Save</button>
+                        </div>
+                    </div>
+                </div>
+		</div>
+	</div>
+</ng-template>

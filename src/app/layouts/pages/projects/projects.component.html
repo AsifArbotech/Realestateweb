@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">                
-                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light"  data-toggle="modal" data-target="#AddProject" type="button">
+                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light"  (click)="openModal(addProjectModel)" type="button">
                     <i class="zmdi zmdi-plus"></i> Add Project
                 </button>
                                
@@ -15,41 +15,39 @@
                     <table class="table table-striped  m-b-0">
                         <tbody>
                             <tr>
-                            <td>Project ID</td>
                             <td class="font-medium">Project Name</td>
                             <td>Location Address</td>
                             <td>LandMark</td>
                             <td>Survey No</td>
                             <td>Village Name</td>
                             <td>Mandal Name</td>
-                            <td>District Name</td>
+                            <!--<td>District Name</td>
                             <td>State Name</td>
                             <td>PinCode</td>
-                            <td>Note</td>
+                            <td>Note</td>-->
                             <td>View</td>
                         </tr>
                         <tr *ngFor="let item of getProjecttItems()">
-                            <td>{{item.projectid}}</td>
                             <td class="font-medium">{{item.projectname}}</td>
                             <td>{{item.locationaddress}}</td>
                             <td>{{item.landmark}}</td>
                             <td>{{item.surveynos}}</td>
                             <td>{{item.villagename}}</td>
                             <td>{{item.mandalname}}</td>
-                            <td>{{item.districtname}}</td>
+                            <!--<td>{{item.districtname}}</td>
                             <td>{{item.statename}}</td>
                             <td>{{item.pincode}}</td>
-                            <td>{{item.notes}}</td>
+                            <td>{{item.notes}}</td>-->
                             <!--<td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>-->
                             <td>
-                                <button class="btn btn-primary btn-icon btn-round " (click)="getproject(item.projectid)" type="button" data-toggle="modal" data-target="#EditProject">
+                                <button class="btn btn-primary btn-icon btn-round " (click)="getproject(item.projectid)" type="button" (click)="openModal(EditProjectModel)">
                                     <i class="zmdi zmdi-edit" ></i>
                                 </button>
                                 <button class="btn btn-primary btn-icon btn-round " (click)="deleteProject(item.projectid,item.projectname)" type="button">
                                     <i class="zmdi zmdi-delete" ></i>
                                 </button>
-                                <button class="btn btn-primary btn-icon btn-round "  (click)="getproject(item)" type="button"  data-toggle="modal" data-target="#PreviewProject">
-                                    <i class="zmdi zmdi-eye" (click)="getproject(item)"></i>
+                                <button class="btn btn-primary btn-icon btn-round "  (click)="getproject(item.projectid)" type="button" (click)="openModal(PrevProjectModel)">
+                                    <i class="zmdi zmdi-eye"></i>
                                 </button>
                             </td>
                         </tr>
@@ -62,80 +60,142 @@
     </div>
 </section>
 
-<!--Add Project Modal Start-->
-<div id="AddProject" class="modal fade">
-	<div class="modal-dialog modal-login">
+<ng-template #addProjectModel let-modal>    
+        <div class="modal-dialog modal-login">
+            <div class="modal-content">
+                    <div class="modal-header text-center l-cyan" style="display: block !important;">				
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
+                        <h4 class="modal-title text-center">New Project</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row  clearfix">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Project Name</label>
+                                    <input type="text" class="form-control" [(ngModel)]="model.projectname" name="projectname" #projectname="ngModel" placeholder="Project Name" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <label>LandMark</label>
+                                    <input type="text" class="form-control" [(ngModel)]="model.landmark" name="landmark" #landmark="ngModel" placeholder="LandMark" required="required">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Location Address</label>
+                                    <input type="email" class="form-control" [(ngModel)]="model.locationaddress" name="locationaddress" #locationaddress="ngModel" placeholder="Location Address" required="required">
+                                </div>
+                            <div class="form-group">
+                                <label>Survey No</label>
+                                <input type="text" class="form-control" [(ngModel)]="model.surveynos" name="surveynos" #surveynos="ngModel" placeholder="Survey No" required="required">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Village Name</label>
+                                <input type="email" class="form-control" [(ngModel)]="model.villagename" name="villagename" #villagename="ngModel" placeholder="Village Name" required="required">
+                            </div>
+                        <div class="form-group">
+                            <label>District Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="model.districtname" name="districtname" #districtname="ngModel" placeholder="District Name" required="required">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label>State Name</label>
+                            <input type="email" class="form-control" [(ngModel)]="model.statename" name="statename" #statename="ngModel" placeholder="State Name" required="required">
+                        </div>
+                    <div class="form-group">
+                        <label>PinCode</label>
+                        <input type="text" class="form-control" [(ngModel)]="model.pincode" name="pincode" #pincode="ngModel" placeholder="PinCode" required="required">
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label>Note</label>
+                        <input type="email" class="form-control" [(ngModel)]="model.notes" name="notes" #notes="ngModel" placeholder="Note" required="required">
+                    </div>
+                </div>
+                        </div>					
+                        <div class="row clearfix">
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <button type="button" class="btn btn-primary btn-round" (click)="postproject()">Save</button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+</ng-template>
+
+<ng-template #EditProjectModel let-modal>
+    <div class="modal-dialog modal-login">
 		<div class="modal-content">
 				<div class="modal-header text-center l-cyan" style="display: block !important;">				
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title text-center">New Project</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
+                    <h4 class="modal-title text-center">Preview Project</h4>
 				</div>
 				<div class="modal-body">
                     <div class="row  clearfix">
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Project Name</label>
-                                <input type="text" class="form-control" [(ngModel)]="model.projectname" name="projectname" #projectname="ngModel" placeholder="Project Name" required="required">
+                                <input type="text" class="form-control" [(ngModel)]="projectsItems.projectname" required="required" >
                             </div>
                             <div class="form-group">
                                 <label>LandMark</label>
-                                <input type="text" class="form-control" [(ngModel)]="model.landmark" name="landmark" #landmark="ngModel" placeholder="LandMark" required="required">
+                                <input type="text" class="form-control" [(ngModel)]="projectsItems.landmark" required="required" >
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Location Address</label>
-                                <input type="email" class="form-control" [(ngModel)]="model.locationaddress" name="locationaddress" #locationaddress="ngModel" placeholder="Location Address" required="required">
+                                <input type="email" class="form-control" [(ngModel)]="projectsItems.locationaddress" required="required" >
                             </div>
                         <div class="form-group">
                             <label>Survey No</label>
-                            <input type="text" class="form-control" [(ngModel)]="model.surveynos" name="surveynos" #surveynos="ngModel" placeholder="Survey No" required="required">
+                            <input type="text" class="form-control" [(ngModel)]="projectsItems.surveynos" required="required" >
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="form-group">
                             <label>Village Name</label>
-                            <input type="email" class="form-control" [(ngModel)]="model.villagename" name="villagename" #villagename="ngModel" placeholder="Village Name" required="required">
+                            <input type="email" class="form-control" [(ngModel)]="projectsItems.villagename" required="required" >
                         </div>
                     <div class="form-group">
                         <label>District Name</label>
-                        <input type="text" class="form-control" [(ngModel)]="model.districtname" name="districtname" #districtname="ngModel" placeholder="District Name" required="required">
+                        <input type="text" class="form-control" [(ngModel)]="projectsItems.districtname" required="required" >
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="form-group">
                         <label>State Name</label>
-                        <input type="email" class="form-control" [(ngModel)]="model.statename" name="statename" #statename="ngModel" placeholder="State Name" required="required">
+                        <input type="email" class="form-control" [(ngModel)]="projectsItems.statename" required="required" >
                     </div>
                 <div class="form-group">
                     <label>PinCode</label>
-                    <input type="text" class="form-control" [(ngModel)]="model.pincode" name="pincode" #pincode="ngModel" placeholder="PinCode" required="required">
+                    <input type="text" class="form-control" [(ngModel)]="projectsItems.pincode" required="required" >
                 </div>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="form-group">
                     <label>Note</label>
-                    <input type="email" class="form-control" [(ngModel)]="model.notes" name="notes" #notes="ngModel" placeholder="Note" required="required">
+                    <input type="email" class="form-control" [(ngModel)]="projectsItems.notes" required="required" >
                 </div>
             </div>
-                    </div>					
-                    <div class="row clearfix">
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <button type="button" class="btn btn-primary btn-round" (click)="postproject()">Save</button>
-                        </div>
-                    </div>
-                </div>
-		</div>
+            <div class="modal-footer justify-content-between">
+                   
+                <input type="submit" class="btn btn-primary btn-round" (click)=updateProject() value="Save">
+            </div>
+          </div>					
+        </div>
+	  </div>
 	</div>
-</div>    
-<!--Add Project Modal End-->
+</ng-template>
 
-<!--Preview Project Modal Start-->
-<div id="EditProject" class="modal fade" role="dialog">
-	<div class="modal-dialog modal-login">
+<ng-template #PrevProjectModel let-modal>
+    <div class="modal-dialog modal-login">
 		<div class="modal-content">
 				<div class="modal-header text-center l-cyan" style="display: block !important;">				
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
                     <h4 class="modal-title text-center">Preview Project</h4>
 				</div>
 				<div class="modal-body">
@@ -153,45 +213,41 @@
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Location Address</label>
-                                <input type="email" class="form-control" value={{projectsItems.locationaddress}} required="required" >
+                                <input type="email" class="form-control" value={{projectsItems.locationaddress}} required="required" disabled>
                             </div>
                         <div class="form-group">
                             <label>Survey No</label>
-                            <input type="text" class="form-control" value={{projectsItems.surveynos}} required="required" >
+                            <input type="text" class="form-control" value={{projectsItems.surveynos}} required="required" disabled>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="form-group">
                             <label>Village Name</label>
-                            <input type="email" class="form-control" value={{projectsItems.villagename}} required="required" >
+                            <input type="email" class="form-control" value={{projectsItems.villagename}} required="required" disabled>
                         </div>
                     <div class="form-group">
                         <label>District Name</label>
-                        <input type="text" class="form-control" value={{projectsItems.districtname}} required="required" >
+                        <input type="text" class="form-control" value={{projectsItems.districtname}} required="required" disabled>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="form-group">
                         <label>State Name</label>
-                        <input type="email" class="form-control" value={{projectsItems.statename}} required="required" >
+                        <input type="email" class="form-control" value={{projectsItems.statename}} required="required" disabled>
                     </div>
                 <div class="form-group">
                     <label>PinCode</label>
-                    <input type="text" class="form-control" value={{projectsItems.pincode}} required="required" >
+                    <input type="text" class="form-control" value={{projectsItems.pincode}} required="required" disabled>
                 </div>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="form-group">
                     <label>Note</label>
-                    <input type="email" class="form-control" value={{projectsItems.notes}} required="required" >
+                    <input type="email" class="form-control" value={{projectsItems.notes}} required="required" disabled>
                 </div>
-            </div>
-            <div class="modal-footer justify-content-between">
-                   
-                <input type="submit" class="btn btn-primary btn-round" (click)=updateProject() value="Save">
             </div>
           </div>					
         </div>
 	  </div>
 	</div>
-</div> 
+</ng-template>

@@ -35,8 +35,12 @@
                    </div>
                    <div class="form-group row">
                      <label  class="col-sm-4 col-form-label">Cross Plot</label>
-                     <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="model.crossplot" #crossplot="ngModel" placeholder="Cross Plot">
+                     <div class="col-sm-8" >
+                      <select class="form-control" [(ngModel)]="model.crossplot" #crossplot>
+                        <option value="">Select Option</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
                      </div>
                    </div>
                    <div class="form-group row">
@@ -109,8 +113,12 @@
                    </div>
                    <div class="form-group row">
                      <label  class="col-sm-4 col-form-label">Corner Plot</label>
-                     <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="model.cornerplot" #cornerplot="ngModel" placeholder="Corner Plot">
+                     <div class="col-sm-8" >
+                      <select class="form-control" [(ngModel)]="model.cornerplot" #cornerplot>
+                        <option value="">Select Option</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
                      </div>
                    </div>
              </div>
@@ -132,14 +140,22 @@
                        </div>
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">ParkSide plot</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.parksideplot" #parksideplot="ngModel" placeholder="ParkSide plot">
+                         <div class="col-sm-8" >
+                          <select class="form-control" [(ngModel)]="model.parksideplot" #parksideplot>
+                            <option value="">Select Option</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
                          </div>
                        </div>
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">SoldOut</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.soldout" #soldout="ngModel" placeholder="SoldOut">
+                         <div class="col-sm-8" >
+                          <select class="form-control" [(ngModel)]="model.soldout" #soldout>
+                            <option value="">Select Option</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
                          </div>
                        </div>
                        <!--<div class="form-group row">
@@ -150,8 +166,12 @@
                        </div>-->
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">OnHold</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.onhold" #onhold="ngModel" placeholder="OnHold">
+                         <div class="col-sm-8" >
+                          <select class="form-control" [(ngModel)]="model.onhold" #onhold>
+                            <option value="">Select Option</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
                          </div>
                        </div>
                        <!--<div class="form-group row">
@@ -176,8 +196,14 @@
                     <div class="col-sm-12 col-lg-6 col-md-6">
                      <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Dispute</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.dispute" #dispute="ngModel" placeholder="Dispute">
+                         <div class="col-sm-8" >
+                          <select class="form-control" [(ngModel)]="model.dispute" #dispute>
+                            <option value="">Select Option</option>
+                            <option value="0">Government</option>
+                            <option value="1">Owners</option>
+                            <option value="2">Buyers</option>
+                            <option value="3">Others</option>
+                        </select>
                          </div>
                        </div>
                        <div class="form-group row">
@@ -188,8 +214,12 @@
                        </div>
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Noc Issued</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.nocissued" #nocissued="ngModel" placeholder="Noc Issued">
+                         <div class="col-sm-8" >
+                          <select class="form-control" [(ngModel)]="model.nocissued" #nocissued>
+                            <option value="">Select Option</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
                          </div>
                        </div>
                        <div class="form-group row">
@@ -218,8 +248,12 @@
                        </div>
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Instalments</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.instalments" #instalments="ngModel" placeholder="Instalments">
+                         <div class="col-sm-8" >
+                          <select class="form-control" [(ngModel)]="model.instalments" #instalments>
+                            <option value="">Select Option</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
                          </div>
                        </div>
                  </div>
@@ -248,8 +282,12 @@
                        </div>
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Agreement Done</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.agreementdone" #agreementdone="ngModel" placeholder="Agreement Done">
+                         <div class="col-sm-8" >
+                          <select class="form-control" [(ngModel)]="model.agreementdone" #agreementdone>
+                            <option value="">Select Option</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
                          </div>
                        </div>
                        <div class="form-group row">
@@ -266,8 +304,12 @@
                        </div>
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Registration Done</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.registrationdone" #registrationdone="ngModel" placeholder="registrationdone">
+                         <div class="col-sm-8" >
+                          <select class="form-control" [(ngModel)]="model.registrationdone" #registrationdone>
+                            <option value="">Select Option</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
                          </div>
                        </div>
                        <div class="form-group row">
@@ -278,8 +320,12 @@
                        </div>
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Itr Done</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.itrdone" #itrdone="ngModel" placeholder="Itr Done">
+                         <div class="col-sm-8" >
+                          <select class="form-control" [(ngModel)]="model.itrdone" #itrdone>
+                            <option value="">Select Option</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
                          </div>
                        </div>
                     </div>
@@ -292,8 +338,12 @@
                        </div>
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Re-Sell</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.resell" #resell="ngModel" placeholder="Re-Sell">
+                         <div class="col-sm-8" >
+                          <select class="form-control" [(ngModel)]="model.resell" #resell>
+                            <option value="">Select Option</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
                          </div>
                        </div>
                        <div class="form-group row">
@@ -305,7 +355,11 @@
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Agreement</label>
                          <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.greement" #agreement="ngModel" placeholder="Agreement">
+                          <select class="form-control" [(ngModel)]="model.agreement" #agreement>
+                            <option value="">Select Option</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
                          </div>
                        </div>
                        <div class="form-group row">
@@ -323,7 +377,7 @@
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Re-AgreementId</label>
                          <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.reagreementid" #reagreementid="ngModel" placeholder="Re-AgreementId">
+                          <input type="text" class="form-control" [(ngModel)]="model.reagreementid" #reagreementid="ngModel" placeholder="Re-Agreement Id">
                          </div>
                        </div>
                        

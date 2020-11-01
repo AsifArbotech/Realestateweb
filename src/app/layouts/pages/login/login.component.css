@@ -1,3 +1,7 @@
 html,body{
     background-image: url('../../../../assets/images/login.jpg')!important;
 }
+
+.notifier__notification--material .notifier__notification-message {
+	color: white !important;
+}

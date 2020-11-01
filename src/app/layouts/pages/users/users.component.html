@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">                
-                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light"  data-toggle="modal" data-target="#addUserModel" type="button">
+                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light" (click)="openModal(addUserModel)" type="button">
                     <i class="zmdi zmdi-plus"></i> Add User
                 </button>
                                
@@ -32,7 +32,7 @@
                             <td class="text-align:centre">{{item.emailid}}</td>
                             <td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>
                             <td>
-                                <button class="btn btn-primary btn-icon btn-round" (click)="getUser(item.id)" data-toggle="modal" data-target="#editUserModel" type="button">
+                                <button class="btn btn-primary btn-icon btn-round" (click)="getUser(item.id)" (click)="openModal(editUserModel)" type="button">
                                     <i class="zmdi zmdi-edit" ></i>
                                 </button>
                                 <button class="btn btn-primary btn-icon btn-round " (click)="deleteUser(item.id,item.username)" type="button">
@@ -51,14 +51,13 @@
 
 <!--Login modal-->
 
-<!--Add User Modal Start -->
-<div id="addUserModel" class="modal fade">
-	<div class="modal-dialog modal-login">
+<ng-template #addUserModel let-modal>
+    <div class="modal-dialog modal-login">
 		<div class="modal-content">
 			<form>
 				<div class="modal-header text-center l-cyan" style="display: block !important;">				
                    
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
                     <h4 class="modal-title text-center">Add User</h4>
 				</div>
 				<div class="modal-body">
@@ -96,53 +95,48 @@
 			</form>
 		</div>
 	</div>
-</div>     
-<!--Add User Modal Ends -->
+</ng-template>
 
-<!--Edit User Modal Start -->
-<div id="editUserModel" class="modal fade">
-	<div class="modal-dialog modal-login">
-		<div class="modal-content">
-			<form>
-				<div class="modal-header text-center l-cyan" style="display: block !important;">				
-                   
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title text-center">Edit User</h4>
-				</div>
-				<div class="modal-body">
-                    <div class="row  clearfix">
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Username</label>
-                                <input type="text" class="form-control" name="username" value={{usersItems.username}}  placeholder="UserName" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>MobileNo</label>
-                                <input type="text" class="form-control" name="mobileno"  [(ngModel)]="usersItems.mobileno" placeholder="MobileNo" required="required">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Eamil Id</label>
-                                <input type="email" class="form-control" name="emailid" value={{usersItems.emailid}} placeholder="Eamil" required="required">
-                            </div>
-                           
-                            <div class="form-group">
-                                <div class="clearfix">
-                                    <label>Password</label>
+<ng-template #editUserModel let-modal>
+        <div class="modal-dialog modal-login">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header text-center l-cyan" style="display: block !important;">				
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
+                        <h4 class="modal-title text-center">Edit User</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row  clearfix">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <input type="text" class="form-control" name="username" [(ngModel)]="usersItems.username" placeholder="UserName" required="required">
                                 </div>
-                                <input type="password" class="form-control" name="password" value={{usersItems.password}} placeholder="password" required="required">
+                                <div class="form-group">
+                                    <label>MobileNo</label>
+                                    <input type="text" class="form-control" name="mobileno"  [(ngModel)]="usersItems.mobileno" placeholder="MobileNo" required="required">
+                                </div>
                             </div>
-                        </div>
-                        
-                    </div>				
-				</div>
-				<div class="modal-footer justify-content-between">
-                   
-					<input type="submit" class="btn btn-primary btn-round" (click)=updateUser() value="Save">
-				</div>
-			</form>
-		</div>
-	</div>
-</div>     
-<!--Edit User Modal Ends -->
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Eamil Id</label>
+                                    <input type="email" class="form-control" name="emailid" [(ngModel)]="usersItems.emailid" placeholder="Eamil" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <div class="clearfix">
+                                        <label>Password</label>
+                                    </div>
+                                    <input type="password" class="form-control" name="password" [(ngModel)]="usersItems.password" placeholder="password" required="required">
+                                </div>
+                            </div>
+                        </div>				
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <input type="submit" class="btn btn-primary btn-round" (click)=updateUser() value="Save">
+                    </div>
+                </form>
+            </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </ng-template>

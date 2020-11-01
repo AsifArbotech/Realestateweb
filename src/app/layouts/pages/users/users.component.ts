@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../../../_services/api.service';
 import { AddUser } from '../../../_models/user';
 import { NotifierService } from 'angular-notifier';
@@ -20,7 +21,8 @@ export class UsersComponent implements OnInit {
 
   constructor(private router: Router,
     private apiservice: ApiService,
-    private notifier: NotifierService) {
+    private notifier: NotifierService,
+    private modalService: NgbModal) {
     this.clearfields();
     this.usersListItems;
   }
@@ -73,6 +75,7 @@ export class UsersComponent implements OnInit {
           if (response.responseCode == 0) {
             this.notifier.notify("error", response.responseMsg);
           } else if (response.responseCode == 1) {
+            this.modalService.dismissAll();
             this.notifier.notify("success", response.responseMsg);
             this.clearfields();
             this.getUsers();
@@ -85,7 +88,6 @@ export class UsersComponent implements OnInit {
   }
 
   deleteUser(id, name) {
-
     if (confirm("Do You wish to Delete the User - " + name + "?")) {
       this.apiservice.DeleteUser(id)
         .subscribe((response: any) => {
@@ -109,12 +111,19 @@ export class UsersComponent implements OnInit {
           if (response.responseCode == 0) {
             this.notifier.notify("error", response.responseMsg);
           } else if (response.responseCode == 1) {
+            this.modalService.dismissAll();
             this.notifier.notify("success", response.responseMsg);
             this.getUsers();
           }
         }
       })
   }
+
+  openModal(editUserModel) {
+    this.modalService.open(editUserModel, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    }, (reason) => {
+    });
+  };
 
   onNavigate(url: string) {
     this.router.navigateByUrl(url);

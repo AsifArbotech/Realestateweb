@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Owner } from '../../../_models/owners'
 import { ApiService } from '../../../_services/api.service';
 import { NotifierService } from 'angular-notifier';
@@ -12,13 +13,15 @@ import { NotifierService } from 'angular-notifier';
 export class OwnersComponent implements OnInit {
 
   public ownersListItems: Array<Owner>;
+  public ownerItems: Owner=new Owner();
   model: any = {};
   page = 1;
   pageSize = 10;
 
   constructor(private router: Router,
               private apiservice:ApiService,
-              private notifier: NotifierService) {
+              private notifier: NotifierService,
+              private modalService: NgbModal) {
                 this.clearfields();
                }
 
@@ -49,6 +52,18 @@ export class OwnersComponent implements OnInit {
     }
   }
 
+  getOwner(id) {
+    this.apiservice.getOwner(id).subscribe(
+      (items: Owner) => {
+        this.ownerItems = items;
+      },
+      error => {
+        console.log(error);
+        this.notifier.notify("error", "Something went wrong");
+      }
+    )
+  }
+
   postowner(){
     var param = { OwnerName: this.model.ownername , OwnerReference: this.model.ownerreference , OwneraAdharno: this.model.owneraadharno, OwnerIdProof: this.model.owneridproof, Note: this.model.notes }
     this.apiservice.AddOwner(param)
@@ -57,8 +72,10 @@ export class OwnersComponent implements OnInit {
         if(response.ResponseCode == 0){
           this.notifier.notify("error", response.ResponseMessage);
         }else if(response.ResponseCode == 1){
+          this.modalService.dismissAll();
           this.notifier.notify("success", response.ResponseMessage);
           this.clearfields();
+          this.getOwnersList();
         }
       else{
           this.notifier.notify("error", "Something went wrong");
@@ -66,6 +83,44 @@ export class OwnersComponent implements OnInit {
       } 
    })
  }
+
+ updateOwner() {
+  this.apiservice.EditOwner(this.ownerItems)
+    .subscribe((response: any) => {
+      this.ownerItems = response
+      if (response) {
+        if (response.responseCode == 0) {
+          this.notifier.notify("error", response.responseMsg);
+        } else if (response.responseCode == 1) {
+          this.modalService.dismissAll();
+          this.notifier.notify("success", response.responseMsg);
+          this.getOwnersList();
+        }
+      }
+    })
+}
+
+ deleteOwner(id, name) {
+  if (confirm("Do You wish to Delete the Owner - " + name + "?")) {
+    this.apiservice.DeleteOwner(id)
+      .subscribe((response: any) => {
+        if (response) {
+          if (response.responseCode == 0) {
+            this.notifier.notify("error", response.responseMsg);
+          } else if (response.responseCode == 1) {
+            this.notifier.notify("success", response.responseMsg);
+            this.getOwnersList();
+          }
+        }
+      })
+  }
+}
+
+ openModal(editUserModel) {
+  this.modalService.open(editUserModel, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+  }, (reason) => {
+  });
+};
 
  clearfields(){
   this.model = {
