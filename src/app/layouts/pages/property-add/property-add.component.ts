@@ -16,8 +16,9 @@ export class PropertyAddComponent implements OnInit {
 
   constructor(private router: Router, private apiservice:ApiService, private notifier: NotifierService) { 
 
-    this.property={
-      plotno: 0,
+    this.property = {
+      id:0,
+      plotno: "",
       phaseno: "",
       blockno: "",
       surveyno: "",

@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\layouts",
+    "\\src\\app\\layouts\\common",
+    "\\src\\app\\layouts\\common\\header",
+    "\\src\\app\\layouts\\pages",
+    "\\src\\app\\layouts\\pages\\associate",
+    "\\src\\app\\layouts\\pages\\customers",
+    "\\src\\app\\_models"
+  ],
+  "SelectedNode": "\\src\\app\\layouts\\pages\\associate\\associate.component.ts",
+  "PreviewInSolutionExplorer": false
+}

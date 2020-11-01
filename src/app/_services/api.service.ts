@@ -181,4 +181,18 @@ export class ApiService {
     return this.http.get(this.BASEURL + '/Consultant/DeleteConsultant?ID=' + ID, this.getAuthHeadersJSON());
   }
 
+
+  //  Sales Enquire Services
+  AddSalesEnquire(Enquire) {
+    if (Enquire.id) {
+      return this.http.post(this.BASEURL + '/SalesEnquire/EditSalesEnquire', Enquire, this.getAuthHeadersJSON());
+    }
+    else
+      return this.http.post(this.BASEURL + '/SalesEnquire/AddSalesEnquire', Enquire, this.getAuthHeadersJSON());
+  }
+
+  getSalesEnquireList() {
+    return this.http.get(this.BASEURL + '/SalesEnquire/GetAllSalesEnquire', this.getAuthHeadersJSON());
+  }
+
 }

@@ -1,5 +1,6 @@
 export class Property{
-    plotno: number;
+  id: Number;
+  plotno: string;
     phaseno: string;
     blockno: string;
     surveyno: string;
