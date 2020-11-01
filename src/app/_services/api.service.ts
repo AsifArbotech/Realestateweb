@@ -203,4 +203,31 @@ export class ApiService {
     return this.http.get(this.BASEURL + '/SalesEnquire/DeleteSalesEnquire?ID=' + ID, this.getAuthHeadersJSON());
   }
 
+
+  //  Sales Enquire Services
+  AddSalesInvoice(Invoice) {
+    if (Invoice.id) {
+      return this.http.post(this.BASEURL + '/SalesInvoice/EditSalesInvoice', Invoice, this.getAuthHeadersJSON());
+    }
+    else
+      return this.http.post(this.BASEURL + '/SalesInvoice/AddSalesInvoice', Invoice, this.getAuthHeadersJSON());
+  }
+
+  getSalesInvoiceList() {
+    return this.http.get(this.BASEURL + '/SalesInvoice/GetAllSalesInvoice', this.getAuthHeadersJSON());
+  }
+
+  getSalesInvoiceByID(ID) {
+    return this.http.get(this.BASEURL + '/SalesInvoice/GetSalesInvoiceById?ID=' + ID, this.getAuthHeadersJSON());
+  }
+
+  DeleteSalesInvoiceByID(ID) {
+    return this.http.get(this.BASEURL + '/SalesInvoice/DeleteSalesInvoice?ID=' + ID, this.getAuthHeadersJSON());
+  }
+
+  getSalesQuotList() {
+    return this.http.get(this.BASEURL + '/SalesQuotation/GetAllSalesQuotation', this.getAuthHeadersJSON());
+  }
+
+
 }

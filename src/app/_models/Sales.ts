@@ -16,6 +16,20 @@ export class Salesenquire {
   modifiedon: Date;
 }
 
+export class SalesInvoice {
+  id: Number;
+  invoiceno: Number;
+  salesquatationid: Number;
+  amount: Number;
+  remark: String;
+  status: Number;
+  createdby: String;
+  createdon: Date;
+  modifiedby: String;
+  modifiedon: Date;
+}
+
+
 
 export class Sales {
   salesenquireid: Number;
