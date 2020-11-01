@@ -144,6 +144,10 @@ export class ApiService {
     return this.http.get(this.BASEURL+ '/Project/DeleteProject?ID=' + id, this.getAuthHeadersJSON());
   }
 
+  getProperties(){
+    return this.http.get(this.BASEURL+ '/Property/GetAllProperty', this.getAuthHeadersJSON());
+  }
+
   getProperty(id){
     return this.http.get(this.BASEURL+ '/Property/GetPropertyByID?ID=' + id, this.getAuthHeadersJSON());
   }
@@ -170,6 +174,14 @@ export class ApiService {
 
   AddOwner(data) {
     return this.http.post(this.BASEURL + '/Owners/AddOwner', data, this.getAuthHeadersJSON());
+  }
+
+  EditOwner(data){
+    return this.http.post(this.BASEURL+'/Owners/EditOwners',data,this.getAuthHeadersJSON());
+  }
+
+  DeleteOwner(id){
+    return this.http.get(this.BASEURL+ '/Owners/DeleteOwners?ID=' + id, this.getAuthHeadersJSON());
   }
 
   //Add Consultant or Associate
@@ -214,5 +226,14 @@ export class ApiService {
   DeleteSalesEnquireByID(ID) {
     return this.http.get(this.BASEURL + '/SalesEnquire/DeleteSalesEnquire?ID=' + ID, this.getAuthHeadersJSON());
   }
+
+  getSalesQuotList() {
+    return this.http.get(this.BASEURL + '/SalesQuotation/GetAllSalesQuotation', this.getAuthHeadersJSON());
+  }
+
+  AddSalesQuot(data){
+    return this.http.post(this.BASEURL + '/SalesQuotation/AddSalesQuotation', data ,this.getAuthHeadersJSON());
+  }
+
 
 }
