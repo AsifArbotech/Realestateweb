@@ -83,9 +83,6 @@ export class SalesinvoiceComponent implements OnInit {
           this.getSalesInvoiceList();
         }
       })
-
-
-
   }
 
   EditSalesinvoice(id) {

@@ -4,13 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\layouts",
-    "\\src\\app\\layouts\\common",
-    "\\src\\app\\layouts\\common\\header",
     "\\src\\app\\layouts\\pages",
     "\\src\\app\\layouts\\pages\\associate",
-    "\\src\\app\\layouts\\pages\\customers",
+    "\\src\\app\\layouts\\pages\\property",
+    "\\src\\app\\layouts\\pages\\property-add",
+    "\\src\\app\\layouts\\pages\\salesinvoice",
     "\\src\\app\\_models"
   ],
-  "SelectedNode": "\\src\\app\\layouts\\pages\\associate\\associate.component.ts",
+  "SelectedNode": "\\src\\app\\_services\\api.service.ts",
   "PreviewInSolutionExplorer": false
 }
