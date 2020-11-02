@@ -55,3 +55,16 @@ export class Sales {
   modifiedon: Date;
 }
 
+export class SalesQuotation{
+  id: Number;
+  quotationno: Number;
+  salesenquireid: Number;
+  amount: Number;
+  remark: string;
+  status: Number;
+  createdby: string;
+  createdon: Date
+  modifiedby: string;
+  modifiedon: Date;
+}
+

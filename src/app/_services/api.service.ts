@@ -229,5 +229,32 @@ export class ApiService {
     return this.http.get(this.BASEURL + '/SalesQuotation/GetAllSalesQuotation', this.getAuthHeadersJSON());
   }
 
+   getSalesQuotByID(ID) {
+    return this.http.get(this.BASEURL + '/SalesQuotation/GetSalesQuotationById?ID=' + ID, this.getAuthHeadersJSON());
+  }
+
+  AddSalesQuot(Invoice){
+    if (Invoice.id) {
+      return this.http.post(this.BASEURL + '/SalesQuotation/EditSalesQuotation', Invoice, this.getAuthHeadersJSON());
+    }
+    else
+      return this.http.post(this.BASEURL + '/SalesQuotation/AddSalesQuotation', Invoice, this.getAuthHeadersJSON());
+  }
+
+  DeleteSalesQuot(ID) {
+    return this.http.get(this.BASEURL + '/SalesQuotation/DeleteSalesQuotation?ID=' + ID, this.getAuthHeadersJSON());
+  }
+
+  getBookingList() {
+    return this.http.get(this.BASEURL + '/Booking/GetAllBookings', this.getAuthHeadersJSON());
+  }
+
+  AddBooking(Booking){
+    if (Booking.id) {
+      return this.http.post(this.BASEURL + '/SalesQuotation/EditSalesQuotation', Booking, this.getAuthHeadersJSON());
+    }
+    else
+      return this.http.post(this.BASEURL + '/Booking/AddBooking', Booking, this.getAuthHeadersJSON());
+  }
 
 }
