@@ -42,6 +42,7 @@ export class OwnersComponent implements OnInit {
   }
 
   getOwnerslistItems() {
+    if (this.ownersListItems)
     if (this.ownersListItems.length > this.pageSize) {
       return this.ownersListItems.slice(
         (this.page - 1) * this.pageSize,
@@ -54,8 +55,8 @@ export class OwnersComponent implements OnInit {
 
   getOwner(id) {
     this.apiservice.getOwner(id).subscribe(
-      (items: Owner) => {
-        this.ownerItems = items;
+      (response: any) => {
+        this.ownerItems = response;
       },
       error => {
         console.log(error);

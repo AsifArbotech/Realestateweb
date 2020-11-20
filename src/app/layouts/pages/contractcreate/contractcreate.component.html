@@ -6,7 +6,6 @@
                 <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light"  data-toggle="modal" data-target="#AddContract" type="button">
                     <i class="zmdi zmdi-plus"></i> Add Contract
                 </button>
-                               
             </div>
         </div>
         <div class="row clearfix">
@@ -15,8 +14,9 @@
                     <table class="table table-striped  m-b-0">
                         <tbody>
                             <tr>
+                            <td hidden>Contract Id</td>
+                            <td>Contract Code</td>
                             <td>Name</td>
-                            <td class="font-medium">Code</td>
                             <td>Start Date</td>
                             <td>End Date</td>
                             <td>Contract Date</td>
@@ -25,18 +25,19 @@
                             <td>No of installments</td>
                             <td>view</td>
                         </tr>
-                        <tr>
-                            <td>Ghories</td>
-                            <td class="font-medium">234</td>
-                            <td>12-10-2020</td>
-                            <td>25-10-2020</td>
-                            <td>30-10-2020</td>
-                            <td>Asif</td>
-                            <td>Pleasent</td>
-                            <td>4</td>
+                        <tr  *ngFor="let item of getContractlistItems()">
+                            <td hidden>{{item.contractid}}</td>
+                            <td>{{item.contractcode}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.startdate}}</td>
+                            <td>{{item.enddate}}</td>
+                            <td>{{item.contractdate}}</td>
+                            <td>{{item.ownername}}</td>
+                            <td>{{item.plotno}}</td>
+                            <td>{{item.noofinstallments}}</td>
                             <!--<td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>-->
                             <td>
-                                <button class="btn btn-primary btn-icon btn-round " type="button" data-toggle="modal" data-target="EditAddContract">
+                                <button class="btn btn-primary btn-icon btn-round " type="button" data-toggle="modal" data-target="AddContract">
                                     <i class="zmdi zmdi-edit" ></i>
                                 </button>
                                 <button class="btn btn-primary btn-icon btn-round " type="button">
@@ -61,119 +62,63 @@
 		<div class="modal-content">
 				<div class="modal-header text-center l-cyan" style="display: block !important;">				
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title text-center">New Contract</h4>
+                    <h4 class="modal-title text-center">{{ActionType}}</h4>
 				</div>
 				<div class="modal-body">
                     <div class="row  clearfix">
+                        <div class="col-lg-12 col-md-12 col-sm-12" *ngIf="ActionType!='Add Contract'">
+                            <label>Contract Code :{{addContract.contractcode}}</label>
+                        </div>
+                          <input type="hidden" [(ngModel)]="addContract.contractid" name="ID" #ID="ngModel" />
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" class="form-control" placeholder="Name" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>Code</label>
-                                <input type="text" class="form-control" placeholder="Code" required="required">
-                            </div>
+                                <input type="text" class="form-control" [(ngModel)]="addContract.name" placeholder="Name" required="required">
+                            </div>                          
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Start-Date</label>
-                                <input type="email" class="form-control" placeholder="Start-Date" required="required">
+                                <input type="email" class="form-control" [(ngModel)]="addContract.startdate" placeholder="Start-Date" required="required">
                             </div>
                             <div class="form-group">
                                 <label>End-Date</label>
-                                <input type="text" class="form-control" placeholder="End-Date" required="required">
+                                <input type="text" class="form-control" [(ngModel)]="addContract.enddate" placeholder="End-Date" required="required">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Contract Date</label>
-                                <input type="email" class="form-control" placeholder="Old-Unit" required="required">
+                                <input type="email" class="form-control" [(ngModel)]="addContract.contractdate" placeholder="Contract Date" required="required">
                             </div>
                             <div class="form-group">
                                 <label>Owner</label>
-                                <input type="text" class="form-control" placeholder="Project" required="required">
+                                <input type="text" class="form-control" list="OwnerList" id="Ownerid" placeholder="Owner Name" required="required">
+                                <datalist id="OwnerList">
+                                    <option *ngFor="let item of ownerListItems" [data-owner]="item.ownerid">{{item.ownername}}</option>
+                                </datalist>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Unit</label>
-                                <input type="email" class="form-control" placeholder="Old-Unit" required="required">
+                                <input type="text" class="form-control" list="Propertylist" id="Propertyid" placeholder="Unit" required="required">
+                                <datalist id="Propertylist">
+                                    <option *ngFor="let item of propertyListItems" [data-property]="item.id">{{item.plotno}}</option>
+                                </datalist>
                             </div>
                             <div class="form-group">
                                 <label>No of installments</label>
-                                <input type="text" class="form-control" placeholder="Project" required="required">
+                                <input type="text" class="form-control" [(ngModel)]="addContract.noofinstallments" placeholder="No.Of Installments" required="required">
                             </div>
                         </div>
                     </div>					
                     <div class="row clearfix">
                         <div class="col-lg-4 col-md-4 col-sm-12">
-                            <button type="button" class="btn btn-primary btn-round" >Save</button>
+                            <button type="button" class="btn btn-primary btn-round" (click)="SaveContract()">Save</button>
                         </div>
                     </div>
                 </div>
 		</div>
 	</div>
 </div>    
-<!--Add Booking Transfer Modal End-->
-
-<div id="EditAddContract" class="modal fade">
-	<div class="modal-dialog modal-login">
-		<div class="modal-content">
-				<div class="modal-header text-center l-cyan" style="display: block !important;">				
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title text-center">New Contract</h4>
-				</div>
-				<div class="modal-body">
-                    <div class="row  clearfix">
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control" placeholder="Name" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>Code</label>
-                                <input type="text" class="form-control" placeholder="Code" required="required">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Start-Date</label>
-                                <input type="email" class="form-control" placeholder="Start-Date" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>End-Date</label>
-                                <input type="text" class="form-control" placeholder="End-Date" required="required">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Contract Date</label>
-                                <input type="email" class="form-control" placeholder="Old-Unit" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>Owner</label>
-                                <input type="text" class="form-control" placeholder="Project" required="required">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Unit</label>
-                                <input type="email" class="form-control" placeholder="Old-Unit" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>No of installments</label>
-                                <input type="text" class="form-control" placeholder="Project" required="required">
-                            </div>
-                        </div>
-                    </div>					
-                    <div class="row clearfix">
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <button type="button" class="btn btn-primary btn-round" >Save</button>
-                        </div>
-                    </div>
-                </div>
-		</div>
-	</div>
-</div>
-<!--Edit Client Modal End-->

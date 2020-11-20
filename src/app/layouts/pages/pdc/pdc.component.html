@@ -15,6 +15,7 @@
                     <table class="table table-striped  m-b-0">
                         <tbody>
                             <tr>
+                            <td hidden>ID</td>
                             <td>Date</td>
                             <td class="font-medium">Description</td>
                             <td>Cheque No</td>
@@ -22,27 +23,30 @@
                             <td>Unit</td>
                             <td>Customer</td>
                             <td>Maturity Date</td>
+                            <td>Extension Date</td>
                             <td>Remark</td>
                             <td>View</td>
                         </tr>
-                        <tr >
-                            <td>20-10-2020</td>
-                            <td class="font-medium">Send through bank</td>
-                            <td>2344</td>
-                            <td>SBI Bank</td>
-                            <td>Ghoris</td>
-                            <td>Arshad</td>
-                            <td>23-10-2020</td>
-                            <td>Good</td>
+                        <tr *ngFor="let item of getPdclisttItems()">
+                            <td hidden>{{item.pdcid}}</td>
+                            <td>{{item.date}}</td>
+                            <td class="font-medium">{{item.description}}</td>
+                            <td>{{item.chequeno}}</td>
+                            <td>{{item.bank}}</td>
+                            <td>{{item.plotno}}</td>
+                            <td>{{item.customername}}</td>
+                            <td>{{item.maturitydate}}</td>
+                            <td>{{item.extensiondate}}</td>
+                            <td>{{item.notes}}</td>
                             <!--<td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>-->
                             <td>
-                                <button class="btn btn-primary btn-icon btn-round " type="button"  data-toggle="modal" data-target="#EditPdc">
+                                <button class="btn btn-primary btn-icon btn-round " type="button" (click)="EditPdc(item.pdcid)" data-toggle="modal" data-target="#AddPdc">
                                     <i class="zmdi zmdi-edit" ></i>
                                 </button>
-                                <button class="btn btn-primary btn-icon btn-round " type="button">
+                                <button class="btn btn-primary btn-icon btn-round " type="button" (click)="DeletePdc(item.pdcid)">
                                     <i class="zmdi zmdi-delete" ></i>
                                 </button>
-                                <button class="btn btn-primary btn-icon btn-round " type="button"  data-toggle="modal" data-target="#PreviewProject">
+                                <button class="btn btn-primary btn-icon btn-round " type="button" data-toggle="modal" data-target="#PreviewProject">
                                     <i class="zmdi zmdi-eye" ></i>
                                 </button>
                             </td>
@@ -60,121 +64,73 @@
 		<div class="modal-content">
 				<div class="modal-header text-center l-cyan" style="display: block !important;">				
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title text-center">New Pdc </h4>
+                    <h4 class="modal-title text-center">{{ActionType}}</h4>
 				</div>
 				<div class="modal-body">
                     <div class="row  clearfix">
+                        <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="ActionType!='Add Pdc'">
+                            <label>Pdc Id :{{pdc.pdcid}}</label>
+                        </div>
+                        <input type="hidden" [(ngModel)]="pdc.pdcid" name="ID" #ID="ngModel" />
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Date</label>
-                                <input type="text" class="form-control" placeholder="Date" required="required">
+                                <input type="text" class="form-control" [(ngModel)]="pdc.date" name="DATE" #DATE="ngModel" placeholder="Date" required="required">
                             </div>
                             <div class="form-group">
                                 <label>Description</label>
-                                <input type="text" class="form-control" placeholder="Description" required="required">
+                                <input type="text" class="form-control" [(ngModel)]="pdc.description" name="DESCRIPTION" #DESCRIPTION="ngModel" placeholder="Description" required="required">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Cheque No</label>
-                                <input type="email" class="form-control" placeholder="Cheque No" required="required">
+                                <input type="email" class="form-control" [(ngModel)]="pdc.chequeno" name="CHEQUENO" #CHEQUENO="ngModel" placeholder="Cheque No" required="required">
                             </div>
                             <div class="form-group">
                                 <label>Bank</label>
-                                <input type="text" class="form-control" placeholder="Bank" required="required">
+                                <input type="text" class="form-control" [(ngModel)]="pdc.bank" name="BANK" #BANK="ngModel" placeholder="Bank" required="required">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Unit</label>
-                                <input type="email" class="form-control" placeholder="Unit" required="required">
+                                <input type="text" class="form-control" list="Propertylist" id="Propertyid" placeholder="Unit" required="required">
+                                <datalist id="Propertylist">
+                                  <option *ngFor="let item of propertyListItems" [data-property]="item.id">{{item.plotno}}</option>
+                                </datalist>
                             </div>
                             <div class="form-group">
-                                <label>Customer</label>
-                                <input type="text" class="form-control" placeholder="Customer" required="required">
+                                <label>Customer Name</label>
+                                <input type="text" class="form-control" list="customerlist" id="Customerid" placeholder="Customer Name" required="required">
+                                <datalist id="customerlist">
+                                  <option *ngFor="let item of customerslist" [data-id]="item.id">{{item.name}}</option>
+                                </datalist>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Maturity Date</label>
-                                <input type="email" class="form-control" placeholder="Maturity Date" required="required">
+                                <input type="email" class="form-control" [(ngModel)]="pdc.maturitydate" name="MATURITYDATE" #MATURITYDATE="ngModel" placeholder="Maturity Date" required="required">
                             </div>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="form-group">
-                                <label>Remark</label>
-                                <input type="text" class="form-control" placeholder="Remark" required="required">
-                            </div>
-                        </div>
-                    </div>					
-                    <div class="row clearfix">
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <button type="button" class="btn btn-primary btn-round" >Save</button>
-                        </div>
-                    </div>
-                </div>
-		</div>
-	</div>
-</div>    
-
-<div id="EditPdc" class="modal fade">
-	<div class="modal-dialog modal-login">
-		<div class="modal-content">
-				<div class="modal-header text-center l-cyan" style="display: block !important;">				
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title text-center">New Pdc</h4>
-				</div>
-				<div class="modal-body">
-                    <div class="row  clearfix">
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Date</label>
-                                <input type="text" class="form-control" placeholder="Date" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>Description</label>
-                                <input type="text" class="form-control" placeholder="Description" required="required">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Cheque No</label>
-                                <input type="email" class="form-control" placeholder="Cheque No" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>Bank</label>
-                                <input type="text" class="form-control" placeholder="Bank" required="required" >
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Unit</label>
-                                <input type="email" class="form-control" placeholder="Unit" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>Customer</label>
-                                <input type="text" class="form-control" placeholder="Customer" required="required">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Maturity Date</label>
-                                <input type="email" class="form-control" placeholder="Maturity Date" required="required">
+                                <input type="email" class="form-control" [(ngModel)]="pdc.extensiondate" name="EXTENSIONDATE" #EXTENSIONDATE="ngModel" placeholder="Maturity Date" required="required">
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="form-group">
                                 <label>Remark</label>
-                                <input type="text" class="form-control" placeholder="Remark" required="required">
+                                <input type="text" class="form-control" [(ngModel)]="pdc.notes" name="NOTES" #NOTES="ngModel" placeholder="Remark" required="required">
                             </div>
                         </div>
                     </div>					
                     <div class="row clearfix">
                         <div class="col-lg-4 col-md-4 col-sm-12">
-                            <button type="button" class="btn btn-primary btn-round" >Save</button>
+                            <button type="button" class="btn btn-primary btn-round" (click)="SavePdc()">Save</button>
                         </div>
                     </div>
                 </div>
 		</div>
 	</div>
-</div>    
+</div>       

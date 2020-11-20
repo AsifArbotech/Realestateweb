@@ -1,6 +1,9 @@
+import { calcPossibleSecurityContexts } from '@angular/compiler/src/template_parser/binding_parser';
+
 export class AddBooking{
     bookingid: Number;
     bookingno: Number;
+    id: Number;
     customerid: Number;
     projectid: Number;
     unitid: Number;
@@ -9,33 +12,48 @@ export class AddBooking{
     status: Number;
     assignto: string;
     createdby: string;
-    createdon: string;
+    createdon: Date;
     modifiedby: string;
-    modifiedon: string;
+    modifiedon: Date;
 }
 
 
-export class Bookings {    
-    bookingcancellationid: Number; 
+export class Bookings {
+    bookingid: Number;    
+    bookingcancid: Number; 
     bookingtransferid : Number;
     bookingno: Number;
-    bookingcancellationno: Number;
+    bookingcancno: Number;
     bookingtransferno: Number; 
-    customerid: Number; 
-    customername: string; 
-    projectid: Number; 
-    projectname:string; 
-    unitid: Number; 
-    plotno: Number; 
-    consultantid: Number; 
-    consultantname: string; 
+    customerid: Number;
+    customername: String;
+    projectid: Number;
+    projectname: String;
+    unitid: Number;
+    plotno: String;
+    consultantid: Number;
+    name: String;
     bookingamount: Number; 
     refundamount: Number; 
     oldsellingamount: Number; 
     newsellingamount: Number; 
+    assignto: string;
     status: Number; 
-    createdby: Date; 
+    createdby: string; 
     createdon: Date; 
-    modifiedby: Date;  
+    modifiedby: string;  
+    modifiedon: Date;
+}
+
+export class BookingCancellation{
+    bookingcancid: Number;
+    bookingcancno: Number;
+    bookingid: Number;
+    amount: Number;
+    remark: string;
+    status: Number;
+    createdby: string;
+    createdon: Date;
+    modifiedby: string;
     modifiedon: Date;
 }

@@ -15,22 +15,23 @@
                     <table class="table table-striped  m-b-0">
                         <tbody>
                             <tr>
-                            <td>Property ID</td>
+                            <td hidden>Property ID</td>
                             <td class="font-medium">Plot No</td>
                             <td>Phase No</td>
                             <td>Block No</td>
                             <td>Survey No</td>
                             <td>Landmark</td>
+                            <td>Status</td>
                             <td>View</td>
                         </tr>
                         <tr *ngFor="let item of getPropertytItems()">
-                            <td>{{item.id}}</td>
+                            <td hidden>{{item.id}}</td>
                             <td class="font-medium">{{item.plotno}}</td>
                             <td>{{item.phaseno}}</td>
                             <td>{{item.blockno}}</td>
                             <td>{{item.surveynos}}</td>
                             <td>{{item.landmark}}</td>
-                            <!--<td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>-->
+                            <td>{{(item.status==1) ? 'Booked' : (item.status==0) ? 'Cancelled' : (item.status==2) ? 'Transfered' : ''}}</td>
                             <td>
                                 <button class="btn btn-primary btn-icon btn-round " type="button" (click)="goEdit(item.id)">
                                     <i class="zmdi zmdi-edit"></i>

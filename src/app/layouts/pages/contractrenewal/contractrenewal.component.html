@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">                
-                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light"  data-toggle="modal" data-target="#AddProject" type="button">
+                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light"  data-toggle="modal" data-target="#AddContractRen" type="button">
                     <i class="zmdi zmdi-plus"></i> Add Contract Renewal
                 </button>
                                
@@ -15,17 +15,19 @@
                     <table class="table table-striped  m-b-0">
                         <tbody>
                             <tr>
+                            <td hidden>Contract Renewal Id</td>
                             <td>Contract Renewal No</td>
                             <td class="font-medium">Contract Id</td>
-                            <td>Customer Name</td>
+                            <td>Owner Name</td>
                             <td>Remark</td>
                             <td>View</td>
                         </tr>
-                        <tr >
-                            <td>New</td>
-                            <td class="font-medium">234</td>
-                            <td>Arshad</td>
-                            <td>Good</td>
+                        <tr *ngFor="let item of getContractRenlistItems()">
+                            <td hidden>{{item.contractrenewalid}}</td>
+                            <td>{{item.contractrenewalno}}</td>
+                            <td>{{item.contractid}}</td>
+                            <td>{{item.ownername}}</td>
+                            <td>{{item.notes}}</td>
                             <!--<td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>-->
                             <td>
                                 <button class="btn btn-primary btn-icon btn-round " type="button">
@@ -46,3 +48,42 @@
         </div>
     </div>
 </section>
+
+<div id="AddContractRen" class="modal fade">
+	<div class="modal-dialog modal-login">
+		<div class="modal-content">
+				<div class="modal-header text-center l-cyan" style="display: block !important;">				
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title text-center">{{ActionType}}</h4>
+				</div>
+				<div class="modal-body">
+                    <div class="row  clearfix">
+                        <div class="col-lg-12 col-md-12 col-sm-12" *ngIf="ActionType!='Add Contract Renewal'">
+                            <label>Contract Renewal No:{{contractren.contractrenewalno}}</label>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group">
+                              <input type="hidden" [(ngModel)]="contractren.contractrenewalid" name="ID" #ID="ngModel" />
+                              <label>Contract Code.</label>
+                              <input type="text" class="form-control" list="contractlist" id="contractcode" value="{{contractcode}}" (keyup)="getcontractdetails($event)" placeholder="Contract Code" required="required">
+                              <datalist id="contractlist">
+                                <option *ngFor="let item of ContractList">{{item.contractcode}}</option>
+                              </datalist>
+                            </div>
+                          </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Remark</label>
+                                <input type="text" class="form-control" [(ngModel)]="contractren.notes" placeholder="Notes" required="required">
+                            </div>
+                        </div>
+                    </div>					
+                    <div class="row clearfix">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <button type="button" class="btn btn-primary btn-round" (click)="Savecontractren()">Save</button>
+                        </div>
+                    </div>
+                </div>
+		</div>
+	</div>
+</div>   

@@ -48,4 +48,9 @@ export class Property{
     agreementid: number;
     reagreement: number;
     reagreementid: number;
+    status: number;
+    createdby: string;
+    createdon: Date;
+    modifiedby: string;
+    modifiedon: Date;
 }

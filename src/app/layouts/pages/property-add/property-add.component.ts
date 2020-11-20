@@ -22,7 +22,7 @@ export class PropertyAddComponent implements OnInit {
   }
 
   postUnit(){
-    var param = {PLOTNO:parseInt(this.model.plotno),
+    var param = {PLOTNO:this.model.plotno,
                  PHASENO:this.model.phaseno,     
                  BLOCKNO:this.model.blockno,
                  SURVEYNO:this.model.surveyno,
@@ -65,7 +65,7 @@ export class PropertyAddComponent implements OnInit {
                  ITRNO:parseInt(this.model.itrno),
                  RESELL:parseInt(this.model.resell),
                  RESELLID:Number(this.model.resellerid),
-                 AGREEMENT:parseInt(this.model.agreement),
+                 AGREEMENT:Number(this.model.agreement),
                  AGREEMENTID:parseInt(this.model.agreementid),
                  REAGREEMENT:parseInt(this.model.reagreement),
                  REAGREEMENTID:parseInt(this.model.reagreementid),

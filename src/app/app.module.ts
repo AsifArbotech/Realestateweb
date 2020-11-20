@@ -74,7 +74,7 @@ import { RoutingModule } from './routing.module';
     HttpClientModule,
     NotifierModule.withConfig(customNotifierOptions),
     FormsModule,
-    NgbModal,
+    //NgbModal,
 
   ],
   providers: [

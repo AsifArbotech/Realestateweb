@@ -15,6 +15,7 @@
                     <table class="table table-striped  m-b-0">
                         <tbody>
                             <tr>
+                            <td hidden >Owner Id</td>
                             <td class="font-medium">Owner Name</td>
                             <td>Owner Reference</td>
                             <td>Address Id</td>
@@ -24,6 +25,7 @@
                             <td>View</td>
                         </tr>
                         <tr *ngFor="let item of getOwnerslistItems()">
+                            <td hidden >{{item.ownerid}}</td>
                             <td class="font-medium">{{item.ownername}}</td>
                             <td>{{item.ownerreference}}</td>
                             <td>{{item.addressid}}</td>
@@ -32,11 +34,11 @@
                             <td>{{item.notes}}</td>
                             <!--<td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>-->
                             <td>
-                                <button class="btn btn-primary btn-icon btn-round " type="button" (click)="openModal(editOwnerModel)">
-                                    <i class="zmdi zmdi-edit" (click)="getOwner(item.ownerid)"></i>
+                                <button class="btn btn-primary btn-icon btn-round " type="button" (click)="openModal(editOwnerModel)"  (click)="getOwner(item.ownerid)">
+                                    <i class="zmdi zmdi-edit"></i>
                                 </button>
-                                <button class="btn btn-primary btn-icon btn-round " type="button">
-                                    <i class="zmdi zmdi-delete" (click)="deleteOwner(item.ownerid,item.ownername)"></i>
+                                <button class="btn btn-primary btn-icon btn-round " type="button" (click)="deleteOwner(item.ownerid,item.ownername)">
+                                    <i class="zmdi zmdi-delete"></i>
                                 </button>
                             </td>
                         </tr>
