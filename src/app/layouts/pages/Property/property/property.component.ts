@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { Property } from '../../../_models/property'
-import { ApiService } from '../../../_services/api.service';
+import { Property } from '../../../../_models/property'
+import { ApiService } from '../../../../_services/api.service';
 import { NotifierService } from 'angular-notifier';
 
 @Component({

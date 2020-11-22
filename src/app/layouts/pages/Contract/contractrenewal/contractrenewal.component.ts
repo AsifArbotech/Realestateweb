@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../_services/api.service';
-import { Contract , ContractRenewal } from '../../../_models/contract';
+import { ApiService } from '../../../../_services/api.service';
+import { Contract , ContractRenewal } from '../../../../_models/contract';
 import { NotifierService } from 'angular-notifier';
 
 @Component({

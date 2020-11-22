@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
-import { ApiService } from '../../../_services/api.service';
-import { Property } from '../../../_models/property'
+import { ApiService } from '../../../../_services/api.service';
+import { Property } from '../../../../_models/property'
 import { NotifierService } from 'angular-notifier';
 
 @Component({

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../_services/api.service';
-import { Contract , AddContract } from '../../../_models/contract';
-import { Property } from '../../../_models/property';
-import { Owner } from '../../../_models/owners';
+import { ApiService } from '../../../../_services/api.service';
+import { Contract , AddContract } from '../../../../_models/contract';
+import { Property } from '../../../../_models/property';
+import { Owner } from '../../../../_models/owners';
 import { NotifierService } from 'angular-notifier';
 
 @Component({

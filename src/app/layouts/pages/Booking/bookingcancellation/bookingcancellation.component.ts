@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../_services/api.service';
-import { Bookings, BookingCancellation } from '../../../_models/Booking';
+import { ApiService } from '../../../../_services/api.service';
+import { Bookings, BookingCancellation } from '../../../../_models/Booking';
 import { NotifierService } from 'angular-notifier';
 
 @Component({

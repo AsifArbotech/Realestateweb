@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../_services/api.service';
-import { Salesenquire, Sales, SalesInvoice, SalesQuotation } from '../../../_models/Sales';
+import { ApiService } from '../../../../_services/api.service';
+import { Salesenquire, Sales, SalesInvoice, SalesQuotation } from '../../../../_models/Sales';
 import { NotifierService } from 'angular-notifier';
 
 @Component({

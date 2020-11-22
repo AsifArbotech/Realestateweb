@@ -1,1 +1,42 @@
-<p>installment works!</p>
+<section class="content home">
+
+    <div class="container-fluid">  
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12">
+                <div class="card weather2">
+                    <table class="table table-striped  m-b-0">
+                        <tbody>
+                            <tr>
+                            <td hidden>ID</td>
+                            <td>Inst Due Date</td>
+                            <td class="font-medium">Inst Paid Date</td>
+                            <td>Inst Month</td>
+                            <td>Inst Amount</td>
+                            <td>Inst Full Amount</td>
+                            <td>PaymentID</td>
+                            <td>Plot No</td>
+                            <td>Client Name</td>
+                            <td>Remark</td>
+                            <td>View</td>
+                        </tr>
+                        <tr>
+                            <td hidden>{{item.pdcid}}</td>
+                            <td>{{item.date}}</td>
+                            <td class="font-medium">{{item.description}}</td>
+                            <td>{{item.chequeno}}</td>
+                            <td>{{item.bank}}</td>
+                            <td>{{item.plotno}}</td>
+                            <td>{{item.customername}}</td>
+                            <td>{{item.maturitydate}}</td>
+                            <td>{{item.extensiondate}}</td>
+                            <td>{{item.notes}}</td>
+                            <!--<td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>-->
+                            <td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

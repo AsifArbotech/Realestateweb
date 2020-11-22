@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Customers } from '../../../_models/Customers';
-import { ApiService } from '../../../_services/api.service';
-import { Project } from '../../../_models/project';
-import { Property } from '../../../_models/property';
-import { Associate } from '../../../_models/Associate';
-import { Salesenquire, Sales } from '../../../_models/Sales';
+import { Customers } from '../../../../_models/Customers';
+import { ApiService } from '../../../../_services/api.service';
+import { Project } from '../../../../_models/project';
+import { Property } from '../../../../_models/property';
+import { Associate } from '../../../../_models/Associate';
+import { Salesenquire, Sales } from '../../../../_models/Sales';
 import { NotifierService } from 'angular-notifier';
 
 

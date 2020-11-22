@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../_services/api.service';
-import { Bookings , AddBooking } from '../../../_models/Booking';
+import { ApiService } from '../../../../_services/api.service';
+import { Bookings , AddBooking } from '../../../../_models/Booking';
 import { NotifierService } from 'angular-notifier';
-import { Customers } from '../../../_models/Customers';
-import { Project } from '../../../_models/project';
-import { Property } from '../../../_models/property';
-import { Associate } from '../../../_models/Associate';
+import { Customers } from '../../../../_models/Customers';
+import { Project } from '../../../../_models/project';
+import { Property } from '../../../../_models/property';
+import { Associate } from '../../../../_models/Associate';
 
 @Component({
   selector: 'app-createbooking',
