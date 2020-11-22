@@ -22,6 +22,10 @@ import { SalesinvoiceComponent } from './layouts/pages/salesinvoice/salesinvoice
 import { PdcComponent } from './layouts/pages/pdc/pdc.component';
 import { SalesquotationComponent } from './layouts/pages/salesquotation/salesquotation.component';
 import { AssociateComponent } from './layouts/pages/associate/associate.component';
+import { DisputeComponent } from './layouts/pages/dispute/dispute.component';
+import { PaymentComponent } from './layouts/pages/payment/payment.component';
+import { RegistrationComponent } from './layouts/pages/registration/registration.component';
+import { InstallmentComponent } from './layouts/pages/installment/installment.component';
 import { AuthGuard } from './_services/auth-guard.service';
 import { GuestGuard } from './_services/guset-guard.service';
 
@@ -48,6 +52,8 @@ const routes: Routes = [
   { path: 'SalesQuotation', component: SalesquotationComponent, canActivate: [AuthGuard]},
   { path: 'Pdc', component: PdcComponent, canActivate: [AuthGuard]},
   { path: 'Associate', component: AssociateComponent, canActivate: [AuthGuard]},
+  { path: 'Dispute', component: DisputeComponent, canActivate: [AuthGuard]},
+  { path: 'Installment', component: InstallmentComponent, canActivate: [AuthGuard]},
 ]
 
 @NgModule({

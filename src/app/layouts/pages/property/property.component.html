@@ -29,7 +29,7 @@
                             <td class="font-medium">{{item.plotno}}</td>
                             <td>{{item.phaseno}}</td>
                             <td>{{item.blockno}}</td>
-                            <td>{{item.surveynos}}</td>
+                            <td>{{item.surveyno}}</td>
                             <td>{{item.landmark}}</td>
                             <td>{{(item.status==1) ? 'Booked' : (item.status==0) ? 'Cancelled' : (item.status==2) ? 'Transfered' : ''}}</td>
                             <td>
@@ -71,25 +71,25 @@
                    <div class="form-group row">
                         <label  class="col-sm-4 col-form-label">Plot No</label>
                         <div class="col-sm-8">
-                          <input type="text" class="form-control" [(ngModel)]="propertyItems.plotno" #plotno="ngModel" placeholder="Plot No">
+                          <input type="text" class="form-control" [(ngModel)]="propertyItems.plotno" #plotno="ngModel" placeholder="Plot No" readonly>
                         </div>
                       </div>
                    <div class="form-group row">
                      <label  class="col-sm-4 col-form-label">Phase No</label>
                      <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.phaseno" #phaseno="ngModel" placeholder="Phase No">
+                       <input type="text" class="form-control" [(ngModel)]="propertyItems.phaseno" #phaseno="ngModel" placeholder="Phase No" readonly>
                      </div>
                    </div>
                    <div class="form-group row">
                      <label  class="col-sm-4 col-form-label">Block No</label>
                      <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.blockno" #blockno="ngModel" placeholder="Block No">
+                       <input type="text" class="form-control" [(ngModel)]="propertyItems.blockno" #blockno="ngModel" placeholder="Block No" readonly>
                      </div>
                    </div>
                    <div class="form-group row">
                      <label  class="col-sm-4 col-form-label">Site Units</label>
                      <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.siteunits" #siteunits="ngModel" placeholder="Site Units">
+                       <input type="text" class="form-control" [(ngModel)]="propertyItems.siteunits" #siteunits="ngModel" placeholder="Site Units" readonly>
                      </div>
                    </div>
                    <div class="form-group row">
@@ -105,25 +105,25 @@
                    <div class="form-group row">
                      <label  class="col-sm-4 col-form-label">Facing</label>
                      <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.facing" #facing="ngModel" placeholder="Facing">
+                       <input type="text" class="form-control" [(ngModel)]="propertyItems.facing" #facing="ngModel" placeholder="Facing" readonly>
                      </div>
                    </div>
                    <div class="form-group row">
                      <label  class="col-sm-4 col-form-label">Plot Dimension</label>
                      <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.plotdimension" #plotdimension="ngModel" placeholder="Plot Dimension">
+                       <input type="text" class="form-control" [(ngModel)]="propertyItems.plotdimension" #plotdimension="ngModel" placeholder="Plot Dimension" readonly>
                      </div>
                    </div>
                    <div class="form-group row">
                      <label  class="col-sm-4 col-form-label">Owner Id</label>
                      <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.ownerid" #ownerid="ngModel" placeholder="Owner Id">
+                       <input type="text" class="form-control" [(ngModel)]="propertyItems.ownerid" #ownerid="ngModel" placeholder="Owner Id" readonly>
                      </div>
                    </div>
                    <div class="form-group row">
                      <label  class="col-sm-4 col-form-label">Facing Site</label>
                      <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.facingsite" #facingsite="ngModel" placeholder="Facing Site">
+                       <input type="text" class="form-control" [(ngModel)]="propertyItems.facingsite" #facingsite="ngModel" placeholder="Facing Site" readonly>
                      </div>
                    </div>
                 </div>
@@ -131,43 +131,43 @@
                  <div class="form-group row">
                      <label  class="col-sm-4 col-form-label">Survey No</label>
                      <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.surveyno" #surveyno="ngModel" placeholder="Survey No">
+                       <input type="text" class="form-control" [(ngModel)]="propertyItems.surveyno" #surveyno="ngModel" placeholder="Survey No" readonly>
                      </div>
                    </div>
                    <div class="form-group row">
                      <label  class="col-sm-4 col-form-label">Landmark</label>
                      <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.landmark" #landmark="ngModel" placeholder="Landmark">
+                       <input type="text" class="form-control" [(ngModel)]="propertyItems.landmark" #landmark="ngModel" placeholder="Landmark" readonly>
                      </div>
                    </div>
                    <div class="form-group row">
                      <label  class="col-sm-4 col-form-label">Plot Site</label>
                      <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.plotsite" #plotsite="ngModel" placeholder="Plot Site">
+                       <input type="text" class="form-control" [(ngModel)]="propertyItems.plotsite" #plotsite="ngModel" placeholder="Plot Site" readonly>
                      </div>
                    </div>
                    <div class="form-group row">
                      <label  class="col-sm-4 col-form-label">Notes SuperUser</label>
                      <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.notessuperuser" #notessuperuser="ngModel" placeholder="Notes SuperUser">
+                       <input type="text" class="form-control" [(ngModel)]="propertyItems.notessuperuser" #notessuperuser="ngModel" placeholder="Notes SuperUser" readonly>
                      </div>
                    </div>
                    <div class="form-group row">
                      <label  class="col-sm-4 col-form-label">Notes Management</label>
                      <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.notesmanagemen" #notesmanagemen="ngModel" placeholder="Notes Management">
+                       <input type="text" class="form-control" [(ngModel)]="propertyItems.notesmanagemen" #notesmanagemen="ngModel" placeholder="Notes Management" readonly>
                      </div>
                    </div>
                    <div class="form-group row">
                      <label  class="col-sm-4 col-form-label">Notes SalesTeam</label>
                      <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.notessalesteam" #notessalesteam="ngModel" placeholder="Notes SalesTeam">
+                       <input type="text" class="form-control" [(ngModel)]="propertyItems.notessalesteam" #notessalesteam="ngModel" placeholder="Notes SalesTeam" readonly>
                      </div>
                    </div>
                    <div class="form-group row">
                      <label  class="col-sm-4 col-form-label">Road Site</label>
                      <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.roadsite" #roadsite="ngModel" placeholder="Road Site">
+                       <input type="text" class="form-control" [(ngModel)]="propertyItems.roadsite" #roadsite="ngModel" placeholder="Road Site" readonly>
                      </div>
                    </div>
                    <div class="form-group row">
@@ -194,7 +194,7 @@
                      <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">CornerPlot Dimension</label>
                          <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.cornerplotdimensions" #cornerplotdimensions="ngModel" placeholder="CornerPlot Dimension">
+                           <input type="text" class="form-control" [(ngModel)]="propertyItems.cornerplotdimensions" #cornerplotdimensions="ngModel" placeholder="CornerPlot Dimension" readonly>
                          </div>
                        </div>
                        <div class="form-group row">
@@ -242,13 +242,13 @@
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Hold DurationInDays</label>
                          <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.holddurationindays" #holddurationindays="ngModel" placeholder="Hold DurationInDays">
+                           <input type="text" class="form-control" [(ngModel)]="propertyItems.holddurationindays" #holddurationindays="ngModel" placeholder="Hold DurationInDays" readonly>
                          </div>
                        </div>
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">HolderId AgentId</label>
                          <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.holderidagentid" #holderidagentid="ngModel" placeholder="HolderId AgentId">
+                           <input type="text" class="form-control" [(ngModel)]="propertyItems.holderidagentid" #holderidagentid="ngModel" placeholder="HolderId AgentId" readonly>
                          </div>
                        </div>
                     </div>
@@ -268,7 +268,7 @@
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Dispute Notes</label>
                          <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.disputenotes" #disputenotes="ngModel" placeholder="Dispute Notes">
+                           <input type="text" class="form-control" [(ngModel)]="propertyItems.disputenotes" #disputenotes="ngModel" placeholder="Dispute Notes" readonly>
                          </div>
                        </div>
                        <div class="form-group row">
@@ -284,25 +284,25 @@
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Noc Copy</label>
                          <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.noccopy" #noccopy="ngModel" placeholder="Noc Copy">
+                           <input type="text" class="form-control" [(ngModel)]="propertyItems.noccopy" #noccopy="ngModel" placeholder="Noc Copy" readonly>
                          </div>
                        </div>
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Plot Sold Amount</label>
                          <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.plotsoldamount" #plotsoldamount="ngModel" placeholder="Plot Sold Amount">
+                           <input type="text" class="form-control" [(ngModel)]="propertyItems.plotsoldamount" #plotsoldamount="ngModel" placeholder="Plot Sold Amount" readonly>
                          </div>
                        </div>
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Amount Paid</label>
                          <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.amountpaid" #amountpaid="ngModel" placeholder="mount Paid">
+                           <input type="text" class="form-control" [(ngModel)]="propertyItems.amountpaid" #amountpaid="ngModel" placeholder="mount Paid" readonly>
                          </div>
                        </div>
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Amount Balance</label>
                          <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.amountbalance" #amountbalance="ngModel" placeholder="Amount Balance">
+                           <input type="text" class="form-control" [(ngModel)]="propertyItems.amountbalance" #amountbalance="ngModel" placeholder="Amount Balance" readonly>
                          </div>
                        </div>
                        <div class="form-group row">
@@ -330,13 +330,13 @@
                      <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Instalment Id</label>
                          <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.instalmentid" #instalmentid="ngModel" placeholder="Instalment Id">
+                           <input type="text" class="form-control" [(ngModel)]="propertyItems.instalmentid" #instalmentid="ngModel" placeholder="Instalment Id" readonly>
                          </div>
                        </div>
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Instalment Term</label>
                          <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.instalmentterm" #instalmentterm="ngModel" placeholder="Instalment Term">
+                           <input type="text" class="form-control" [(ngModel)]="propertyItems.instalmentterm" #instalmentterm="ngModel" placeholder="Instalment Term" readonly>
                          </div>
                        </div>
                        <div class="form-group row">
@@ -352,13 +352,13 @@
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Agreement ScancopyLink</label>
                          <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.agreementscancopylink" #agreementscancopylink="ngModel" placeholder="Agreement ScancopyLink">
+                           <input type="text" class="form-control" [(ngModel)]="propertyItems.agreementscancopylink" #agreementscancopylink="ngModel" placeholder="Agreement ScancopyLink" readonly>
                          </div>
                        </div>
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Registration Id</label>
                          <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.registrationid" #registrationid="ngModel" placeholder="Registration Id">
+                           <input type="text" class="form-control" [(ngModel)]="propertyItems.registrationid" #registrationid="ngModel" placeholder="Registration Id" readonly>
                          </div>
                        </div>
                        <div class="form-group row">
@@ -374,7 +374,7 @@
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Registration Scancopylink</label>
                          <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.registrationscancopylink" #registrationscancopylink="ngModel" placeholder="Registration Scancopylink">
+                           <input type="text" class="form-control" [(ngModel)]="propertyItems.registrationscancopylink" #registrationscancopylink="ngModel" placeholder="Registration Scancopylink" readonly>
                          </div>
                        </div>
                        <div class="form-group row">
@@ -392,7 +392,7 @@
                      <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Itr No</label>
                          <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.itrno" #itrno="ngModel" placeholder="Itr No">
+                           <input type="text" class="form-control" [(ngModel)]="propertyItems.itrno" #itrno="ngModel" placeholder="Itr No" readonly>
                          </div>
                        </div>
                        <div class="form-group row">
@@ -408,7 +408,7 @@
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Re-SellerId</label>
                          <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.resellerid" #resellerid="ngModel" placeholder="Re-SellerId">
+                           <input type="text" class="form-control" [(ngModel)]="propertyItems.resellerid" #resellerid="ngModel" placeholder="Re-SellerId" readonly>
                          </div>
                        </div>
                        <div class="form-group row">
@@ -424,19 +424,19 @@
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Agreement Id</label>
                          <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.agreementid" #agreementid="ngModel" placeholder="Agreement Id">
+                           <input type="text" class="form-control" [(ngModel)]="propertyItems.agreementid" #agreementid="ngModel" placeholder="Agreement Id" readonly>
                          </div>
                        </div>
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Re-Agreement</label>
                          <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.reagreement" #reagreement="ngModel" placeholder="Re-Agreement">
+                           <input type="text" class="form-control" [(ngModel)]="propertyItems.reagreement" #reagreement="ngModel" placeholder="Re-Agreement" readonly>
                          </div>
                        </div>
                        <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Re-AgreementId</label>
                          <div class="col-sm-8">
-                          <input type="text" class="form-control" [(ngModel)]="propertyItems.reagreementid" #reagreementid="ngModel" placeholder="Re-Agreement Id">
+                          <input type="text" class="form-control" [(ngModel)]="propertyItems.reagreementid" #reagreementid="ngModel" placeholder="Re-Agreement Id" readonly>
                          </div>
                        </div>
                     </div>

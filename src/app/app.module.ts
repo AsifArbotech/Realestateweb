@@ -37,35 +37,20 @@ import { SalesinvoiceComponent } from './layouts/pages/salesinvoice/salesinvoice
 import { SalesquotationComponent } from './layouts/pages/salesquotation/salesquotation.component';
 import { PdcComponent } from './layouts/pages/pdc/pdc.component';
 import { AssociateComponent } from './layouts/pages/associate/associate.component';
+import { DisputeComponent } from './layouts/pages/dispute/dispute.component';
+import { PaymentComponent } from './layouts/pages/payment/payment.component';
+import { RegistrationComponent } from './layouts/pages/registration/registration.component';
+import { InstallmentComponent } from './layouts/pages/installment/installment.component';
 import { RoutingModule } from './routing.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
-    DashboardComponent,
-    DepartmetComponent,
-    UsersComponent,
-    HeaderComponent,
-    RolesComponent,
-    CustomersComponent,
-    OwnersComponent,
-    ProjectsComponent,
-    PropertyComponent,
-    PropertyAddComponent,
-    PropertyEditComponent,
-    CreatebookingComponent,
-    BookingcancellationComponent,
-    BookingtransferComponent,
-    ContractcreateComponent,
-    ContractrenewalComponent,
-    ContractterminateComponent,
-    SalesenquireComponent,
-    SalesinvoiceComponent,
-    SalesquotationComponent,
-    PdcComponent,
-    AssociateComponent
+    AppComponent, LoginComponent, DashboardComponent, DepartmetComponent, UsersComponent, HeaderComponent, RolesComponent,
+    CustomersComponent, OwnersComponent, ProjectsComponent, PropertyComponent, PropertyAddComponent, PropertyEditComponent,
+    CreatebookingComponent, BookingcancellationComponent, BookingtransferComponent, ContractcreateComponent,
+    ContractrenewalComponent, ContractterminateComponent, SalesenquireComponent, SalesinvoiceComponent, SalesquotationComponent,
+    PdcComponent, AssociateComponent, DisputeComponent, PaymentComponent, RegistrationComponent, InstallmentComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +60,6 @@ import { RoutingModule } from './routing.module';
     NotifierModule.withConfig(customNotifierOptions),
     FormsModule,
     //NgbModal,
-
   ],
   providers: [
     AppConfig,

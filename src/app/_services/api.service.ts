@@ -367,4 +367,24 @@ export class ApiService {
   DeletePdc(ID) {
     return this.http.get(this.BASEURL + '/Pdc/DeletePdc?ID=' + ID, this.getAuthHeadersJSON());
   }
+
+  getDisputeList() {
+    return this.http.get(this.BASEURL + '/Dispute/GetAllDisputes', this.getAuthHeadersJSON());
+  }
+
+  getDisputeByID(ID) {
+    return this.http.get(this.BASEURL + '/Dispute/GetDisputeById?ID=' + ID, this.getAuthHeadersJSON());
+  }
+
+  AddDispute(Dispute){
+    if (Dispute.disputeid) {
+      return this.http.post(this.BASEURL + '/Dispute/EditDispute', Dispute, this.getAuthHeadersJSON());
+    }
+    else
+      return this.http.post(this.BASEURL + '/Dispute/AddDispute', Dispute, this.getAuthHeadersJSON());
+  }
+
+  DeleteDispute(ID) {
+    return this.http.get(this.BASEURL + '/Dispute/DeleteDispute?ID=' + ID, this.getAuthHeadersJSON());
+  }
 }

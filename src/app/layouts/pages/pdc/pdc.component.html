@@ -20,7 +20,7 @@
                             <td class="font-medium">Description</td>
                             <td>Cheque No</td>
                             <td>Bank</td>
-                            <td>Unit</td>
+                            <td>Property</td>
                             <td>Customer</td>
                             <td>Maturity Date</td>
                             <td>Extension Date</td>
@@ -94,7 +94,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label>Unit</label>
+                                <label>Property</label>
                                 <input type="text" class="form-control" list="Propertylist" id="Propertyid" placeholder="Unit" required="required">
                                 <datalist id="Propertylist">
                                   <option *ngFor="let item of propertyListItems" [data-property]="item.id">{{item.plotno}}</option>

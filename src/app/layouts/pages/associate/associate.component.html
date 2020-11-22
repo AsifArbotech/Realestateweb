@@ -34,7 +34,7 @@
                 <td>{{item.email}}</td>
                 <td>{{item.mobile}}</td>
                 <td>{{item.address}}</td>
-                <td>{{item.status}}</td>
+                <td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>
                 <td>
                   <button class="btn btn-primary btn-icon btn-round" (click)="EditAssociate(item.id)" data-toggle="modal" data-target="#AddAssociate" type="button">
                     <i class="zmdi zmdi-edit"></i>
