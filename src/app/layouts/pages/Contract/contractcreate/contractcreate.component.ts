@@ -16,7 +16,7 @@ export class ContractcreateComponent implements OnInit {
   public ownerListItems: Array<Owner> = new Array<Owner>();
   public ContractList: Array<Contract> = new Array<Contract>();
   addContract: AddContract = new AddContract();
-
+  Contract : AddContract = new AddContract();
    ActionType = "Add Contract";
    page = 1;
    pageSize = 10;
@@ -33,6 +33,7 @@ export class ContractcreateComponent implements OnInit {
   }
 
   getContractList() {
+    debugger;
     this.apiservice.getContractList().subscribe(
       (response: any) => {
         this.ContractList = response;
@@ -76,22 +77,44 @@ export class ContractcreateComponent implements OnInit {
         })
   }
 
+  
+  EditContract(id) {
+   
+    this.GetAllSuggesstion();
+    this.apiservice.getContractByID(id).subscribe(
+      (response:any) => {
+        this.Contract = response;
+
+        (<HTMLInputElement>document.getElementById('Ownerid')).value = response.name;
+        (<HTMLInputElement>document.getElementById('Propertyid')).value = response.plotno;
+      },
+      error => {
+        console.log(error);
+        this.notifier.notify("error", "Something went wrong");
+      }
+    )
+    this.ActionType = "Edit Contract";
+  }
+
+
   SaveContract() {
     if ((<HTMLInputElement>document.getElementById('Propertyid')).value)
-      this.addContract.unitid = this.propertyListItems.find(f => f.plotno == (<HTMLInputElement>document.getElementById('Propertyid')).value).id;
+      this.Contract.UNITID = this.propertyListItems.find(f => f.plotno == (<HTMLInputElement>document.getElementById('Propertyid')).value).id;
     else {
       alert("Please select Property from list");
       return;
     }
 
     if ((<HTMLInputElement>document.getElementById('Ownerid')).value)
-      this.addContract.ownerid = this.ownerListItems.find(f => f.ownername == (<HTMLInputElement>document.getElementById('Ownerid')).value).ownerid;
+      this.Contract.OWNERID = this.ownerListItems.find(f => f.ownername == (<HTMLInputElement>document.getElementById('Ownerid')).value).ownerid;
     else {
       alert("Please select Owner from list");
       return;
     }
-    this.addContract.noofinstallments = Number(this.addContract.noofinstallments);
-    this.apiservice.AddContract(this.addContract)
+    this.Contract.OWNERNAME=(<HTMLInputElement>document.getElementById('Ownerid')).value
+    this.Contract.PLOTNO=(<HTMLInputElement>document.getElementById('Propertyid')).value
+    this.Contract.NOOFINSTALLMENTS = Number(this.Contract.NOOFINSTALLMENTS);
+    this.apiservice.AddContract(this.Contract)
     .subscribe((response: any) => {
       if (response) {
         if (response.responseCode == 0) {
@@ -131,7 +154,7 @@ export class ContractcreateComponent implements OnInit {
   }
 
   GetAllSuggesstion() {
-    this.clearfields();
+    //this.clearfields();
     this.ActionType = "Add Contract";
     if (this.propertyListItems.length == 0)
       this.getPropertyList();

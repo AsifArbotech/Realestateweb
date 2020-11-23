@@ -29,14 +29,14 @@
                         </tr>
                         <tr *ngFor="let item of getPdclisttItems()">
                             <td hidden>{{item.pdcid}}</td>
-                            <td>{{item.date}}</td>
+                            <td>{{item.date.split("T")[0]}}</td>
                             <td class="font-medium">{{item.description}}</td>
                             <td>{{item.chequeno}}</td>
                             <td>{{item.bank}}</td>
                             <td>{{item.plotno}}</td>
                             <td>{{item.customername}}</td>
-                            <td>{{item.maturitydate}}</td>
-                            <td>{{item.extensiondate}}</td>
+                            <td>{{item.maturitydate.split("T")[0]}}</td>
+                            <td>{{item.extensiondate.split("T")[0]}}</td>
                             <td>{{item.notes}}</td>
                             <!--<td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>-->
                             <td>
@@ -46,9 +46,9 @@
                                 <button class="btn btn-primary btn-icon btn-round " type="button" (click)="DeletePdc(item.pdcid)">
                                     <i class="zmdi zmdi-delete" ></i>
                                 </button>
-                                <button class="btn btn-primary btn-icon btn-round " type="button" data-toggle="modal" data-target="#PreviewProject">
+                                <!-- <button class="btn btn-primary btn-icon btn-round " type="button" data-toggle="modal" data-target="#PreviewProject">
                                     <i class="zmdi zmdi-eye" ></i>
-                                </button>
+                                </button> -->
                             </td>
                         </tr>
                         </tbody>
@@ -114,7 +114,7 @@
                                 <input type="email" class="form-control" [(ngModel)]="pdc.maturitydate" name="MATURITYDATE" #MATURITYDATE="ngModel" placeholder="Maturity Date" required="required">
                             </div>
                             <div class="form-group">
-                                <label>Maturity Date</label>
+                                <label>Extention Date</label>
                                 <input type="email" class="form-control" [(ngModel)]="pdc.extensiondate" name="EXTENSIONDATE" #EXTENSIONDATE="ngModel" placeholder="Maturity Date" required="required">
                             </div>
                         </div>

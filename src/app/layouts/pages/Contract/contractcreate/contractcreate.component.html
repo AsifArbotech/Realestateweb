@@ -29,23 +29,23 @@
                             <td hidden>{{item.contractid}}</td>
                             <td>{{item.contractcode}}</td>
                             <td>{{item.name}}</td>
-                            <td>{{item.startdate}}</td>
-                            <td>{{item.enddate}}</td>
-                            <td>{{item.contractdate}}</td>
+                            <td>{{item.startdate.split("T")[0]}}</td>
+                            <td>{{item.enddate.split("T")[0]}}</td>
+                            <td>{{item.contractdate.split("T")[0]}}</td>
                             <td>{{item.ownername}}</td>
                             <td>{{item.plotno}}</td>
                             <td>{{item.noofinstallments}}</td>
                             <!--<td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>-->
                             <td>
-                                <button class="btn btn-primary btn-icon btn-round " type="button" data-toggle="modal" data-target="AddContract">
+                                <button class="btn btn-primary btn-icon btn-round " type="button" (click)="EditContract(item.contractid)" data-toggle="modal" data-target="#AddContract">
                                     <i class="zmdi zmdi-edit" ></i>
                                 </button>
-                                <button class="btn btn-primary btn-icon btn-round " type="button">
+                                <button class="btn btn-primary btn-icon btn-round " (click)="EditContract(item.contractid)" type="button">
                                     <i class="zmdi zmdi-delete" ></i>
                                 </button>
-                                <button class="btn btn-primary btn-icon btn-round " type="button">
+                                <!-- <button class="btn btn-primary btn-icon btn-round " type="button">
                                     <i class="zmdi zmdi-eye" ></i>
-                                </button>
+                                </button> -->
                             </td>
                         </tr>
                         </tbody>
@@ -67,29 +67,29 @@
 				<div class="modal-body">
                     <div class="row  clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12" *ngIf="ActionType!='Add Contract'">
-                            <label>Contract Code :{{addContract.contractcode}}</label>
+                            <label>Contract Code :{{Contract.contractcode}}</label>
                         </div>
-                          <input type="hidden" [(ngModel)]="addContract.contractid" name="ID" #ID="ngModel" />
+                          <input type="hidden" [(ngModel)]="Contract.contractid" name="ID" #ID="ngModel" />
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" class="form-control" [(ngModel)]="addContract.name" placeholder="Name" required="required">
+                                <input type="text" class="form-control" [(ngModel)]="Contract.name" placeholder="Name" required="required">
                             </div>                          
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Start-Date</label>
-                                <input type="email" class="form-control" [(ngModel)]="addContract.startdate" placeholder="Start-Date" required="required">
+                                <input type="email" class="form-control" [(ngModel)]="Contract.startdate" placeholder="Start-Date" required="required">
                             </div>
                             <div class="form-group">
                                 <label>End-Date</label>
-                                <input type="text" class="form-control" [(ngModel)]="addContract.enddate" placeholder="End-Date" required="required">
+                                <input type="text" class="form-control" [(ngModel)]="Contract.enddate" placeholder="End-Date" required="required">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Contract Date</label>
-                                <input type="email" class="form-control" [(ngModel)]="addContract.contractdate" placeholder="Contract Date" required="required">
+                                <input type="email" class="form-control" [(ngModel)]="Contract.contractdate" placeholder="Contract Date" required="required">
                             </div>
                             <div class="form-group">
                                 <label>Owner</label>
@@ -109,7 +109,7 @@
                             </div>
                             <div class="form-group">
                                 <label>No of installments</label>
-                                <input type="text" class="form-control" [(ngModel)]="addContract.noofinstallments" placeholder="No.Of Installments" required="required">
+                                <input type="text" class="form-control" [(ngModel)]="Contract.noofinstallments" placeholder="No.Of Installments" required="required">
                             </div>
                         </div>
                     </div>					

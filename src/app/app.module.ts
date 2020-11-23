@@ -4,7 +4,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NotifierModule } from "angular-notifier";
 import customNotifierOptions from './notifier.config';
 import { FormsModule } from '@angular/forms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthenticationService } from './_services/authentication.service';
 import { ApiService } from './_services/api.service';
@@ -59,6 +59,7 @@ import { RoutingModule } from './routing.module';
     HttpClientModule,
     NotifierModule.withConfig(customNotifierOptions),
     FormsModule,
+    NgbModule,
     //NgbModal,
   ],
   providers: [

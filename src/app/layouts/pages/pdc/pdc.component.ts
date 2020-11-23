@@ -4,6 +4,7 @@ import { Pdc } from '../../../_models/Pdc'
 import { NotifierService } from 'angular-notifier';
 import { Customers } from '../../../_models/Customers';
 import { Property } from '../../../_models/property';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-pdc',
@@ -24,7 +25,8 @@ export class PdcComponent implements OnInit {
   customername: String = '';
 
   constructor(private apiservice: ApiService,
-              private notifier: NotifierService) { }
+              private notifier: NotifierService,
+              private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getPdcList();
@@ -33,6 +35,7 @@ export class PdcComponent implements OnInit {
   }
 
   getPdcList(){
+    debugger;
     this.apiservice.getPdcList().subscribe(
       (response: any) => {
         this.PdcList = response;
@@ -58,18 +61,18 @@ export class PdcComponent implements OnInit {
 
   SavePdc() {
     if ((<HTMLInputElement>document.getElementById('Customerid')).value)
-      this.pdc.customerid = this.customerslist.find(f => f.name == (<HTMLInputElement>document.getElementById('Customerid')).value).id;
+      this.pdc.CUSTOMERID = this.customerslist.find(f => f.name == (<HTMLInputElement>document.getElementById('Customerid')).value).id;
     else {
       alert("Please select Customer form list");
       return;
     }
     if ((<HTMLInputElement>document.getElementById('Propertyid')).value)
-      this.pdc.unitid = this.propertyListItems.find(f => f.plotno == (<HTMLInputElement>document.getElementById('Propertyid')).value).id;
+      this.pdc.UNITID = this.propertyListItems.find(f => f.plotno == (<HTMLInputElement>document.getElementById('Propertyid')).value).id;
     else {
       alert("Please select Property form list");
       return;
     }
-    this.pdc.chequeno = Number(this.pdc.chequeno);
+    this.pdc.CHEQUENO = this.pdc.CHEQUENO;
     this.apiservice.AddPdc(this.pdc)
     .subscribe((response: any) => {
       if (response) {
@@ -77,6 +80,7 @@ export class PdcComponent implements OnInit {
           this.notifier.notify("error", response.responseMsg);
         } else if (response.responseCode == 1) {
           this.notifier.notify("success", response.responseMsg);
+          this.modalService.dismissAll();
         }
         else {
           this.notifier.notify("error", "Something went wrong");
@@ -91,12 +95,13 @@ export class PdcComponent implements OnInit {
     this.ActionType = "Edit Pdc";
     this.GetAllSuggesstion();
     this.apiservice.getPdcByID(id).subscribe(
-      (response: Pdc) => {
+      (response:any) => {
        // response.createdon = new Date(response.createdon.toString().split('T')[0]);
-        response.createdon =response.createdon;
+        response.CREATEDON =response.createdon;
         this.pdc = response;
-        (<HTMLInputElement>document.getElementById('Customerid')).value = this.customerslist.find(f => f.id == this.pdc.customerid).name;
-        (<HTMLInputElement>document.getElementById('Propertyid')).value = this.propertyListItems.find(f => f.id == this.pdc.unitid).plotno;
+
+        (<HTMLInputElement>document.getElementById('Customerid')).value = response.customername;
+        (<HTMLInputElement>document.getElementById('Propertyid')).value = response.plotno;
       },
       error => {
         console.log(error);
