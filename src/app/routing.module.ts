@@ -23,9 +23,13 @@ import { SalesquotationComponent } from './layouts/pages/Sales/salesquotation/sa
 import { PdcComponent } from './layouts/pages/pdc/pdc.component';
 import { AssociateComponent } from './layouts/pages/associate/associate.component';
 import { DisputeComponent } from './layouts/pages/dispute/dispute.component';
-import { PaymentComponent } from './layouts/pages/payment/payment.component';
 import { RegistrationComponent } from './layouts/pages/registration/registration.component';
 import { InstallmentComponent } from './layouts/pages/installment/installment.component';
+import { PaymentPayablesComponent } from './layouts/pages/Payments/paymentpayables/paymentpayables.component';
+import { PaymentReceivablesComponent } from './layouts/pages/Payments/paymentreceivables/paymentreceivables.component';
+import { AssociateTranComponent } from './layouts/pages/Transactions/associatetran/associatetran.component';
+import { OwnerTransactionComponent } from './layouts/pages/Transactions/ownertransaction/ownertransaction.component';
+import { CustomerTransactionComponent } from './layouts/pages/Transactions/customertransaction/customertransaction.component';
 import { AuthGuard } from './_services/auth-guard.service';
 import { GuestGuard } from './_services/guset-guard.service';
 
@@ -44,9 +48,9 @@ const routes: Routes = [
   { path: 'CreateBooking', component: CreatebookingComponent, canActivate: [AuthGuard]},
   { path: 'BookingCancellation', component: BookingcancellationComponent, canActivate: [AuthGuard]},
   { path: 'BookingTransfer', component: BookingtransferComponent, canActivate: [AuthGuard]},
-  { path: 'ContractCreate', component: ContractcreateComponent, canActivate: [AuthGuard]},
-  { path: 'ContractRenewal', component: ContractrenewalComponent, canActivate: [AuthGuard]},
-  { path: 'ContractTerminate', component: ContractterminateComponent, canActivate: [AuthGuard]},
+  { path: 'AgreementCreate', component: ContractcreateComponent, canActivate: [AuthGuard]},
+  { path: 'AgreementRenewal', component: ContractrenewalComponent, canActivate: [AuthGuard]},
+  { path: 'AgreementTerminate', component: ContractterminateComponent, canActivate: [AuthGuard]},
   { path: 'SalesEnquire', component: SalesenquireComponent, canActivate: [AuthGuard]},
   { path: 'SalesInvoice', component: SalesinvoiceComponent, canActivate: [AuthGuard]},
   { path: 'SalesQuotation', component: SalesquotationComponent, canActivate: [AuthGuard]},
@@ -54,6 +58,11 @@ const routes: Routes = [
   { path: 'Associate', component: AssociateComponent, canActivate: [AuthGuard]},
   { path: 'Dispute', component: DisputeComponent, canActivate: [AuthGuard]},
   { path: 'Installment', component: InstallmentComponent, canActivate: [AuthGuard]},
+  { path: 'PaymentsPayables', component: PaymentPayablesComponent, canActivate: [AuthGuard]},
+  { path: 'PaymentsReceivables', component: PaymentReceivablesComponent, canActivate: [AuthGuard]},
+  { path: 'AssociateTransaction', component: AssociateTranComponent, canActivate: [AuthGuard]},
+  { path: 'OwnerTransaction', component: OwnerTransactionComponent, canActivate: [AuthGuard]},
+  { path: 'CustomerTransaction', component: CustomerTransactionComponent, canActivate: [AuthGuard]},
 ]
 
 @NgModule({

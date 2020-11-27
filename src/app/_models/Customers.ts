@@ -15,3 +15,23 @@ export class Customers {
   modifiedon: Date;
 
 }
+
+export class CustomerTransaction{
+  custtransactionid: Number;
+  custtransactionno: Number;
+  customerid: Number;
+  customername: null;
+  projectid: Number;
+  projectname: null;
+  unitid: Number;
+  plotno: null;
+  bookingid: Number;
+  bookingno: Number;
+  totalamount: Number;
+  amountpaid: Number;
+  balanceamount: Number;
+  createdby: string;
+  createdon: Date;
+  modifiedby: string;
+  modifiedon: Date;
+}

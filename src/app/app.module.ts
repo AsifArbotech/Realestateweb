@@ -38,9 +38,13 @@ import { SalesquotationComponent } from './layouts/pages/Sales/salesquotation/sa
 import { PdcComponent } from './layouts/pages/pdc/pdc.component';
 import { AssociateComponent } from './layouts/pages/associate/associate.component';
 import { DisputeComponent } from './layouts/pages/dispute/dispute.component';
-import { PaymentComponent } from './layouts/pages/payment/payment.component';
 import { RegistrationComponent } from './layouts/pages/registration/registration.component';
 import { InstallmentComponent } from './layouts/pages/installment/installment.component';
+import { PaymentPayablesComponent } from './layouts/pages/Payments/paymentpayables/paymentpayables.component';
+import { PaymentReceivablesComponent } from './layouts/pages/Payments/paymentreceivables/paymentreceivables.component';
+import { AssociateTranComponent } from './layouts/pages/Transactions/associatetran/associatetran.component';
+import { OwnerTransactionComponent } from './layouts/pages/Transactions/ownertransaction/ownertransaction.component';
+import { CustomerTransactionComponent } from './layouts/pages/Transactions/customertransaction/customertransaction.component';
 import { RoutingModule } from './routing.module';
 
 
@@ -50,7 +54,8 @@ import { RoutingModule } from './routing.module';
     CustomersComponent, OwnersComponent, ProjectsComponent, PropertyComponent, PropertyAddComponent, PropertyEditComponent,
     CreatebookingComponent, BookingcancellationComponent, BookingtransferComponent, ContractcreateComponent,
     ContractrenewalComponent, ContractterminateComponent, SalesenquireComponent, SalesinvoiceComponent, SalesquotationComponent,
-    PdcComponent, AssociateComponent, DisputeComponent, PaymentComponent, RegistrationComponent, InstallmentComponent
+    PdcComponent, AssociateComponent, DisputeComponent, RegistrationComponent, InstallmentComponent, PaymentPayablesComponent,
+    PaymentReceivablesComponent, AssociateTranComponent, OwnerTransactionComponent, CustomerTransactionComponent
   ],
   imports: [
     BrowserModule,

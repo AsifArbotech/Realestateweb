@@ -1,0 +1,36 @@
+<section class="content home">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12">
+                <div class="card weather2">
+                    <table class="table table-striped  m-b-0">
+                        <tbody>
+                          <tr>
+                            <td hidden>Customer Tran Id</td>
+                            <td>CustomerTran No</td>
+                            <td class="font-medium">Date</td>
+                            <td>Project</td>
+                            <td>Property</td>
+                            <td>Customer</td>
+                            <td>Amount Paid</td>
+                            <td>Total Booking Amount</td>
+                            <td>Balance Amount</td>
+                          </tr>
+                          <tr *ngFor="let item of getTransactionlistItems()">
+                            <td hidden>{{item.custtransactionid}}</td>
+                            <td>{{item.custtransactionno}}</td>
+                            <td class="font-medium">{{item.createdon | date:'MM/dd/yyyy'}}</td>
+                            <td>{{item.projectname}}</td>  
+                            <td>{{item.plotno}}</td>
+                            <td>{{item.customername}}</td>
+                            <td>{{item.amountpaid}} / -</td>
+                            <td>{{item.totalamount}} / -</td>
+                            <td>{{item.balanceamount}} / -</td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

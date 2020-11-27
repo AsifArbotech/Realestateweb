@@ -8,7 +8,8 @@ export class AddBooking{
     projectid: Number;
     unitid: Number;
     consultantid: Number;
-    amount: Number;
+    bookingamount: Number;
+    totalamount: Number;
     status: Number;
     assignto: string;
     createdby: string;

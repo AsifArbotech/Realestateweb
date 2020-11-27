@@ -1,5 +1,4 @@
 <section class="content home">
-
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">                
@@ -13,19 +12,19 @@
                 <div class="card weather2">
                     <table class="table table-striped  m-b-0">
                         <tbody>
-                            <tr>
+                          <tr>
                             <td hidden>Booking Id</td>
-                            <td >Booking No</td>
+                            <td >Booking / Token No</td>
                             <td class="font-medium">Project</td>
-                            <td>Unit</td>
+                            <td>Property</td>
                             <td>Customer Name</td>
-                            <td>Booking Amount</td>
+                            <td>Booking / Token Amount</td>
                             <td>Associate</td>
                             <td>Assign To</td>
                             <td>Status</td>
                             <td>View</td>
-                        </tr>
-                        <tr *ngFor="let item of getBookinglistItems()">
+                          </tr>
+                          <tr *ngFor="let item of getBookinglistItems()">
                             <td hidden>{{item.bookingid}}</td>
                             <td >{{item.bookingno}}</td>
                             <td class="font-medium">{{item.projectname}}</td>
@@ -46,7 +45,7 @@
                                     <i class="zmdi zmdi-eye" ></i>
                                 </button>-->
                             </td>
-                        </tr>
+                          </tr>
                         </tbody>
                     </table>
                 </div>
@@ -55,51 +54,47 @@
     </div>
 </section>
 
-<!--Add Booking Modal Start-->
 <div id="AddBooking" class="modal fade">
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
 				<div class="modal-header text-center l-cyan" style="display: block !important;">				
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title text-center">{{ActionType}}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title text-center">{{ActionType}}</h4>
 				</div>
-				<div class="modal-body">
-                    
-                    <div class="row  clearfix">
-                        <div class="col-lg-12 col-md-12 col-sm-12" *ngIf="ActionType!='Add Booking'">
-                            <label>Booking No :{{addBooking.bookingno}}</label>
+				    <div class="modal-body">
+              <div class="row  clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12" *ngIf="ActionType!='Add Booking'">
+                  <label>Booking / Token No :{{addBooking.bookingno}}</label>
+                    </div>
+                      <input type="hidden" [(ngModel)]="addBooking.bookingid" name="ID" #ID="ngModel" />
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                          <div class="form-group">
+                            <label>Customer Name</label>
+                            <input type="text" class="form-control" list="customerlist" id="Customerid" placeholder="Customer Name" required="required">
+                            <datalist id="customerlist">
+                              <option *ngFor="let item of customerslist" [data-id]="item.id">{{item.name}}</option>
+                            </datalist>
                           </div>
-                          <input type="hidden" [(ngModel)]="addBooking.bookingid" name="ID" #ID="ngModel" />
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <div class="form-group">
-                                    <label>Customer Name</label>
-                                    <input type="text" class="form-control" list="customerlist" id="Customerid" placeholder="Customer Name" required="required">
-                                    <datalist id="customerlist">
-                                      <option *ngFor="let item of customerslist" [data-id]="item.id">{{item.name}}</option>
-                                    </datalist>
+                            </div>
+                              <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">  
+                                  <label>Projects</label>
+                                  <input type="text" class="form-control" list="Projectlist" id="Projectid" placeholder="Projects" required="required">
+                                  <datalist id="Projectlist">
+                                    <option *ngFor="let item of projectsListItems" [data-property]="item.id">{{item.projectname}}</option>
+                                  </datalist>
                                 </div>
                               </div>
-                              <div class="col-lg-12 col-md-12 col-sm-12">
+                              <div class="col-lg-6 col-md-6 col-sm-12">
                                 <div class="form-group">
-                                    
-                                    <label>Projects</label>
-                                    <input type="text" class="form-control" list="Projectlist" id="Projectid" placeholder="Projects" required="required">
-                                    <datalist id="Projectlist">
-                                      <option *ngFor="let item of projectsListItems" [data-property]="item.id">{{item.projectname}}</option>
-                                    </datalist>
-                                </div>
-                             
-                              </div>
-                              <div class="col-lg-12 col-md-12 col-sm-12">
-                                <div class="form-group">
-                                    <label>Unit</label>
-                                    <input type="text" class="form-control" list="Propertylist" id="Propertyid" placeholder="Unit" required="required">
+                                    <label>Property</label>
+                                    <input type="text" class="form-control" list="Propertylist" id="Propertyid" placeholder="Property" required="required">
                                     <datalist id="Propertylist">
                                       <option *ngFor="let item of propertyListItems" [data-property]="item.id">{{item.plotno}}</option>
                                     </datalist>
                                 </div>
                               </div>
-                              <div class="col-lg-12 col-md-12 col-sm-12">
+                              <div class="col-lg-6 col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Associate Name</label>
                                     <input type="text" class="form-control" list="Associatelist" id="Associateid" placeholder="Associate Name" required="required">
@@ -110,22 +105,28 @@
                               </div>
                               <div class="col-lg-6 col-md-6 col-sm-12">
                                 <div class="form-group">
-                                  <label>Amount</label>
-                                  <input type="text" class="form-control" placeholder="Amount" [(ngModel)]="addBooking.amount" name="AMOUNT" #AMOUNT="ngModel" required="required">
+                                  <label>Booking / Token Amount</label>
+                                  <input type="text" class="form-control" placeholder="Booking Amount" [(ngModel)]="addBooking.bookingamount" name="AMOUNT" #AMOUNT="ngModel" required="required">
                                 </div>
                               </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                              <div class="form-group">
-                                <label>Assign To</label>
-                                <input type="text" class="form-control" placeholder="Amount" [(ngModel)]="addBooking.assignto" name="ASSIGNTO" #ASSIGNTO="ngModel" required="required">
-                            </div>
-                        </div>
+                              <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                  <label>Total Amount</label>
+                                  <input type="text" class="form-control" placeholder="Total Amount" [(ngModel)]="addBooking.totalamount" name="TOTALAMOUNT" #TOTALAMOUNT="ngModel" required="required">
+                                </div>
+                              </div>
+                              <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="form-group">
+                                  <label>Assign To</label>
+                                  <input type="text" class="form-control" placeholder="Amount" [(ngModel)]="addBooking.assignto" name="ASSIGNTO" #ASSIGNTO="ngModel" required="required">
+                                </div>
+                              </div>
                     </div>				
-                    <div class="row clearfix">
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <button type="button" class="btn btn-primary btn-round" (click)="SaveBooking()">Save</button>
-                        </div>
+                  <div class="row clearfix">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                      <button type="button" class="btn btn-primary btn-round" (click)="SaveBooking()">Save</button>
                     </div>
+                  </div>
 		</div>
 	</div>
 </div>        

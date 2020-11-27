@@ -1,0 +1,144 @@
+<section class="content home">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">                
+                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light" data-toggle="modal" data-target="#AddPaymentPay" type="button">
+                    <i class="zmdi zmdi-plus"></i> Add Payment Payables 
+                </button>   
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12">
+                <div class="card weather2">
+                    <table class="table table-striped  m-b-0">
+                        <tbody>
+                          <tr>
+                            <td hidden>Payment Id</td>
+                            <td>Date</td>
+                            <td>Payment Type</td>
+                            <td>Payment Ref No</td>
+                            <td>Project</td>
+                            <td>Property</td>
+                            <td>Customer</td>
+                            <td>Amount</td>
+                            <td>Total Amount</td>
+                            <td>Balance Amount</td>
+                          </tr>
+                          <tr>
+                            <td hidden></td>
+                            <td class="font-medium"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>                            
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="AddPaymentPay" class="modal fade">
+	<div class="modal-dialog modal-login">
+		<div class="modal-content">
+				<div class="modal-header text-center l-cyan" style="display: block !important;">				
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title text-center">Add Payment Payables</h4>
+				</div>
+				    <div class="modal-body">
+              <div class="row  clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <input type="radio" name="options" value="Associate" [checked]='true' (click)="setradio('Associate')">&nbsp;
+                    <label>Associate</label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="options" value="Owner" (click)="setradio('Owner')">&nbsp;
+                    <label>Owner</label>
+                </div>
+                      <!--<input type="hidden" [(ngModel)]="addPaymentRec.paymentrecid" name="ID" #ID="ngModel" />-->
+                      <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="isSelected('Associate')">
+                        <div class="form-group">
+                            <label>Associate Name</label>
+                            <input type="text" class="form-control" list="Associatelist" id="Associateid" placeholder="Associate Name" required="required">
+                          </div>
+                          <datalist id="Associatelist">
+                            <option *ngFor="let item of AssociateList" [data-associate]="item.id">{{item.name}}</option>
+                          </datalist>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="isSelected('Owner')">
+                      <div class="form-group">
+                        <label>Owner</label>
+                        <input type="text" class="form-control" list="OwnerList" id="Ownerid" placeholder="Owner Name" required="required">
+                        <datalist id="OwnerList">
+                            <option *ngFor="let item of ownerListItems" [data-owner]="item.ownerid">{{item.ownername}}</option>
+                        </datalist>
+                      </div>
+                    </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">  
+                                <label>Projects</label>
+                                <input type="text" class="form-control" list="Projectlist" id="Projectid" placeholder="Projects" required="required">
+                                <datalist id="Projectlist">
+                                  <option *ngFor="let item of projectsListItems" [data-property]="item.id">{{item.projectname}}</option>
+                                </datalist>
+                                </div>
+                            </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Property</label>
+                                <input type="text" class="form-control" list="Propertylist" id="Propertyid" placeholder="Property" required="required">
+                                <datalist id="Propertylist">
+                                    <option *ngFor="let item of propertyListItems" [data-property]="item.id">{{item.plotno}}</option>
+                                </datalist>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                              <label> Payment Type</label>
+                              <input type="text" class="form-control" placeholder="Payment Type" name="PAYMENTTYPE" required="required">
+                            </div>
+                          </div>
+                          <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                              <label> Payment Ref Number</label>
+                              <input type="text" class="form-control" placeholder="Payment Ref Number" name="PAYMENTREFNO" required="required">
+                            </div>
+                          </div>
+                          <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                              <label> Date</label>
+                              <input type="text" class="form-control" placeholder="Date" name="CREATEDON" required="required">
+                            </div>
+                          </div>
+                          <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                              <label> Amount</label>
+                              <input type="text" class="form-control" placeholder="Amount" name="AMOUNT" required="required">
+                            </div>
+                          </div>
+                          <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                              <label>Total Amount</label>
+                              <input type="text" class="form-control" placeholder="Total Amount" name="TOTALAMOUNT" required="required">
+                            </div>
+                          </div>
+                          <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group">
+                              <label>Remark</label>
+                              <input type="text" class="form-control" placeholder="Remark" name="REMARK" required="required">
+                            </div>
+                          </div>
+                    </div>
+                  <div class="row clearfix">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                      <button type="button" class="btn btn-primary btn-round">Save</button>
+                    </div>
+                  </div>
+		</div>
+	</div>
+</div>    

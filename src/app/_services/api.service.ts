@@ -387,4 +387,16 @@ export class ApiService {
   DeleteDispute(ID) {
     return this.http.get(this.BASEURL + '/Dispute/DeleteDispute?ID=' + ID, this.getAuthHeadersJSON());
   }
+
+  getCustTransaction() {
+    return this.http.get(this.BASEURL + '/Transactions/GetAllCustomerTran', this.getAuthHeadersJSON());
+  }
+
+  getPaymentRec() {
+    return this.http.get(this.BASEURL + '/PaymentRec/GetAllPaymentRec', this.getAuthHeadersJSON());
+  }
+
+  AddPaymentRec(PaymentRec){
+      return this.http.post(this.BASEURL + '/PaymentRec/AddPaymentRec', PaymentRec, this.getAuthHeadersJSON());
+  }
 }

@@ -31,8 +31,7 @@ export class CreatebookingComponent implements OnInit {
 
   constructor( private apiservice: ApiService,
     private notifier: NotifierService) {
- 
-     }
+    }
 
   ngOnInit(): void {
     this.getBookingList();
@@ -141,7 +140,8 @@ export class CreatebookingComponent implements OnInit {
       alert("Please select Associate form list");
       return;
     }
-    this.addBooking.amount = Number(this.addBooking.amount);
+    this.addBooking.bookingamount = Number(this.addBooking.bookingamount);
+    this.addBooking.totalamount = Number(this.addBooking.totalamount);
     this.apiservice.AddBooking(this.addBooking)
     .subscribe((response: any) => {
       if (response) {
