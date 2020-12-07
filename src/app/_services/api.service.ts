@@ -392,11 +392,35 @@ export class ApiService {
     return this.http.get(this.BASEURL + '/Transactions/GetAllCustomerTran', this.getAuthHeadersJSON());
   }
 
+  getOwnerTransaction() {
+    return this.http.get(this.BASEURL + '/Transactions/GetAllOwnerTran', this.getAuthHeadersJSON());
+  }
+
+  getAssTransaction() {
+    return this.http.get(this.BASEURL + '/Transactions/GetAllAssociateTran', this.getAuthHeadersJSON());
+  }
+
   getPaymentRec() {
     return this.http.get(this.BASEURL + '/PaymentRec/GetAllPaymentRec', this.getAuthHeadersJSON());
   }
 
   AddPaymentRec(PaymentRec){
       return this.http.post(this.BASEURL + '/PaymentRec/AddPaymentRec', PaymentRec, this.getAuthHeadersJSON());
+  }
+
+  getPaymentPay() {
+    return this.http.get(this.BASEURL + '/PaymentPayables/GetAllPaymentPayables', this.getAuthHeadersJSON());
+  }
+
+  AddPaymentPay(PaymentPay){
+    return this.http.post(this.BASEURL + '/PaymentPayables/AddPaymentPay', PaymentPay, this.getAuthHeadersJSON());
+  }
+
+  getRegistrations() {
+    return this.http.get(this.BASEURL + '/Registration/GetAllRegistrations', this.getAuthHeadersJSON());
+  }
+
+  AddRegistration(data :any){
+    return this.http.post(this.BASEURL + '/Registration/AddRegistration', data, this.getAuthHeadersJSON());
   }
 }

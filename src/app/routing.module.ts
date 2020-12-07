@@ -63,6 +63,7 @@ const routes: Routes = [
   { path: 'AssociateTransaction', component: AssociateTranComponent, canActivate: [AuthGuard]},
   { path: 'OwnerTransaction', component: OwnerTransactionComponent, canActivate: [AuthGuard]},
   { path: 'CustomerTransaction', component: CustomerTransactionComponent, canActivate: [AuthGuard]},
+  { path: 'Registration', component: RegistrationComponent, canActivate: [AuthGuard]},
 ]
 
 @NgModule({

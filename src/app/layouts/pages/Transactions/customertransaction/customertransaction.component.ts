@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import * as jsPDF from 'jspdf';
 import { CustomerTransaction } from '../../../../_models/Customers';
 import { ApiService } from '../../../../_services/api.service';
 import { NotifierService } from 'angular-notifier';
@@ -9,6 +10,9 @@ import { NotifierService } from 'angular-notifier';
   styleUrls: ['./customertransaction.component.css']
 })
 export class CustomerTransactionComponent implements OnInit {
+
+  @ViewChild('content') content:ElementRef;
+
   public Transactionlist: Array<CustomerTransaction> = new Array<CustomerTransaction>();
 
   page = 1;
@@ -44,4 +48,23 @@ export class CustomerTransactionComponent implements OnInit {
         return this.Transactionlist;
       }
   }
-}
+
+  public SavePDF(): void {  
+    let content=this.content.nativeElement;  
+    let doc = new jsPDF();  
+    let _elementHandlers =  
+    {  
+      '#editor':function(element,renderer){  
+        return true;  
+      }  
+    };  
+    doc.fromHTML(content.innerHTML,15,15,{  
+  
+      'width':190,  
+      'elementHandlers':_elementHandlers  
+    });  
+  
+    doc.save('test.pdf');  
+  }  
+} 
+

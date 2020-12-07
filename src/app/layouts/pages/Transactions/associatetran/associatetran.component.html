@@ -8,30 +8,24 @@
                           <tr>
                             <td hidden>Transaction Id</td>
                             <td>Transaction No</td>
-                            <td class="font-medium">Project</td>
+                            <td class="font-medium">Date</td>
+                            <td>Project</td>
                             <td>Property</td>
-                            <td>Associate Name</td>
-                            <td>Total Amount</td>
-                            <!--<td>View</td>-->
+                            <td>Associate</td>
+                            <td>Percentage</td>
+                            <td>Amount Paid</td>
+                            <td>Total Amount</td>   
                           </tr>
-                          <tr>
-                            <td hidden>{{item.bookingid}}</td>
-                            <td >{{item.bookingno}}</td>
-                            <td class="font-medium">{{item.projectname}}</td>
+                          <tr *ngFor="let item of getAssTransactionlistItems()">
+                            <td hidden>{{item.asstransactionid}}</td>
+                            <td >{{item.asstransactionno}}</td>
+                            <td class="font-medium">{{item.createdon | date:'MM/dd/yyyy'}}</td>
+                            <td>{{item.projectname}}</td>
                             <td>{{item.plotno}}</td>
-                            <td>{{item.customername}}</td>
-                            <td>{{item.bookingamount}}</td>
-                            <!--<td>
-                                <button class="btn btn-primary btn-icon btn-round " type="button" (click)="EditBooking(item.bookingid)" data-toggle="modal" data-target="#AddBooking">
-                                    <i class="zmdi zmdi-edit" ></i>
-                                </button>
-                                <button class="btn btn-primary btn-icon btn-round " type="button" (click)="DeleteBooking(item.bookingid)">
-                                    <i class="zmdi zmdi-delete" ></i>
-                                </button>
-                                <button class="btn btn-primary btn-icon btn-round " type="button"  data-toggle="modal" data-target="#PreviewProject">
-                                    <i class="zmdi zmdi-eye" ></i>
-                                </button>
-                            </td>-->
+                            <td>{{item.name}}</td>
+                            <td>{{item.percentage}}</td>
+                            <td>{{item.amountpaid}}</td>
+                            <td>{{item.totalamount}}</td>
                           </tr>
                         </tbody>
                     </table>

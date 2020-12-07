@@ -15,8 +15,7 @@
                           <tr>
                             <td hidden>Payment Id</td>
                             <td>Date</td>
-                            <td>Payment Type</td>
-                            <td>Payment Ref No</td>
+                            <td>Payment To</td>
                             <td>Project</td>
                             <td>Property</td>
                             <td>Customer</td>
@@ -27,7 +26,6 @@
                           <tr>
                             <td hidden></td>
                             <td class="font-medium"></td>
-                            <td></td>
                             <td></td>
                             <td></td>                            
                             <td></td>
@@ -54,16 +52,17 @@
 				    <div class="modal-body">
               <div class="row  clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <input type="radio" name="options" value="Associate" [checked]='true' (click)="setradio('Associate')">&nbsp;
+                  <label>Payment To <strong>:</strong> </label>&nbsp;
+                    <input type="radio" name="options" value="Associate" [checked]='true' (click)="setradio('Associate')" value="1" [(ngModel)]="addPaymentPay.paymenttype">&nbsp;
                     <label>Associate</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="radio" name="options" value="Owner" (click)="setradio('Owner')">&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="options" value="Owner" (click)="setradio('Owner')" value="2" [(ngModel)]="addPaymentPay.paymenttype">&nbsp;
                     <label>Owner</label>
                 </div>
-                      <!--<input type="hidden" [(ngModel)]="addPaymentRec.paymentrecid" name="ID" #ID="ngModel" />-->
+                      <input type="hidden" [(ngModel)]="addPaymentPay.paymentpayableid" name="ID" #ID="ngModel">
                       <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="isSelected('Associate')">
                         <div class="form-group">
-                            <label>Associate Name</label>
+                            <label>Associate</label>
                             <input type="text" class="form-control" list="Associatelist" id="Associateid" placeholder="Associate Name" required="required">
                           </div>
                           <datalist id="Associatelist">
@@ -87,7 +86,7 @@
                                   <option *ngFor="let item of projectsListItems" [data-property]="item.id">{{item.projectname}}</option>
                                 </datalist>
                                 </div>
-                            </div>
+                        </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Property</label>
@@ -97,46 +96,40 @@
                                 </datalist>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                              <label> Payment Type</label>
-                              <input type="text" class="form-control" placeholder="Payment Type" name="PAYMENTTYPE" required="required">
-                            </div>
-                          </div>
-                          <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                              <label> Payment Ref Number</label>
-                              <input type="text" class="form-control" placeholder="Payment Ref Number" name="PAYMENTREFNO" required="required">
-                            </div>
-                          </div>
                           <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                               <label> Date</label>
-                              <input type="text" class="form-control" placeholder="Date" name="CREATEDON" required="required">
+                              <input type="text" class="form-control" placeholder="Date" [(ngModel)]="addPaymentPay.createdon" name="CREATEDON" required="required">
                             </div>
                           </div>
-                          <div class="col-lg-6 col-md-6 col-sm-12">
+                          <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="isSelected('Owner')">
                             <div class="form-group">
                               <label> Amount</label>
-                              <input type="text" class="form-control" placeholder="Amount" name="AMOUNT" required="required">
+                              <input type="text" class="form-control" placeholder="Amount" [(ngModel)]="addPaymentPay.amountpaid" name="AMOUNT" required="required">
+                            </div>
+                          </div>
+                          <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="isSelected('Associate')">
+                            <div class="form-group">
+                              <label>Fixed Amount</label>
+                              <input type="text" class="form-control" placeholder="Amount" [(ngModel)]="addPaymentPay.amountpaid" name="AMOUNT" required="required">
                             </div>
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                               <label>Total Amount</label>
-                              <input type="text" class="form-control" placeholder="Total Amount" name="TOTALAMOUNT" required="required">
+                              <input type="text" class="form-control" placeholder="Total Amount" [(ngModel)]="addPaymentPay.totalamount" name="TOTALAMOUNT" required="required">
                             </div>
                           </div>
-                          <div class="col-lg-12 col-md-12 col-sm-12">
+                          <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="isSelected('Associate')">
                             <div class="form-group">
-                              <label>Remark</label>
-                              <input type="text" class="form-control" placeholder="Remark" name="REMARK" required="required">
+                              <label>Percentage %</label>
+                              <input type="text" class="form-control" style="width: 45%;" placeholder="Percentage" [(ngModel)]="addPaymentPay.percentage" name="PERCENTAGE" required="required">
                             </div>
                           </div>
                     </div>
                   <div class="row clearfix">
                     <div class="col-lg-4 col-md-4 col-sm-12">
-                      <button type="button" class="btn btn-primary btn-round">Save</button>
+                      <button type="button" class="btn btn-primary btn-round" (click)="SavePaymentPay()">Save</button>
                     </div>
                   </div>
 		</div>
