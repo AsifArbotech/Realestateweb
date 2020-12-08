@@ -4,6 +4,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../../../_services/api.service';
 import { AddUser } from '../../../_models/user';
 import { NotifierService } from 'angular-notifier';
+import {ReportsComponent} from '../../Reports/reports/reports.component'
 
 @Component({
   selector: 'app-users',
@@ -22,14 +23,20 @@ export class UsersComponent implements OnInit {
   constructor(private router: Router,
     private apiservice: ApiService,
     private notifier: NotifierService,
-    private modalService: NgbModal) {
+    private modalService: NgbModal,
+    private Report:ReportsComponent
+    ) {
     this.clearfields();
     this.usersListItems;
   }
 
   ngOnInit() {
     this.getUsers();
+  
+    this.Report.downloadAsPDF();
   }
+
+ 
 
   getUsers() {
     this.apiservice.getUsers().subscribe(

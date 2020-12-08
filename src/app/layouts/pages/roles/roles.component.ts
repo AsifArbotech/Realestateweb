@@ -26,6 +26,10 @@ export class RolesComponent implements OnInit {
     this.getUsers();
   }
 
+  downloadfile(){
+    this.router.navigate(['/Reports']);
+  }
+
   getUsers(){
     this.apiservice.getRoles().subscribe(
       (items:Array<Roles>)=>{
