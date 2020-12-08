@@ -23556,3 +23556,8 @@ table thead tr {
 	color: #fff !important;
 	font-weight: 800;
 }
+
+
+.form-control {
+    border-radius: 5px;
+}
