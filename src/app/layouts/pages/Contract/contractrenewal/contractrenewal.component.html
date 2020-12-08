@@ -13,15 +13,18 @@
             <div class="col-lg-12 col-md-12">
                 <div class="card weather2">
                     <table class="table table-striped  m-b-0">
-                        <tbody>
+                        <thead>
                             <tr>
-                            <td hidden>Contract Renewal Id</td>
-                            <td>Contract Renewal No</td>
-                            <td class="font-medium">Contract Id</td>
-                            <td>Owner Name</td>
-                            <td>Remark</td>
-                            <td>View</td>
-                        </tr>
+                                <td hidden>Contract Renewal Id</td>
+                                <td>Contract Renewal No</td>
+                                <td class="font-medium">Contract Id</td>
+                                <td>Owner Name</td>
+                                <td>Remark</td>
+                                <td>View</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
                         <tr *ngFor="let item of getContractRenlistItems()">
                             <td hidden>{{item.contractrenewalid}}</td>
                             <td>{{item.contractrenewalno}}</td>
@@ -71,7 +74,7 @@
                               </datalist>
                             </div>
                           </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="form-group">
                                 <label>Remark</label>
                                 <input type="text" class="form-control" [(ngModel)]="contractren.notes" placeholder="Notes" required="required">

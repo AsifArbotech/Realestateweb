@@ -1409,7 +1409,7 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
 .btn.btn-simple,
 .navbar .navbar-nav>a.btn.btn-simple {
 	color: #888;
-	border-color: #888
+	border-color: #4973d0
 }
 
 .btn.btn-simple:hover,
@@ -1525,7 +1525,7 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
 }
 
 .btn-primary {
-	background-color: #f96332;
+	background-color: #326af9;
 	color: #fff
 }
 
@@ -1540,7 +1540,7 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
 .show>.btn-primary.dropdown-toggle,
 .show>.btn-primary.dropdown-toggle:focus,
 .show>.btn-primary.dropdown-toggle:hover {
-	background-color: #fa7a50;
+	background-color: #327cf9;
 	color: #fff;
 	box-shadow: none
 }
@@ -2156,7 +2156,7 @@ fieldset[disabled] .btn-link.active {
 .btn-lg {
 	font-size: 1em;
 	border-radius: .25rem;
-	padding: 15px 48px
+	/* padding: 15px 48px */
 }
 
 .btn-lg.btn-simple {
@@ -2236,12 +2236,17 @@ fieldset[disabled] .btn-link.active {
 	box-shadow: none;
 	height: auto;
 	background-color: rgba(0, 0, 0, 0);
-	border: 1px solid #E3E3E3;
+	border: 1px solid #FFF;
 	border-radius: 30px;
 	color: #2c2c2c;
 	line-height: normal;
 	font-size: .8571em;
 	position: relative
+	
+}
+
+.show-tick{
+	border: 1px solid #4973d0;
 }
 
 .has-success .form-control {
@@ -2396,7 +2401,7 @@ fieldset[disabled] .btn-link.active {
 .form-group .form-control,
 .input-group .form-control {
 	padding: 10px 18px 10px 18px;
-	border-color: #000;
+	border-color: #4973d0;;
 
 }
 
@@ -18988,8 +18993,8 @@ section.content {
 }
 
 .l-cyan {
-	background: linear-gradient(45deg, #49cdd0, #00bcd4) !important;
-	color: #fff !important
+    background: linear-gradient(45deg, #4973d0, #00bcd4) !important;
+    color: #fff !important;
 }
 
 .l-khaki {
@@ -23524,4 +23529,30 @@ img.width30 {
 }
 
 
+.navbar-header{
+background: linear-gradient(45deg, #4973d0, #00bcd4);
+}
 
+.hidden-sm-down{
+	display: none;
+}
+
+.modal-title {
+    margin-bottom: 19px;
+    line-height: 1.5;
+}
+
+
+
+table thead tr {
+    background: linear-gradient(45deg, #4973d0, #00bcd4);
+    color: #fff;
+    font-weight: 900;
+}
+.menu ul li:hover{
+	background: linear-gradient(45deg, #4973d0, #00bcd4);
+}
+.menu ul li a:hover{
+	color: #fff !important;
+	font-weight: 800;
+}

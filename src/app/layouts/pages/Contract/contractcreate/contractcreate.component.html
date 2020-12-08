@@ -12,19 +12,22 @@
             <div class="col-lg-12 col-md-12">
                 <div class="card weather2">
                     <table class="table table-striped  m-b-0">
-                        <tbody>
+                        <thead>
                             <tr>
-                            <td hidden>Contract Id</td>
-                            <td>Contract Code</td>
-                            <td>Name</td>
-                            <td>Start Date</td>
-                            <td>End Date</td>
-                            <td>Contract Date</td>
-                            <td>Owner</td>
-                            <td>Unit</td>
-                            <td>No of installments</td>
-                            <td>view</td>
-                        </tr>
+                                <td hidden>Contract Id</td>
+                                <td>Contract Code</td>
+                                <td>Name</td>
+                                <td>Start Date</td>
+                                <td>End Date</td>
+                                <td>Contract Date</td>
+                                <td>Owner</td>
+                                <td>Unit</td>
+                                <td>No of installments</td>
+                                <td>view</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          
                         <tr  *ngFor="let item of getContractlistItems()">
                             <td hidden>{{item.contractid}}</td>
                             <td>{{item.contractcode}}</td>
@@ -70,7 +73,7 @@
                             <label>Contract Code :{{Contract.contractcode}}</label>
                         </div>
                           <input type="hidden" [(ngModel)]="Contract.contractid" name="ID" #ID="ngModel" />
-                        <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="form-group">
                                 <label>Name</label>
                                 <input type="text" class="form-control" [(ngModel)]="Contract.name" placeholder="Name" required="required">
@@ -107,6 +110,8 @@
                                     <option *ngFor="let item of propertyListItems" [data-property]="item.id">{{item.plotno}}</option>
                                 </datalist>
                             </div>
+                        </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>No of installments</label>
                                 <input type="text" class="form-control" [(ngModel)]="Contract.noofinstallments" placeholder="No.Of Installments" required="required">

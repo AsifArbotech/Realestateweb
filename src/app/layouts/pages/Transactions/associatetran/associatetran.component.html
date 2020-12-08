@@ -4,18 +4,21 @@
             <div class="col-lg-12 col-md-12">
                 <div class="card weather2">
                     <table class="table table-striped  m-b-0">
+                      <thead>
+                        <tr>
+                          <td hidden>Transaction Id</td>
+                          <td>Transaction No</td>
+                          <td class="font-medium">Date</td>
+                          <td>Project</td>
+                          <td>Property</td>
+                          <td>Associate</td>
+                          <td>Percentage</td>
+                          <td>Amount Paid</td>
+                          <td>Total Amount</td>   
+                        </tr>
+                      </thead>
                         <tbody>
-                          <tr>
-                            <td hidden>Transaction Id</td>
-                            <td>Transaction No</td>
-                            <td class="font-medium">Date</td>
-                            <td>Project</td>
-                            <td>Property</td>
-                            <td>Associate</td>
-                            <td>Percentage</td>
-                            <td>Amount Paid</td>
-                            <td>Total Amount</td>   
-                          </tr>
+                          
                           <tr *ngFor="let item of getAssTransactionlistItems()">
                             <td hidden>{{item.asstransactionid}}</td>
                             <td >{{item.asstransactionno}}</td>

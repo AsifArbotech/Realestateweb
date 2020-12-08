@@ -5,18 +5,21 @@
             <div class="col-lg-12 col-md-12">
                 <div class="card weather2" id="content" #content>
                     <table class="table table-striped  m-b-0">
+                      <thead>
+                        <tr>
+                          <td hidden>Customer Tran Id</td>
+                          <td>CustomerTran No</td>
+                          <td class="font-medium">Date</td>
+                          <td>Project</td>
+                          <td>Property</td>
+                          <td>Customer</td>
+                          <td>Amount Paid</td>
+                          <td>Total Booking Amount</td>
+                          <td>Balance Amount</td>
+                        </tr>
+                      </thead>
                         <tbody>
-                          <tr>
-                            <td hidden>Customer Tran Id</td>
-                            <td>CustomerTran No</td>
-                            <td class="font-medium">Date</td>
-                            <td>Project</td>
-                            <td>Property</td>
-                            <td>Customer</td>
-                            <td>Amount Paid</td>
-                            <td>Total Booking Amount</td>
-                            <td>Balance Amount</td>
-                          </tr>
+                         
                           <tr *ngFor="let item of getTransactionlistItems()">
                             <td hidden>{{item.custtransactionid}}</td>
                             <td>{{item.custtransactionno}}</td>
