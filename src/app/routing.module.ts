@@ -32,6 +32,7 @@ import { OwnerTransactionComponent } from './layouts/pages/Transactions/ownertra
 import { CustomerTransactionComponent } from './layouts/pages/Transactions/customertransaction/customertransaction.component';
 import { AuthGuard } from './_services/auth-guard.service';
 import { GuestGuard } from './_services/guset-guard.service';
+import { ReportsComponent } from '../app/layouts/Reports/reports/reports.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -64,6 +65,7 @@ const routes: Routes = [
   { path: 'OwnerTransaction', component: OwnerTransactionComponent, canActivate: [AuthGuard]},
   { path: 'CustomerTransaction', component: CustomerTransactionComponent, canActivate: [AuthGuard]},
   { path: 'Registration', component: RegistrationComponent, canActivate: [AuthGuard]},
+  { path: 'Reports', component: ReportsComponent, canActivate: [AuthGuard]},
 ]
 
 @NgModule({

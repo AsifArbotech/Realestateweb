@@ -6,21 +6,24 @@
                 <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light"  data-toggle="modal" data-target="#AddRole" type="button">
                     <i class="zmdi zmdi-plus"></i> Add Role
                 </button>
-                               
+                <input type="button" value="download" (click)="downloadfile()"/>             
             </div>
         </div>
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12">
                 <div class="card weather2">
                     <table class="table table-striped  m-b-0">
-                        <tbody>
+                        <thead>
                             <tr>
-                            <td>RoleID</td>
-                            <td class="font-medium">Role Name</td>
-                            <td>Description</td>
-                            <td>Status</td>
-                            <td>view</td>
-                        </tr>
+                                <td>RoleID</td>
+                                <td class="font-medium">Role Name</td>
+                                <td>Description</td>
+                                <td>Status</td>
+                                <td>view</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          
                         <tr *ngFor="let item of getRolesItems()">
                             <td>{{item.id}}</td>
                             <td class="font-medium">{{item.rolename}}</td>

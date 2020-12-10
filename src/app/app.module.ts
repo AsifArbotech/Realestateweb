@@ -46,6 +46,7 @@ import { AssociateTranComponent } from './layouts/pages/Transactions/associatetr
 import { OwnerTransactionComponent } from './layouts/pages/Transactions/ownertransaction/ownertransaction.component';
 import { CustomerTransactionComponent } from './layouts/pages/Transactions/customertransaction/customertransaction.component';
 import { RoutingModule } from './routing.module';
+import { ReportsComponent } from './layouts/Reports/reports/reports.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { RoutingModule } from './routing.module';
     ContractrenewalComponent, ContractterminateComponent, SalesenquireComponent, SalesinvoiceComponent, SalesquotationComponent,
     PdcComponent, AssociateComponent, DisputeComponent, RegistrationComponent, InstallmentComponent, PaymentPayablesComponent,
     PaymentReceivablesComponent, AssociateTranComponent, OwnerTransactionComponent, CustomerTransactionComponent
+    , AssociateComponent, DisputeComponent,  RegistrationComponent, InstallmentComponent, ReportsComponent
   ],
   imports: [
     BrowserModule,

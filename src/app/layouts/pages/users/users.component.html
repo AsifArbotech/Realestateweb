@@ -14,16 +14,19 @@
                 <div class="card weather2">
                    
                     <table class="table table-striped  m-b-0">
-                        <tbody>
+                        <thead>
                             <tr>
-                            <td>UserID</td>
-                            <td class="font-medium">Name</td>
-                            <td class="font-medium">UserName</td>
-                            <td>MobileNo</td>
-                            <td class="text-align:centre">Email</td>
-                            <td>Status</td>
-                            <td>view</td>
-                        </tr>
+                                <td>UserID</td>
+                                <td class="font-medium">Name</td>
+                                <td class="font-medium">UserName</td>
+                                <td>MobileNo</td>
+                                <td class="text-align:centre">Email</td>
+                                <td>Status</td>
+                                <td>view</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
                         <tr *ngFor="let item of getUsersItems()">
                             <td>{{item.id}}</td>
                             <td class="font-medium">{{item.name}}</td>
@@ -140,3 +143,5 @@
     <div class="modal-footer">
     </div>
   </ng-template>
+
+ 
