@@ -23561,3 +23561,8 @@ table thead tr {
 .form-control {
     border-radius: 5px;
 }
+
+textarea[_ngcontent-mpt-c107] {
+    border: 1px solid #E3E3E3;
+    border-radius: 5px;
+}

@@ -3,6 +3,7 @@ import * as jsPDF from 'jspdf';
 import { CustomerTransaction } from '../../../../_models/Customers';
 import { ApiService } from '../../../../_services/api.service';
 import { NotifierService } from 'angular-notifier';
+import {ReportsComponent} from '../../../Reports/reports/reports.component'
 
 @Component({
   selector: 'app-customertransaction',
@@ -11,7 +12,7 @@ import { NotifierService } from 'angular-notifier';
 })
 export class CustomerTransactionComponent implements OnInit {
 
-  @ViewChild('content') content:ElementRef;
+  @ViewChild('pdfTable') pdfTable:ElementRef;
 
   public Transactionlist: Array<CustomerTransaction> = new Array<CustomerTransaction>();
 
@@ -19,7 +20,8 @@ export class CustomerTransactionComponent implements OnInit {
   pageSize = 10;
 
   constructor( private apiservice: ApiService,
-    private notifier: NotifierService) { }
+    private notifier: NotifierService,
+    private reports:ReportsComponent) { }
 
   ngOnInit(): void {
     this.getTransactionList();
@@ -49,8 +51,8 @@ export class CustomerTransactionComponent implements OnInit {
       }
   }
 
-  public SavePDF(): void {  
-    let content=this.content.nativeElement;  
+  public SavePDF(): boolean {  
+    return true;
     let doc = new jsPDF();  
     let _elementHandlers =  
     {  
@@ -58,7 +60,7 @@ export class CustomerTransactionComponent implements OnInit {
         return true;  
       }  
     };  
-    doc.fromHTML(content.innerHTML,15,15,{  
+    doc.fromHTML(document.getElementById("pdfTable").innerHTML,15,15,{  
   
       'width':190,  
       'elementHandlers':_elementHandlers  

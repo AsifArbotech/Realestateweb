@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ApiService } from '../../../_services/api.service';
 import { Roles } from '../../../_models/roles';
 import { NotifierService } from 'angular-notifier';
+import { ReportsComponent } from '../../Reports/reports/reports.component'
 
 @Component({
   selector: 'app-roles',
@@ -17,23 +18,33 @@ export class RolesComponent implements OnInit {
   pageSize = 10;
 
   constructor(private router: Router,
-              private apiservice:ApiService,
-              private notifier: NotifierService) {
-                this.clearfields();
-               }
+    private apiservice: ApiService,
+    private notifier: NotifierService, private reports: ReportsComponent) {
+    this.clearfields();
+  }
 
   ngOnInit(): void {
     this.getUsers();
   }
 
-  downloadfile(){
-    this.router.navigate(['/Reports']);
+  senddatatoreport(){
+    debugger;
+    let object = {
+      columns: ["RoleID", "Role Name", "Description", "Description"],
+      keys: ["id", "rolename", "description", "description"],
+      data: this.getRolesItems()
+    }
+    return object;
   }
 
-  getUsers(){
+  downloadfile() {
+    this.reports.generateReport(["RoleID", "Role Name", "Description", "Description"], ["id", "rolename", "description", "description"], this.getRolesItems());
+  }
+
+  getUsers() {
     this.apiservice.getRoles().subscribe(
-      (items:Array<Roles>)=>{
-        this.rolessListItems=items
+      (items: Array<Roles>) => {
+        this.rolessListItems = items
       },
       error => {
         console.log(error);
@@ -53,43 +64,43 @@ export class RolesComponent implements OnInit {
     }
   }
 
-  postRole(){
-    var param = { Rolename: this.model.rolename, Description: this.model.description}
+  postRole() {
+    var param = { Rolename: this.model.rolename, Description: this.model.description }
     this.apiservice.AddRole(param)
-      .subscribe((response:any)=>{
+      .subscribe((response: any) => {
         if (response) {
-          if(response.ResponseCode == 0){
+          if (response.ResponseCode == 0) {
             this.notifier.notify("error", response.ResponseMessage);
-          }else if(response.ResponseCode == 1){
+          } else if (response.ResponseCode == 1) {
             this.notifier.notify("success", response.ResponseMessage);
             this.clearfields();
           }
-        else{
+          else {
             this.notifier.notify("error", "Something went wrong");
           }
-        } 
+        }
       })
   }
 
-  deleteRole(id, name){
-    if (confirm("Do You wish to Delete the User - " + name + "?")){
+  deleteRole(id, name) {
+    if (confirm("Do You wish to Delete the User - " + name + "?")) {
       this.apiservice.DeleteRole(id)
-      .subscribe((response:any)=>{
-        if (response) {
-          if(response.ResponseCode == 0){
-            this.notifier.notify("error", response.ResponseMessage);
-          }else if(response.ResponseCode == 1){
-            this.notifier.notify("success", response.ResponseMessage);
-      }
+        .subscribe((response: any) => {
+          if (response) {
+            if (response.ResponseCode == 0) {
+              this.notifier.notify("error", response.ResponseMessage);
+            } else if (response.ResponseCode == 1) {
+              this.notifier.notify("success", response.ResponseMessage);
+            }
+          }
+        })
     }
-    })
   }
-}
 
-  clearfields(){
+  clearfields() {
     this.model = {
-      rolename:"",
-      description:"",
+      rolename: "",
+      description: "",
     }
   }
 
