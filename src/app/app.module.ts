@@ -72,7 +72,7 @@ import { ReportsComponent } from './layouts/Reports/reports/reports.component';
   providers: [
     AppConfig,
     AuthenticationService,
-    ApiService,    
+    ApiService,  ReportsComponent  
   ],
   bootstrap: [AppComponent]
 })

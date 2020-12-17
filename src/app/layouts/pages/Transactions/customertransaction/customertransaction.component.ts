@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CustomerTransaction } from '../../../../_models/Customers';
 import { ApiService } from '../../../../_services/api.service';
 import { NotifierService } from 'angular-notifier';
+import {ReportsComponent} from '../../../Reports/reports/reports.component'
 
 import * as jsPDF from 'jspdf';
 import * as html2canvas from "html2canvas";
@@ -19,6 +20,7 @@ export class CustomerTransactionComponent implements OnInit {
 
   //@ViewChild('content') content:ElementRef;
   @ViewChild('tableForExcel') tableExcel: ElementRef;
+  @ViewChild('pdfTable') pdfTable:ElementRef;
 
   public Transactionlist: Array<CustomerTransaction> = new Array<CustomerTransaction>();
 
@@ -26,7 +28,8 @@ export class CustomerTransactionComponent implements OnInit {
   pageSize = 10;
 
   constructor( private apiservice: ApiService,
-    private notifier: NotifierService) { }
+    private notifier: NotifierService,
+    private reports:ReportsComponent) { }
 
   ngOnInit(): void {
     this.getTransactionList();
@@ -104,5 +107,22 @@ export class CustomerTransactionComponent implements OnInit {
  // 
  //   doc.save('test.pdf');  
  // }  
+  public SavePDF(): boolean {  
+    return true;
+    let doc = new jsPDF();  
+    let _elementHandlers =  
+    {  
+      '#editor':function(element,renderer){  
+        return true;  
+      }  
+    };  
+    doc.fromHTML(document.getElementById("pdfTable").innerHTML,15,15,{  
+  
+      'width':190,  
+      'elementHandlers':_elementHandlers  
+    });  
+  
+    doc.save('test.pdf');  
+  }  
 } 
 

@@ -1,24 +1,19 @@
 
 <div id="pdfTable" #pdfTable>
-    <h1>asfasfasfasfasfasfsafasf</h1>
-    <table style="margin-left: 25%;">
+    <h1>sflakslfjasfjasfjsajf sssmsfmas</h1>
+    <table class="tbl tbl-stripped">
         <thead>
             <tr>
-                <td>1</td>
-                <td>1</td>
+                <td *ngFor="let col of columns">{{col}}</td>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>2</td>
+            <tr *ngFor="let row of rows">
+                <td *ngFor="let single of row">{{single}}</td>
             </tr>
         </tbody>
     </table>
     
 </div>
+<div style="margin-left:40%">{{columns | json}}</div>
 <div id="editor"></div>

@@ -32,8 +32,6 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.getUsers();
-  
-    this.Report.downloadAsPDF();
   }
 
  

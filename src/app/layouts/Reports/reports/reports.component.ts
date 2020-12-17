@@ -1,50 +1,83 @@
-import { Component, OnInit,ViewChild, ElementRef,AfterViewInit } from '@angular/core';
-//import {jsPDF} from 'jspdf';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Injectable, Input, Output, EventEmitter } from '@angular/core';
+import { observable, Subject, AsyncSubject } from 'rxjs'
 import * as jsPDF from 'jspdf';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',
   styleUrls: ['./reports.component.css']
 })
+@Injectable()
 export class ReportsComponent implements OnInit {
-
-  @ViewChild('pdfTable') pdfTable: ElementRef;
   constructor(private router: Router) { }
-
+  public columns: Observable<string>[] = [];
+  public rows: any[] = [];
   ngOnInit(): void {
-    setTimeout(() => {
- this.downloadAsPDF();
-    },10000);
+    this.columns = JSON.parse(JSON.stringify(["sadf", "asdfas", "fasfa"]));
+    this.rows = [];
+    //     setTimeout(() => {
+    //  this.downloadAsPDF();
+    //     },10000);
   }
-  ngAfterViewInit():void{
-   // this.downloadAsPDF();
+  ngAfterViewInit(): void {
+    // this.downloadAsPDF();
   }
 
-  public downloadAsPDF() {
+  public generateReport(Columns: any, Keys: any, Data: any) {
     debugger;
-    const doc = new jsPDF();
+    var object: any; let temprows: any[]; var html = '';
+    html = html + '<html><head></head><body><style> #tblreport{background-color:red;border: solid;} tr td {padding:10px;} </style>'
+    html = html + '<table id="tblreport"><thead><tr>'
+    Columns.forEach(element => {
+      html = html + '<td>' + element + '</td>'
+    });
+    html = html + '</tr></thead> <tbody>'
 
-    const specialElementHandlers = {
-      '#editor': function (element, renderer) {
-        return true;
+    for (var i = 0; i < Data.length; i++) {
+      temprows = [];
+      html = html + '<tr>';
+      for (var key = 0; key < Keys.length; key++) {
+        html = html + '<td>' + Data[i][Keys[key]] + '</td>'
+        temprows.push(Data[i][Keys[key]])
       }
-    };
-    const margins = {
-      top: 0,
-      bottom: 0,
-      left: 0,
-      width: 100
-    };
-    const pdfTable = this.pdfTable.nativeElement;
-    doc.fromHTML("<h1>Dhoom</h1>", 15, 15, {'width': 170,
-          'elementHandlers': true
-  });
- 
-  doc.save('sample-file.pdf');
+      this.rows.push(temprows);
+      html = html + '</tr>';
+    }
+    html = html + '<tbody> </table><img width="300" height="86" src="http://www.arbotechsolutions.com/wp-content/uploads/2020/11/logo.png" class="" alt="" loading="lazy" data-pagespeed-url-hash="2054198886" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"><script> setTimeout(function () { window.print(); }, 1000);</script></body></html>';
+    if (this.rows.length > 0)
+      setTimeout(() => {
+        this.downloadAsPDF(html);
+      }, 2000);
+  }
 
-   
+  public downloadAsPDF(html: any) {
+    var newWin = window.open('', 'Print-Window');
+    newWin.document.open();
+    newWin.document.write(html);
+    newWin.document.close();
+    setTimeout(function () { newWin.close(); }, 1000);
+
+    //setInterval(function() { if (document_focus === true) { win.window.close(); }  }, 300);
+
+
+
+    // let doc = new jsPDF();
+    // let _elementHandlers =
+    // {
+    //   '#editor': function (element, renderer) {
+    //     return true;
+    //   }
+    // };
+    // doc.fromHTML(html, 15, 15, {
+    //   'width': 100,
+    //   'elementHandlers': _elementHandlers,
+    // });
+
+    // doc.save('test.pdf');
+
+
 
   }
 
