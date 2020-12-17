@@ -100,8 +100,7 @@ export class PaymentPayablesComponent implements OnInit {
     }
     this.addPaymentPay.amountpaid = Number(this.addPaymentPay.amountpaid);
     this.addPaymentPay.totalamount = Number(this.addPaymentPay.totalamount);
-    this.addPaymentPay.paymenttype = Number(this.addPaymentPay.paymenttype);
-    this.addPaymentPay.percentage = Number(this.addPaymentPay.percentage);
+    //this.addPaymentPay.percentage = Number(this.addPaymentPay.percentage);
     this.apiservice.AddPaymentPay(this.addPaymentPay)
     .subscribe((response: any) => {
       if (response) {

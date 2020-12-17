@@ -51,7 +51,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   SaveRegistration() {
-    this.registrationItems.regdocno = Number(this.registrationItems.regdocno);
+    
     this.registrationItems.regvalue = Number(this.registrationItems.regvalue);
     this.apiservice.AddRegistration(this.registrationItems)
       .subscribe((response: any) => {

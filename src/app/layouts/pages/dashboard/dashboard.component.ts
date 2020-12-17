@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../../_services/api.service';
-import { CustomerTransaction } from '../../../_models/Customers'
+import { CustomerTransaction } from '../../../_models/Customers';
+import { Graph } from '../../../_models/graph';
 import { Chart, ChartDataSets, ChartType , ChartOptions  } from 'chart.js';
 
 @Component({
@@ -10,30 +11,32 @@ import { Chart, ChartDataSets, ChartType , ChartOptions  } from 'chart.js';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
-  url = 'http://localhost:61352/api/Transactions/GetAllCustomerTran';
-  data: CustomerTransaction[]; 
+  //url = 'http://localhost:61352/api/Transactions/GetAllCustomerTran';
+  url = 'http://localhost:61352/api/Graph/GetAllGraphData';
+  data: Graph []; 
   barchart = []; 
-  Player = []; 
-  Run = []; 
-  CustomerName= [];
+  Projects = [] ; 
+  Properties = []; 
+  Bokings = [];
+  SalesInvoices = [];
   constructor(private httpClient: HttpClient,
               private apiservice:ApiService,) { }
 
   ngOnInit() {
-    this.httpClient.get(this.url).subscribe((result: CustomerTransaction[]) => {  
-      result.forEach(x => {  
-        this.Player.push(x.totalamount);  
-        this.Run.push(x.balanceamount);  
-        this.CustomerName.push(x.customername)
+    this.httpClient.get(this.url).subscribe((re: Graph[]) => {  
+      Array.from(re).forEach(x => {  
+        this.Projects.push(x.project);  
+        this.Properties.push(x.property);  
+        this.Bokings.push(x.booking);
+        this.SalesInvoices.push(x.salesInvoice);
       });  
       this.barchart = new Chart('canvas', {  
         type: 'bar',  
         data: {  
-          labels: this.CustomerName,  
+          labels: this.Bokings,  
           datasets: [  
             {  
-              data: this.Run,  
+              data: this.Projects,  
               borderColor: '#3cba9f',  
               backgroundColor: [  
                 "#3cb371",  

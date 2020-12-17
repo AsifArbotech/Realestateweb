@@ -1,5 +1,6 @@
 import { Component, OnInit,ViewChild, ElementRef,AfterViewInit } from '@angular/core';
-import {jsPDF} from 'jspdf';
+//import {jsPDF} from 'jspdf';
+import * as jsPDF from 'jspdf';
 import { Router } from '@angular/router';
 
 @Component({

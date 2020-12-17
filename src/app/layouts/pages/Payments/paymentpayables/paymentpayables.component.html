@@ -56,13 +56,14 @@
               <div class="row  clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                   <label>Payment To <strong>:</strong> </label>&nbsp;
-                    <input type="radio" name="options" value="Associate" [checked]='true' (click)="setradio('Associate')" value="1" [(ngModel)]="addPaymentPay.paymenttype">&nbsp;
+                    <input type="radio" name="options" value="Associate" [checked]='true' (click)="setradio('Associate')" [(ngModel)]="addPaymentPay.paymentto">&nbsp;
                     <label>Associate</label>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="radio" name="options" value="Owner" (click)="setradio('Owner')" value="2" [(ngModel)]="addPaymentPay.paymenttype">&nbsp;
+                    <input type="radio" name="options" value="Owner" (click)="setradio('Owner')" [(ngModel)]="addPaymentPay.paymentto">&nbsp;
                     <label>Owner</label>
                 </div>
-                      <input type="hidden" [(ngModel)]="addPaymentPay.paymentpayableid" name="ID" #ID="ngModel">
+                      <input type="hidden" *ngIf="isSelected('Associate')" [(ngModel)]="addPaymentPay.paymentpayableassid" name="ID" #ID="ngModel">
+                      <input type="hidden" *ngIf="isSelected('Owner')" [(ngModel)]="addPaymentPay.paymentpayableownerid" name="ID" #ID="ngModel">
                       <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="isSelected('Associate')">
                         <div class="form-group">
                             <label>Associate</label>

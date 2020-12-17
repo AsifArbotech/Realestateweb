@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../../_services/api.service';
 import { Contract , AddContract } from '../../../../_models/contract';
 import { Property } from '../../../../_models/property';
-import { Owner } from '../../../../_models/owners';
+import { Customers } from '../../../../_models/Customers';
 import { NotifierService } from 'angular-notifier';
 
 @Component({
@@ -13,11 +13,11 @@ import { NotifierService } from 'angular-notifier';
 export class ContractcreateComponent implements OnInit {
 
   public propertyListItems: Array<Property> = new Array<Property>();
-  public ownerListItems: Array<Owner> = new Array<Owner>();
+  public customerslist: Array<Customers> = new Array<Customers>();
   public ContractList: Array<Contract> = new Array<Contract>();
   addContract: AddContract = new AddContract();
   Contract : AddContract = new AddContract();
-   ActionType = "Add Contract";
+   ActionType = "Add Agreement";
    page = 1;
    pageSize = 10;
    owner: string = '';
@@ -29,7 +29,7 @@ export class ContractcreateComponent implements OnInit {
   ngOnInit(): void {
     this.getContractList();
     this.getPropertyList();
-    this.getOwnerList();
+    this.getCustomerslist();
   }
 
   getContractList() {
@@ -67,15 +67,17 @@ export class ContractcreateComponent implements OnInit {
         })
     }
 
-  getOwnerList() {
-    this.apiservice.getOwners().subscribe(
-      (response: any) => {
-        this.ownerListItems = response
-      },
+    getCustomerslist() {
+      this.apiservice.getCustomers().subscribe(
+        (response: any) => {
+          this.customerslist = response
+        },
         error => {
           console.log(error);
-        })
-  }
+  
+        }
+      )
+    }
 
   
   EditContract(id) {
@@ -85,7 +87,7 @@ export class ContractcreateComponent implements OnInit {
       (response:any) => {
         this.Contract = response;
 
-        (<HTMLInputElement>document.getElementById('Ownerid')).value = response.name;
+        (<HTMLInputElement>document.getElementById('Customerid')).value = response.name;
         (<HTMLInputElement>document.getElementById('Propertyid')).value = response.plotno;
       },
       error => {
@@ -93,27 +95,27 @@ export class ContractcreateComponent implements OnInit {
         this.notifier.notify("error", "Something went wrong");
       }
     )
-    this.ActionType = "Edit Contract";
+    this.ActionType = "Edit Agreement";
   }
 
 
   SaveContract() {
     if ((<HTMLInputElement>document.getElementById('Propertyid')).value)
-      this.Contract.UNITID = this.propertyListItems.find(f => f.plotno == (<HTMLInputElement>document.getElementById('Propertyid')).value).id;
+      this.Contract.unitid = this.propertyListItems.find(f => f.plotno == (<HTMLInputElement>document.getElementById('Propertyid')).value).id;
     else {
       alert("Please select Property from list");
       return;
     }
 
-    if ((<HTMLInputElement>document.getElementById('Ownerid')).value)
-      this.Contract.OWNERID = this.ownerListItems.find(f => f.ownername == (<HTMLInputElement>document.getElementById('Ownerid')).value).ownerid;
+    if ((<HTMLInputElement>document.getElementById('Customerid')).value)
+      this.Contract.customerid = this.customerslist.find(f => f.name == (<HTMLInputElement>document.getElementById('Customerid')).value).id;
     else {
-      alert("Please select Owner from list");
+      alert("Please select Customer from list");
       return;
     }
-    this.Contract.OWNERNAME=(<HTMLInputElement>document.getElementById('Ownerid')).value
-    this.Contract.PLOTNO=(<HTMLInputElement>document.getElementById('Propertyid')).value
-    this.Contract.NOOFINSTALLMENTS = Number(this.Contract.NOOFINSTALLMENTS);
+    this.Contract.customername=(<HTMLInputElement>document.getElementById('Customerid')).value
+    this.Contract.plotno=(<HTMLInputElement>document.getElementById('Propertyid')).value
+    this.Contract.noofinstallments = Number(this.Contract.noofinstallments);
     this.apiservice.AddContract(this.Contract)
     .subscribe((response: any) => {
       if (response) {
@@ -148,17 +150,17 @@ export class ContractcreateComponent implements OnInit {
     }
 
   clearfields() {
-    (<HTMLInputElement>document.getElementById('ownerid')).value = "";
+    (<HTMLInputElement>document.getElementById('Customerid')).value = "";
     (<HTMLInputElement>document.getElementById('Propertyid')).value = "";
     this.addContract = new AddContract();
   }
 
   GetAllSuggesstion() {
     //this.clearfields();
-    this.ActionType = "Add Contract";
+    this.ActionType = "Add Agreement";
     if (this.propertyListItems.length == 0)
       this.getPropertyList();
-    if (this.ownerListItems.length == 0)
-      this.getOwnerList();
+    if (this.customerslist.length == 0)
+      this.getCustomerslist();
   }
 }

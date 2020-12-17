@@ -1,7 +1,7 @@
 <section class="content home">
     <div class="container-fluid">
         <div class="row clearfix">
-          <input type="button" value="Download PDF" class="btn btn-success" (click)="SavePDF()"> 
+          <input type="button" value="Download PDF" class="btn btn-success" (click)="DownloadPDF()"> 
             <div class="col-lg-12 col-md-12">
                 <div class="card weather2" id="content" #content>
                     <table class="table table-striped  m-b-0">
@@ -38,4 +38,31 @@
         </div>
     </div>
 </section>
+
+<div id="forPDF" class="table-responsive dly_sec preview-btn" style="visibility:hidden; display:none;">
+  <table class="table-striped employed_dashboad" id="tableForExcel" cellspacing="0" width="100%" #tableForExcel>
+    <!--id="tableForPDF"-->
+ 
+    <tr>
+      <td>CustomerTran No</td>
+      <td class="font-medium">Date</td>
+      <td>Project</td>
+      <td>Property</td>
+      <td>Customer</td>
+      <td>Amount Paid</td>
+      <td>Total Booking Amount</td>
+      <td>Balance Amount</td>
+    </tr>
+    <tr  *ngFor="let items of item">
+      <td>{{items.custtransactionno}}</td>
+      <td class="font-medium">{{items.createdon | date:'MM/dd/yyyy'}}</td>
+      <td>{{items.projectname}}</td>  
+      <td>{{items.plotno}}</td>
+      <td>{{items.customername}}</td>
+      <td>{{items.amountpaid}} / -</td>
+      <td>{{items.totalamount}} / -</td>
+      <td>{{items.balanceamount}} / -</td>
+    </tr>
+  </table>
+</div>
 

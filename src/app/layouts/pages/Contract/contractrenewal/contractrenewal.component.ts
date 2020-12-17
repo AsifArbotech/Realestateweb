@@ -9,22 +9,24 @@ import { NotifierService } from 'angular-notifier';
   styleUrls: ['./contractrenewal.component.css']
 })
 export class ContractrenewalComponent implements OnInit {
-  
+  public allcontractlist: Array<Contract> = new Array<Contract>();
   public ContractList: Array<Contract> = new Array<Contract>();
   contractren: ContractRenewal = new ContractRenewal();
 
   ActionType = "Add Contract Renewal";
   page = 1;
   pageSize = 10;
-  ownername: String = '';
-  contractcode = '';
   unit: String = '';
+  customername: String = '';
+  date;
+  contractno = '';
 
   constructor(private apiservice: ApiService,
               private notifier: NotifierService) { }
 
   ngOnInit(): void {
     this.getContractRenList();
+    this.getAllContracts();
   }
 
   getContractRenList() {
@@ -51,18 +53,8 @@ export class ContractrenewalComponent implements OnInit {
     }
   }
 
-  getcontractdetails(event: KeyboardEvent) {
-    if (parseInt((event.target as HTMLInputElement).value) != NaN) {
-     var obj= this.ContractList.find(f => f.contractcode == Number((event.target as HTMLInputElement).value))
-      if (obj) {
-        this.ownername = obj.ownername;
-        this.unit = obj.plotno;
-      }
-    }
-  }
-
   Savecontractren() {
-    if (parseInt((<HTMLInputElement>document.getElementById('salesenquireno')).value) == NaN) {
+    if (parseInt((<HTMLInputElement>document.getElementById('contractcode')).value) == NaN) {
       alert("Invalid Contract Code.");
       return false;
     }
@@ -84,12 +76,36 @@ export class ContractrenewalComponent implements OnInit {
       })
   }
 
-  clearfields() {
-    this.contractren = new ContractRenewal();
+  getAllContracts() {
+    this.apiservice.getContractList().subscribe(
+      (response: any) => {
+        this.allcontractlist = response
+      },
+      error => {
+        console.log(error);
+
+      }
+    )
   }
 
-  GetAllSuggesstion() {
-    this.clearfields();
-    this.ActionType = "Add Contract Renewal";
+  getcontractdetails(event: KeyboardEvent) {
+    if (parseInt((event.target as HTMLInputElement).value) != NaN) {
+     var obj= this.allcontractlist.find(f => f.contractcode == Number((event.target as HTMLInputElement).value))
+      if (obj) {
+        //this.projectname = obj.projectname;
+        this.unit = obj.plotno;
+        this.date = obj.contractdate.toString().split('T')[0];
+        //this.associatename = obj.consultantname;
+        this.customername = obj.customername;
+      }
+    }
+  }
+
+  clearfields() {
+    this.contractren = new ContractRenewal();
+      this.unit = '';
+      this.customername = '';
+      this.date = '';
+      this.contractno = '';    
   }
 }

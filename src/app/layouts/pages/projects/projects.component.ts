@@ -31,7 +31,6 @@ export class ProjectsComponent implements OnInit {
   }
 
   getProjectsList() {
-    debugger;
     this.apiservice.getProjects().subscribe(
       (response: any) => {
         this.projectsListItems = response

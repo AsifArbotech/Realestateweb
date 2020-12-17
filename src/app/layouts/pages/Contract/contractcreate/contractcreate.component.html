@@ -4,7 +4,7 @@
         <div class="row clearfix">
             <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">                
                 <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light"  data-toggle="modal" data-target="#AddContract" type="button">
-                    <i class="zmdi zmdi-plus"></i> Add Contract
+                    <i class="zmdi zmdi-plus"></i> Add Agreement
                 </button>
             </div>
         </div>
@@ -14,16 +14,17 @@
                     <table class="table table-striped  m-b-0">
                         <thead>
                             <tr>
-                                <td hidden>Contract Id</td>
-                                <td>Contract Code</td>
+                                <td hidden>Agreement Id</td>
+                                <td>Agreement Code</td>
                                 <td>Name</td>
                                 <td>Start Date</td>
                                 <td>End Date</td>
                                 <td>Contract Date</td>
-                                <td>Owner</td>
-                                <td>Unit</td>
+                                <td>Customer</td>
+                                <td>Property</td>
                                 <td>No of installments</td>
-                                <td>view</td>
+                                <td>Status</td>
+                                <!--<td>view</td>-->
                             </tr>
                         </thead>
                         <tbody>
@@ -35,21 +36,21 @@
                             <td>{{item.startdate.split("T")[0]}}</td>
                             <td>{{item.enddate.split("T")[0]}}</td>
                             <td>{{item.contractdate.split("T")[0]}}</td>
-                            <td>{{item.ownername}}</td>
+                            <td>{{item.customername}}</td>
                             <td>{{item.plotno}}</td>
                             <td>{{item.noofinstallments}}</td>
-                            <!--<td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>-->
-                            <td>
+                            <td>{{(item.status==1) ? 'Open' : (item.status==0) ? 'Terminated' : ''}}</td>
+                            <!-- <td>
                                 <button class="btn btn-primary btn-icon btn-round " type="button" (click)="EditContract(item.contractid)" data-toggle="modal" data-target="#AddContract">
                                     <i class="zmdi zmdi-edit" ></i>
                                 </button>
                                 <button class="btn btn-primary btn-icon btn-round " (click)="EditContract(item.contractid)" type="button">
                                     <i class="zmdi zmdi-delete" ></i>
                                 </button>
-                                <!-- <button class="btn btn-primary btn-icon btn-round " type="button">
+                                <button class="btn btn-primary btn-icon btn-round " type="button">
                                     <i class="zmdi zmdi-eye" ></i>
-                                </button> -->
-                            </td>
+                                </button> 
+                            </td>-->
                         </tr>
                         </tbody>
                     </table>
@@ -69,8 +70,8 @@
 				</div>
 				<div class="modal-body">
                     <div class="row  clearfix">
-                        <div class="col-lg-12 col-md-12 col-sm-12" *ngIf="ActionType!='Add Contract'">
-                            <label>Contract Code :{{Contract.contractcode}}</label>
+                        <div class="col-lg-12 col-md-12 col-sm-12" *ngIf="ActionType!='Add Agreement'">
+                            <label>Agreement Code :{{Contract.contractcode}}</label>
                         </div>
                           <input type="hidden" [(ngModel)]="Contract.contractid" name="ID" #ID="ngModel" />
                         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -91,21 +92,21 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label>Contract Date</label>
-                                <input type="email" class="form-control" [(ngModel)]="Contract.contractdate" placeholder="Contract Date" required="required">
+                                <label>Agreement Date</label>
+                                <input type="email" class="form-control" [(ngModel)]="Contract.contractdate" placeholder="Agreement Date" required="required">
                             </div>
-                            <div class="form-group">
-                                <label>Owner</label>
-                                <input type="text" class="form-control" list="OwnerList" id="Ownerid" placeholder="Owner Name" required="required">
-                                <datalist id="OwnerList">
-                                    <option *ngFor="let item of ownerListItems" [data-owner]="item.ownerid">{{item.ownername}}</option>
-                                </datalist>
-                            </div>
+                                <div class="form-group">
+                                  <label>Customer Name</label>
+                                  <input type="text" class="form-control" list="customerlist" id="Customerid" placeholder="Customer Name" required="required">
+                                  <datalist id="customerlist">
+                                    <option *ngFor="let item of customerslist" [data-id]="item.id">{{item.name}}</option>
+                                  </datalist>
+                                </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label>Unit</label>
-                                <input type="text" class="form-control" list="Propertylist" id="Propertyid" placeholder="Unit" required="required">
+                                <label>Property</label>
+                                <input type="text" class="form-control" list="Propertylist" id="Propertyid" placeholder="Property" required="required">
                                 <datalist id="Propertylist">
                                     <option *ngFor="let item of propertyListItems" [data-property]="item.id">{{item.plotno}}</option>
                                 </datalist>

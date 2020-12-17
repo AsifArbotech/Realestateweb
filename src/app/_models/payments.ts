@@ -15,8 +15,9 @@ export class PaymentRec{
 }
 
 export class PaymentPay{
-    paymentpayableid: Number;
-    paymenttype: Number;
+    paymentpayableownerid: Number;
+    paymentpayableassid:Number;
+    paymentto: Number;
     consultantid: Number;
     ownerid: Number;
     projectid: Number;
@@ -33,7 +34,7 @@ export class PaymentPay{
 export class Payment{
     paymentrecid: Number;    
     paymentpayableid: Number;
-    paymenttype: Number; 
+    paymentto: Number; 
     paymentrefno : Number;
     customerid: Number;
     customername: String;

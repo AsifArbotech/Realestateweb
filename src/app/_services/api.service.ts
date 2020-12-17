@@ -308,6 +308,14 @@ export class ApiService {
     return this.http.get(this.BASEURL + '/Booking/DeleteBookingCanc?ID=' + ID, this.getAuthHeadersJSON());
   }
 
+  getBookingTransfList() {
+    return this.http.get(this.BASEURL + '/Booking/GetAllBookingTransf', this.getAuthHeadersJSON());
+  }
+
+  AddBookingTransf(BookingTransf){
+      return this.http.post(this.BASEURL + '/Booking/AddBookingTransf', BookingTransf, this.getAuthHeadersJSON());
+  }
+
   getContractList() {
     return this.http.get(this.BASEURL + '/Contract/GetAllContract', this.getAuthHeadersJSON());
   }
@@ -326,6 +334,14 @@ export class ApiService {
 
   DeleteContract(ID) {
     return this.http.get(this.BASEURL + '/Contract/DeleteContract?ID=' + ID, this.getAuthHeadersJSON());
+  }
+
+  getContractTerminateList() {
+    return this.http.get(this.BASEURL + '/Contract/GetAllTerminateContracts', this.getAuthHeadersJSON());
+  }
+
+  AddTerminateContract(Contract){
+    return this.http.post(this.BASEURL + '/Contract/AddContractTerminate', Contract, this.getAuthHeadersJSON());
   }
 
   getContractRenList() {
@@ -413,7 +429,12 @@ export class ApiService {
   }
 
   AddPaymentPay(PaymentPay){
-    return this.http.post(this.BASEURL + '/PaymentPayables/AddPaymentPay', PaymentPay, this.getAuthHeadersJSON());
+    if(PaymentPay.paymentto="Owner") {
+        return this.http.post(this.BASEURL + '/PaymentPayables/AddPaymentPayOwner', PaymentPay, this.getAuthHeadersJSON());
+    }
+    if(PaymentPay.paymentto="Associate") {
+      return this.http.post(this.BASEURL + '/PaymentPayables/AddPaymentPayAss', PaymentPay, this.getAuthHeadersJSON());
+    }
   }
 
   getRegistrations() {

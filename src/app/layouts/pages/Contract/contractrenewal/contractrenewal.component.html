@@ -4,7 +4,7 @@
         <div class="row clearfix">
             <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">                
                 <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light"  data-toggle="modal" data-target="#AddContractRen" type="button">
-                    <i class="zmdi zmdi-plus"></i> Add Contract Renewal
+                    <i class="zmdi zmdi-plus"></i> Add Agreement Renewal
                 </button>
                                
             </div>
@@ -15,10 +15,11 @@
                     <table class="table table-striped  m-b-0">
                         <thead>
                             <tr>
-                                <td hidden>Contract Renewal Id</td>
-                                <td>Contract Renewal No</td>
-                                <td class="font-medium">Contract Id</td>
+                                <td hidden>Agreement Renewal Id</td>
+                                <td>Agreement Renewal No</td>
+                                <td class="font-medium">Agreement Id</td>
                                 <td>Owner Name</td>
+                                <td>Renewal Date</td>
                                 <td>Remark</td>
                                 <td>View</td>
                             </tr>
@@ -66,6 +67,37 @@
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="form-group">
+                                <input type="hidden" [(ngModel)]="contractren.contractrenewalid" name="ID" #ID="ngModel" />
+                                <label>Agreement No.</label>
+                                <input type="text" class="form-control" list="allcontractlist" id="contractcode"
+                                     value="{{contractno}}" (keyup)="getcontractdetails($event)" placeholder="Agreement No" required="required">
+                                <datalist id="allcontractlist">
+                                    <option *ngFor="let item of allcontractlist">{{item.contractcode}}</option>
+                                </datalist>     
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Customer Name</label>
+                                <input type="text" class="form-control" id="Customerid" placeholder="Customer Name"
+                                    value="{{customername}}" required="required" disabled>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Property</label>
+                                <input type="text" class="form-control" id="Propertyid" placeholder="Property" value="{{unit}}"
+                                    required="required" disabled>
+                            </div>
+                        </div>
+                         <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Agreement Date</label>
+                                <input type="email" class="form-control" placeholder="Contract Date" value="{{date}}" required="required" disabled>
+                            </div>
+                        </div>
+                        <!--<div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group">
                               <input type="hidden" [(ngModel)]="contractren.contractrenewalid" name="ID" #ID="ngModel" />
                               <label>Contract Code.</label>
                               <input type="text" class="form-control" list="contractlist" id="contractcode" value="{{contractcode}}" (keyup)="getcontractdetails($event)" placeholder="Contract Code" required="required">
@@ -73,7 +105,13 @@
                                 <option *ngFor="let item of ContractList">{{item.contractcode}}</option>
                               </datalist>
                             </div>
-                          </div>
+                          </div>-->
+                          <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Renewal Date</label>
+                                <input type="email" class="form-control" placeholder="Renewal Date" [(ngModel)]="contractren.renewaldate" required="required">
+                            </div>
+                        </div>
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="form-group">
                                 <label>Remark</label>

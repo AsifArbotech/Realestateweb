@@ -1,30 +1,43 @@
 import { calcPossibleSecurityContexts } from '@angular/compiler/src/template_parser/binding_parser';
 
 export class AddContract {
-    CONTRACTID: Number;
-    CONTRACTCODE: Number;
-    NAME: string;
-    STARTDATE: Date;
-    ENDDATE: Date;
-    CONTRACTDATE: Date;
-    NOOFINSTALLMENTS: Number;
-    UNITID: Number;
-    PLOTNO: string;
-    OWNERID: Number;
-    OWNERNAME: string;
-    NOTES: string;
-    STATUS: Number;
-    CREATEDBY: string;
-    CREATEDON: Date;
-    MODIFIEDBY: string;
-    MODIFIEDON: Date;
+    contractid: Number;
+    contractcode: Number;
+    name: string;
+    startdate: Date;
+    enddate: Date;
+    contractdate: Date;
+    noofinstallments: Number;
+    unitid: Number;
+    plotno: string;
+    customerid: Number;
+    customername: String;
+    notes: string;
+    status: Number;
+    createdby: string;
+    createdon: Date;
+    modifiedby: string;
+    modifiedon: Date;
 }
 
 export class ContractRenewal{
-    contractid: Number;
     contractrenewalid: Number;
     contractrenewalno: Number;
+    contractid: Number;
     notes: string;
+    renewaldate: Date;
+    createdby: string;
+    createdon: Date;
+    modifiedby: string;
+    modifiedon: Date;
+}
+
+export class ContractTerminate{
+    contractterminateid: Number;
+    contractterminateno: Number;
+    contractid: Number;
+    notes: string;
+    terminatedate: Date;
     createdby: string;
     createdon: Date;
     modifiedby: string;
@@ -36,6 +49,9 @@ export class Contract {
     contractcode: Number;
     contractrenewalid: Number;
     contractrenewalno: Number;
+    contractterminateid: Number;
+    contractterminateno: Number;
+    terminatedate: Date;
     name: string;
     startdate: Date;
     enddate: Date;
@@ -45,6 +61,8 @@ export class Contract {
     plotno: string;
     ownerid: Number;
     ownername: string;
+    customerid: Number;
+    customername: String;
     notes: string;
     status: Number;
     createdby: string;

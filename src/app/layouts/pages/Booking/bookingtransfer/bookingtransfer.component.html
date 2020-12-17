@@ -14,13 +14,13 @@
                     <table class="table table-striped  m-b-0">
                         <thead>
                             <tr>
-                                <td>Booking No</td>
+                                <td>Booking Transf No</td>
                                 <td class="font-medium">Project</td>
                                 <td>Old-Unit</td>
                                 <td>Old-Selling Price</td>
                                 <td>New-Unit</td>
-                                <td>New-Owner</td>
-                                <td>From-Owner</td>
+                                <td>New-Customer</td>
+                                <!--<td>From-Customer</td>-->
                                 <td>New-Selling Price</td>
                                 <td>View</td>
                             </tr>
@@ -28,26 +28,22 @@
                         <tbody>
                            
                         <tr>
-                            <td>123</td>
-                            <td class="font-medium">Pleasent</td>
-                            <td>Ghories</td>
-                            <td>50000</td>
-                            <td>Ghoris Reality</td>
-                            <td>Asif</td>
-                            <td>Arshad</td>
-                            <td>60000</td>
-                            <!--<td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>-->
-                            <td>
+                            <td></td>
+                            <td class="font-medium"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <!--<td>
                                 <button class="btn btn-primary btn-icon btn-round " type="button" data-toggle="modal" data-target="#EditbookingTrans">
                                     <i class="zmdi zmdi-edit" ></i>
                                 </button>
                                 <button class="btn btn-primary btn-icon btn-round " type="button" data-toggle="modal" data-target="#PreviewProject">
                                     <i class="zmdi zmdi-delete" ></i>
                                 </button>
-                                <button class="btn btn-primary btn-icon btn-round " type="button"  data-toggle="modal" data-target="#PreviewProject">
-                                    <i class="zmdi zmdi-eye" ></i>
-                                </button>
-                            </td>
+                            </td-->
                         </tr>
                         </tbody>
                     </table>
@@ -57,125 +53,81 @@
     </div>
 </section>
 
-<!--Add Booking Transfer Modal Start-->
 <div id="AddbookingTrans" class="modal fade">
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
 				<div class="modal-header text-center l-cyan" style="display: block !important;">				
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title text-center">New Transfer Booking</h4>
+                    <h4 class="modal-title text-center">{{ActionType}}</h4>
 				</div>
 				<div class="modal-body">
                     <div class="row  clearfix">
+                        <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="ActionType!='Add Booking Transfer'">
+                            <label>Booking Transfer No :{{bookingtransfer.bookingtransfno}}</label>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <input type="hidden" [(ngModel)]="bookingtransfer.bookingtransfid" name="ID" #ID="ngModel" />
+                                <label>Booking No.</label>
+                                <input type="text" class="form-control" list="bookingList" id="bookingno" value="{{bookingno}}" (keyup)="getbookingdetails($event)" placeholder="Booking No" required="required">
+                                <datalist id="bookingList">
+                                  <option *ngFor="let item of bookingList">{{item.bookingno}}</option>
+                                </datalist>
+                            </div>
+                        </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label>Booking No</label>
-                                <input type="text" class="form-control" placeholder="Booking No" required="required">
+                                <label>Property</label>
+                                <input type="text" class="form-control" id="Propertyid" placeholder="Unit" value="{{unit}}" required="required" disabled>
                             </div>
+                            <div class="form-group">
+                                <label>Customer Name</label>
+                                <input type="text" class="form-control" id="Customerid" placeholder="Customer Name" value="{{customername}}" required="required" disabled>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Project</label>
-                                <input type="text" class="form-control" placeholder="Project" required="required">
+                                <input type="text" class="form-control" id="Projectid" placeholder="Project" value="{{projectname}}" required="required" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label>Transfer Date</label>
+                                <input type="text" class="form-control" placeholder="Cancellation Date" [(ngModel)]="bookingtransfer.transferdate" name="TRANSFERDATE" #TRANSFERDATE="ngModel" required="required">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label>Old-Unit</label>
-                                <input type="email" class="form-control" placeholder="Old-Unit" required="required">
+                                <label>Property</label>
+                                <input type="text" class="form-control" list="Propertylist" id="NewPropertyid" placeholder="Property" required="required">
+                                <datalist id="Propertylist">
+                                  <option *ngFor="let item of propertyListItems" [data-property]="item.id">{{item.plotno}}</option>
+                                </datalist>
                             </div>
                             <div class="form-group">
-                                <label>Old-Selling Price</label>
-                                <input type="text" class="form-control" placeholder="Project" required="required" readonly>
-                            </div>
+                                <label>Customer Name</label>
+                                <input type="text" class="form-control" list="customerlist" id="NewCustomerid" placeholder="Customer Name" required="required">
+                                <datalist id="customerlist">
+                                  <option *ngFor="let item of customerslist" [data-id]="item.id">{{item.name}}</option>
+                                </datalist>
+                              </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>New-Unit</label>
+                            <!--<div class="form-group">
+                                <label>From-Customer</label>
                                 <input type="email" class="form-control" placeholder="Old-Unit" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>New-Owner</label>
-                                <input type="text" class="form-control" placeholder="Project" required="required">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>From-Owner</label>
-                                <input type="email" class="form-control" placeholder="Old-Unit" required="required">
-                            </div>
+                            </div>-->
                             <div class="form-group">
                                 <label>New-Selling Price</label>
-                                <input type="text" class="form-control" placeholder="Project" required="required">
+                                <input type="text" class="form-control" placeholder="Project" [(ngModel)]="bookingtransfer.newsellingprice" name="NEWSELLINGPRICE" #NEWSELLINGPRICE="ngModel" required="required">
                             </div>
                         </div>
                     </div>					
                     <div class="row clearfix">
                         <div class="col-lg-4 col-md-4 col-sm-12">
-                            <button type="button" class="btn btn-primary btn-round" >Save</button>
+                            <button type="button" class="btn btn-primary btn-round" (click)="SaveBookingTransf()">Save</button>
                         </div>
                     </div>
                 </div>
 		</div>
 	</div>
 </div>    
-<!--Add Booking Transfer Modal End-->
-
-<div id="EditbookingTrans" class="modal fade">
-	<div class="modal-dialog modal-login">
-		<div class="modal-content">
-				<div class="modal-header text-center l-cyan" style="display: block !important;">				
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title text-center">Edit Transfer Booking</h4>
-				</div>
-				<div class="modal-body">
-                    <div class="row  clearfix">
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Booking No</label>
-                                <input type="text" class="form-control" placeholder="Booking No" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>Project</label>
-                                <input type="text" class="form-control" placeholder="Project" required="required">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Old-Unit</label>
-                                <input type="email" class="form-control" placeholder="Old-Unit" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>Old-Selling Price</label>
-                                <input type="text" class="form-control" placeholder="Project" required="required" readonly>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>New-Unit</label>
-                                <input type="email" class="form-control" placeholder="Old-Unit" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>New-Owner</label>
-                                <input type="text" class="form-control" placeholder="Project" required="required">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>From-Owner</label>
-                                <input type="email" class="form-control" placeholder="Old-Unit" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>New-Selling Price</label>
-                                <input type="text" class="form-control" placeholder="Project" required="required">
-                            </div>
-                        </div>
-                    </div>					
-                    <div class="row clearfix">
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <button type="button" class="btn btn-primary btn-round" >Save</button>
-                        </div>
-                    </div>
-                </div>
-		</div>
-	</div>
-</div>
-<!--Edit Client Modal End-->

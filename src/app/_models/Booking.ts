@@ -36,8 +36,10 @@ export class Bookings {
     name: String;
     bookingamount: Number; 
     refundamount: Number; 
+    totalamount: Number;
     oldsellingamount: Number; 
     newsellingamount: Number; 
+    transferdate: Date;
     assignto: string;
     status: Number; 
     createdby: string; 
@@ -52,6 +54,21 @@ export class BookingCancellation{
     bookingid: Number;
     amount: Number;
     remark: string;
+    status: Number;
+    createdby: string;
+    createdon: Date;
+    modifiedby: string;
+    modifiedon: Date;
+}
+
+export class BookingTransfer{
+    bookingtransfid: Number;
+    bookingtransfno: Number;
+    bookingid: Number;
+    newcustomerid: Number;
+    newunitid: Number;
+    newsellingprice: Number;
+    transferdate: Date;
     status: Number;
     createdby: string;
     createdon: Date;
