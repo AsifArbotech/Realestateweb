@@ -18,24 +18,26 @@
                                 <td class="font-medium">Project</td>
                                 <td>Old-Unit</td>
                                 <td>Old-Selling Price</td>
+                                <td>Transfered Date</td>
                                 <td>New-Unit</td>
                                 <td>New-Customer</td>
                                 <!--<td>From-Customer</td>-->
                                 <td>New-Selling Price</td>
-                                <td>View</td>
+                                <!--<td>View</td>-->
                             </tr>
                         </thead>
                         <tbody>
                            
-                        <tr>
-                            <td></td>
-                            <td class="font-medium"></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                        <tr *ngFor="let item of getBookingTranslistItems()">
+                            <td>{{item.bookingtransferno}}</td>
+                            <td class="font-medium">{{item.projectname}}</td>
+                            <td>{{item.plotno}}</td>
+                            <td>{{item.oldsellingamount}}</td>
+                            <td>{{item.transferdate | date:'MM/dd/yyyy'}}</td>
+                            <td>{{item.newplotno}}</td>
+                            <td>{{item.newcustomername}}</td>
+                            <!--<td>{{item.projectname}}</td>-->
+                            <td>{{item.newsellingamount}}</td>
                             <!--<td>
                                 <button class="btn btn-primary btn-icon btn-round " type="button" data-toggle="modal" data-target="#EditbookingTrans">
                                     <i class="zmdi zmdi-edit" ></i>

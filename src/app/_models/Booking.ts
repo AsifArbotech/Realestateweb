@@ -32,6 +32,10 @@ export class Bookings {
     projectname: String;
     unitid: Number;
     plotno: String;
+    newcustomerid: Number;
+    newcustomername: String;
+    newunitid: Number;
+    newplotno: Number;
     consultantid: Number;
     name: String;
     bookingamount: Number; 

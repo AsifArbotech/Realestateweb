@@ -16,9 +16,9 @@
                         <thead>
                             <tr>
                                 <td hidden>Agreement Renewal Id</td>
-                                <td>Agreement Renewal No</td>
+                                <td>Agreement Ren No</td>
                                 <td class="font-medium">Agreement Id</td>
-                                <td>Owner Name</td>
+                                <td>Customer Name</td>
                                 <td>Renewal Date</td>
                                 <td>Remark</td>
                                 <td>View</td>
@@ -30,7 +30,8 @@
                             <td hidden>{{item.contractrenewalid}}</td>
                             <td>{{item.contractrenewalno}}</td>
                             <td>{{item.contractid}}</td>
-                            <td>{{item.ownername}}</td>
+                            <td>{{item.customername}}</td>
+                            <td>{{item.renewaldate | date:'MM/dd/yyyy'}}</td>
                             <td>{{item.notes}}</td>
                             <!--<td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>-->
                             <td>

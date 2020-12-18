@@ -58,7 +58,7 @@ export class ContractrenewalComponent implements OnInit {
       alert("Invalid Contract Code.");
       return false;
     }
-    this.contractren.contractid = this.ContractList.find(f => f.contractcode == parseInt((<HTMLInputElement>document.getElementById('contractcode')).value)).contractid;
+    this.contractren.contractid = this.allcontractlist.find(f => f.contractcode == parseInt((<HTMLInputElement>document.getElementById('contractcode')).value)).contractid;
     this.apiservice.AddContractRen(this.contractren)
       .subscribe((response: any) => {
         if (response) {

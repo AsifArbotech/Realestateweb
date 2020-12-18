@@ -27,7 +27,7 @@
                            
                         <tr *ngFor="let item of getDisputelisttItems()">
                             <td hidden>{{item.disputeid}}</td>
-                            <td>{{item.date}}</td>
+                            <td>{{item.date | date:'MM/dd/yyyy'}}</td>
                             <td>{{item.plotno}}</td>
                             <td>{{item.disputetype}}</td>
                             <td>{{(item.status==1) ? 'Clear' : (item.status==0) ? ' Under Dispute' : ''}}</td>

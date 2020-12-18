@@ -4,7 +4,7 @@ import { ApiService } from '../../../../_services/api.service';
 import { NotifierService } from 'angular-notifier';
 import {ReportsComponent} from '../../../Reports/reports/reports.component'
 
-import * as jsPDF from 'jspdf';
+//import * as jsPDF from 'jspdf';
 import * as html2canvas from "html2canvas";
 //import * as XLSX from 'xlsx';
 declare var jQuery: any;

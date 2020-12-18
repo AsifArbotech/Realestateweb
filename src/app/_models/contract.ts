@@ -56,6 +56,7 @@ export class Contract {
     startdate: Date;
     enddate: Date;
     contractdate: Date;
+    renewaldate: Date;
     noofinstallments: Number;
     unitid: Number;
     plotno: string;

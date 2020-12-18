@@ -28,13 +28,13 @@ export class BookingtransferComponent implements OnInit {
               private notifier: NotifierService) { }
 
   ngOnInit(): void {
-    this.getBookingTransfList();
+    this.getBookingTransList();
     this.getAllBookings();
     this.getCustomerslist();    
     this.getPropertyList();
   }
 
-  getBookingTransfList() {
+  getBookingTransList() {
     this.apiservice.getBookingTransfList().subscribe(
       (response: any) => {
         this.allbookinglist = response;
@@ -46,7 +46,7 @@ export class BookingtransferComponent implements OnInit {
     )
   }
 
-  getContractTerlistItems() {
+  getBookingTranslistItems() {
     if (this.allbookinglist)
       if (this.allbookinglist.length > this.pageSize) {
         return this.allbookinglist.slice(
@@ -90,7 +90,7 @@ export class BookingtransferComponent implements OnInit {
             this.notifier.notify("error", "Something went wrong");
           }
           this.bookingtransfer = new BookingTransfer();
-          this.getBookingTransfList();
+          this.getBookingTransList();
         }
       })
   }
