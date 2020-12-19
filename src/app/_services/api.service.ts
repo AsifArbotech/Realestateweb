@@ -136,24 +136,24 @@ export class ApiService {
     return this.http.get(this.BASEURL + '/Project/GetProjectByID?ID=' + id, this.getAuthHeadersJSON());
   }
 
-  EditProject(data){
-    return this.http.post(this.BASEURL+'/Project/EditProject',data,this.getAuthHeadersJSON());
+  EditProject(data) {
+    return this.http.post(this.BASEURL + '/Project/EditProject', data, this.getAuthHeadersJSON());
   }
 
-  DeleteProject(id){
-    return this.http.get(this.BASEURL+ '/Project/DeleteProject?ID=' + id, this.getAuthHeadersJSON());
+  DeleteProject(id) {
+    return this.http.get(this.BASEURL + '/Project/DeleteProject?ID=' + id, this.getAuthHeadersJSON());
   }
 
-  getProperties(){
-    return this.http.get(this.BASEURL+ '/Property/GetAllProperty', this.getAuthHeadersJSON());
+  getProperties() {
+    return this.http.get(this.BASEURL + '/Property/GetAllProperty', this.getAuthHeadersJSON());
   }
 
-  getProperty(id){
-    return this.http.get(this.BASEURL+ '/Property/GetPropertyByID?ID=' + id, this.getAuthHeadersJSON());
+  getProperty(id) {
+    return this.http.get(this.BASEURL + '/Property/GetPropertyByID?ID=' + id, this.getAuthHeadersJSON());
   }
 
-  EditProperty(data){
-    return this.http.post(this.BASEURL+'/Property/EditProperty',data,this.getAuthHeadersJSON());
+  EditProperty(data) {
+    return this.http.post(this.BASEURL + '/Property/EditProperty', data, this.getAuthHeadersJSON());
   }
 
   AddProperty(data) {
@@ -168,20 +168,20 @@ export class ApiService {
     return this.http.get(this.BASEURL + '/Owners/GetAllOwners', this.getAuthHeadersJSON());
   }
 
-  getOwner(id){
-    return this.http.get(this.BASEURL+ '/Owners/GetOwnersByID?ID=' + id, this.getAuthHeadersJSON());
+  getOwner(id) {
+    return this.http.get(this.BASEURL + '/Owners/GetOwnersByID?ID=' + id, this.getAuthHeadersJSON());
   }
 
   AddOwner(data) {
     return this.http.post(this.BASEURL + '/Owners/AddOwner', data, this.getAuthHeadersJSON());
   }
 
-  EditOwner(data){
-    return this.http.post(this.BASEURL+'/Owners/EditOwners',data,this.getAuthHeadersJSON());
+  EditOwner(data) {
+    return this.http.post(this.BASEURL + '/Owners/EditOwners', data, this.getAuthHeadersJSON());
   }
 
-  DeleteOwner(id){
-    return this.http.get(this.BASEURL+ '/Owners/DeleteOwners?ID=' + id, this.getAuthHeadersJSON());
+  DeleteOwner(id) {
+    return this.http.get(this.BASEURL + '/Owners/DeleteOwners?ID=' + id, this.getAuthHeadersJSON());
   }
 
   //Add Consultant or Associate
@@ -256,7 +256,7 @@ export class ApiService {
     return this.http.get(this.BASEURL + '/SalesQuotation/GetSalesQuotationById?ID=' + ID, this.getAuthHeadersJSON());
   }
 
-  AddSalesQuot(Invoice){
+  AddSalesQuot(Invoice) {
     if (Invoice.id) {
       return this.http.post(this.BASEURL + '/SalesQuotation/EditSalesQuotation', Invoice, this.getAuthHeadersJSON());
     }
@@ -276,7 +276,7 @@ export class ApiService {
     return this.http.get(this.BASEURL + '/Booking/GetBookingById?ID=' + ID, this.getAuthHeadersJSON());
   }
 
-  AddBooking(Booking){
+  AddBooking(Booking) {
     if (Booking.bookingid) {
       return this.http.post(this.BASEURL + '/Booking/EditBooking', Booking, this.getAuthHeadersJSON());
     }
@@ -296,7 +296,7 @@ export class ApiService {
     return this.http.get(this.BASEURL + '/Booking/GetBookingCancById?ID=' + ID, this.getAuthHeadersJSON());
   }
 
-  AddBookingCanc(BookingCanc){
+  AddBookingCanc(BookingCanc) {
     if (BookingCanc.bookingcancid) {
       return this.http.post(this.BASEURL + '/Booking/EditBookingCanc', BookingCanc, this.getAuthHeadersJSON());
     }
@@ -312,8 +312,8 @@ export class ApiService {
     return this.http.get(this.BASEURL + '/Booking/GetAllBookingTransf', this.getAuthHeadersJSON());
   }
 
-  AddBookingTransf(BookingTransf){
-      return this.http.post(this.BASEURL + '/Booking/AddBookingTransf', BookingTransf, this.getAuthHeadersJSON());
+  AddBookingTransf(BookingTransf) {
+    return this.http.post(this.BASEURL + '/Booking/AddBookingTransf', BookingTransf, this.getAuthHeadersJSON());
   }
 
   getContractList() {
@@ -324,7 +324,7 @@ export class ApiService {
     return this.http.get(this.BASEURL + '/Contract/GetContractById?ID=' + ID, this.getAuthHeadersJSON());
   }
 
-  AddContract(Contract){
+  AddContract(Contract) {
     if (Contract.contractid) {
       return this.http.post(this.BASEURL + '/Contract/EditContract', Contract, this.getAuthHeadersJSON());
     }
@@ -340,7 +340,7 @@ export class ApiService {
     return this.http.get(this.BASEURL + '/Contract/GetAllTerminateContracts', this.getAuthHeadersJSON());
   }
 
-  AddTerminateContract(Contract){
+  AddTerminateContract(Contract) {
     return this.http.post(this.BASEURL + '/Contract/AddContractTerminate', Contract, this.getAuthHeadersJSON());
   }
 
@@ -352,7 +352,7 @@ export class ApiService {
     return this.http.get(this.BASEURL + '/Contract/GetContractRenById?ID=' + ID, this.getAuthHeadersJSON());
   }
 
-  AddContractRen(ContractRen){
+  AddContractRen(ContractRen) {
     if (ContractRen.contractrenewalid) {
       return this.http.post(this.BASEURL + '/Contract/EditContractRen', ContractRen, this.getAuthHeadersJSON());
     }
@@ -372,7 +372,7 @@ export class ApiService {
     return this.http.get(this.BASEURL + '/Pdc/GetPdcById?ID=' + ID, this.getAuthHeadersJSON());
   }
 
-  AddPdc(Pdc){
+  AddPdc(Pdc) {
     if (Pdc.pdcid) {
       return this.http.post(this.BASEURL + '/Pdc/EditPdc', Pdc, this.getAuthHeadersJSON());
     }
@@ -392,7 +392,7 @@ export class ApiService {
     return this.http.get(this.BASEURL + '/Dispute/GetDisputeById?ID=' + ID, this.getAuthHeadersJSON());
   }
 
-  AddDispute(Dispute){
+  AddDispute(Dispute) {
     if (Dispute.disputeid) {
       return this.http.post(this.BASEURL + '/Dispute/EditDispute', Dispute, this.getAuthHeadersJSON());
     }
@@ -420,19 +420,19 @@ export class ApiService {
     return this.http.get(this.BASEURL + '/PaymentRec/GetAllPaymentRec', this.getAuthHeadersJSON());
   }
 
-  AddPaymentRec(PaymentRec){
-      return this.http.post(this.BASEURL + '/PaymentRec/AddPaymentRec', PaymentRec, this.getAuthHeadersJSON());
+  AddPaymentRec(PaymentRec) {
+    return this.http.post(this.BASEURL + '/PaymentRec/AddPaymentRec', PaymentRec, this.getAuthHeadersJSON());
   }
 
   getPaymentPay() {
     return this.http.get(this.BASEURL + '/PaymentPayables/GetAllPaymentPayables', this.getAuthHeadersJSON());
   }
 
-  AddPaymentPay(PaymentPay){
-    if(PaymentPay.paymentto="Owner") {
-        return this.http.post(this.BASEURL + '/PaymentPayables/AddPaymentPayOwner', PaymentPay, this.getAuthHeadersJSON());
+  AddPaymentPay(PaymentPay) {
+    if (PaymentPay.paymentto = "Owner") {
+      return this.http.post(this.BASEURL + '/PaymentPayables/AddPaymentPayOwner', PaymentPay, this.getAuthHeadersJSON());
     }
-    if(PaymentPay.paymentto="Associate") {
+    if (PaymentPay.paymentto = "Associate") {
       return this.http.post(this.BASEURL + '/PaymentPayables/AddPaymentPayAss', PaymentPay, this.getAuthHeadersJSON());
     }
   }
@@ -441,7 +441,19 @@ export class ApiService {
     return this.http.get(this.BASEURL + '/Registration/GetAllRegistrations', this.getAuthHeadersJSON());
   }
 
-  AddRegistration(data :any){
+  AddRegistration(data: any) {
     return this.http.post(this.BASEURL + '/Registration/AddRegistration', data, this.getAuthHeadersJSON());
+  }
+
+  GetMenusbyUserID(userid) {
+    return this.http.get(this.BASEURL + '/UserMenus/GetMenusByUserID?userid=' + userid, this.getAuthHeadersJSON());
+  }
+
+  GetAllMenuswithUserID(userid) {
+    return this.http.get(this.BASEURL + '/UserMenus/GetAllMenuswithUserID?userid=' + userid, this.getAuthHeadersJSON());
+  }
+
+  AddUserMenus(menuid: any, userid: any) {
+    return this.http.post(this.BASEURL + '/UserMenus/POSTAddUserMenus?userid=' + userid, menuid, this.getAuthHeadersJSON());
   }
 }

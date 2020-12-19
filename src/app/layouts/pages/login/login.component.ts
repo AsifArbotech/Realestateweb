@@ -20,13 +20,13 @@ export class LoginComponent implements OnInit {
   loading = false;
   returnUrl: string;
 
-  constructor(private authenticationService: AuthenticationService, 
-              private router: Router, 
-              private apiservice: ApiService,
-              notifierService: NotifierService,  ) {
+  constructor(private authenticationService: AuthenticationService,
+    private router: Router,
+    private apiservice: ApiService,
+    notifierService: NotifierService,) {
 
-          this.notifier = notifierService;
-       }
+    this.notifier = notifierService;
+  }
 
   ngOnInit() {
   }
@@ -45,28 +45,33 @@ export class LoginComponent implements OnInit {
     this.notifier.notify("success", "Logout Success");
   }
 
-  login(){
-    this.authenticationService.login(this.model.username,this.model.password)
-    .subscribe(
-      (user:User)=>{
-        if(user){
-          localStorage.setItem('UserId', "" + user.Id);
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.router.navigate(['/Dashboard']);
-          this.notifier.notify("success", "Login Success");
-        }
-        else
+  login() {
+    this.authenticationService.login(this.model.username, this.model.password)
+      .subscribe(
+        (user: any) => {
+          if (user) {
+            if (user.responseCode == 1) {
+              localStorage.setItem('UserId', "" + user.result.id);
+              localStorage.setItem('currentUser', JSON.stringify(user.result));
+              this.router.navigate(['/Dashboard']);
+              this.notifier.notify("success", "Login Success");
+            }
+            else{
+              this.notifier.notify("error", "Invalid username/password");
+            }
+          }
+          else
             this.router.navigate([this.returnUrl]);
-     },
-    error => {
-      this.notifier.notify("error", "Invalid username/password");
-    });
+        },
+        error => {
+          this.notifier.notify("error", "Invalid username/password");
+        });
   }
 
   onNavigate(url: string) {
     this.router.navigateByUrl(url);
   }
-  
+
   isLoggedIn() {
     return this.authenticationService.isLoggedIn();
   }

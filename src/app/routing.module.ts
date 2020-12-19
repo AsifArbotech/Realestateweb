@@ -33,6 +33,7 @@ import { CustomerTransactionComponent } from './layouts/pages/Transactions/custo
 import { AuthGuard } from './_services/auth-guard.service';
 import { GuestGuard } from './_services/guset-guard.service';
 import { ReportsComponent } from '../app/layouts/Reports/reports/reports.component';
+import { UserMenusComponent } from './layouts/pages/user-menus/user-menus.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -66,6 +67,7 @@ const routes: Routes = [
   { path: 'CustomerTransaction', component: CustomerTransactionComponent, canActivate: [AuthGuard]},
   { path: 'Registration', component: RegistrationComponent, canActivate: [AuthGuard]},
   { path: 'Reports', component: ReportsComponent, canActivate: [AuthGuard]},
+  { path: 'UserMenus', component: UserMenusComponent, canActivate: [AuthGuard]},
 ]
 
 @NgModule({
