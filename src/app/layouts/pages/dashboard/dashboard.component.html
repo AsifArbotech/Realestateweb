@@ -63,6 +63,15 @@
                     </div>
                 </div>            
             </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">  
+                  <label>Select Project</label>
+                  <input type="text" class="form-control" list="Projectlist" id="Projectid" placeholder="Projects" required="required">
+                  <datalist id="Projectlist">
+                    <option *ngFor="let item of projectsListItems" [data-property]="item.id">{{item.projectname}}</option>
+                  </datalist>
+                </div>
+              </div>
             <div class="chart-container" style="position: relative; height:40vh; width:70vw">    
                 <canvas id="canvas"></canvas>    
               </div>

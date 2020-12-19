@@ -1,5 +1,4 @@
-@media print {
-    body{
-        background-color: blueviolet;
-    }
+#tblreport{
+
 }
+tr td {padding:10px;padding-top:0px} 

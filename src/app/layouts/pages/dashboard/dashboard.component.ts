@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../../_services/api.service';
-import { CustomerTransaction } from '../../../_models/Customers';
+import { Project } from '../../../_models/project';
 import { Graph } from '../../../_models/graph';
 import { Chart, ChartDataSets, ChartType , ChartOptions  } from 'chart.js';
 
@@ -11,7 +11,8 @@ import { Chart, ChartDataSets, ChartType , ChartOptions  } from 'chart.js';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  //url = 'http://localhost:61352/api/Transactions/GetAllCustomerTran';
+  
+  public projectsListItems: Array<Project> = new Array<Project>();
   url = 'http://localhost:61352/api/Graph/GetAllGraphData';
   data: Graph []; 
   barchart = []; 
@@ -23,8 +24,8 @@ export class DashboardComponent implements OnInit {
               private apiservice:ApiService,) { }
 
   ngOnInit() {
-    this.httpClient.get(this.url).subscribe((re: Graph[]) => {  
-      Array.from(re).forEach(x => {  
+    this.httpClient.get(this.url).subscribe((re: any) => {  
+      re.result.forEach(x => {  
         this.Projects.push(x.project);  
         this.Properties.push(x.property);  
         this.Bokings.push(x.booking);
@@ -33,9 +34,10 @@ export class DashboardComponent implements OnInit {
       this.barchart = new Chart('canvas', {  
         type: 'bar',  
         data: {  
-          labels: this.Bokings,  
+         // label: this.Projects,
           datasets: [  
             {  
+              label: "Projects",
               data: this.Projects,  
               borderColor: '#3cba9f',  
               backgroundColor: [  
@@ -52,7 +54,55 @@ export class DashboardComponent implements OnInit {
                 "Blue"  
               ],  
               fill: true  
-            }  
+            },
+            {  
+              label: "Properties",
+              data: this.Properties,  
+              borderColor: '#3cba9f',  
+              backgroundColor: [  
+                "#3cb371",  
+                "#0000FF",  
+                "#9966FF",  
+                "#4C4CFF",  
+                "#00FFFF",  
+                "#f990a7",  
+                "#aad2ed",  
+                "#FF00FF",  
+                "Blue",  
+                "Red",  
+                "Blue"  
+              ],  
+              fill: true  
+            },
+            {  
+              label: "Bookings",
+              data: this.Bokings,  
+              borderColor: '#3cba9f',  
+              backgroundColor: [  
+                "#42AAAB",  
+                "Blue"  
+              ],  
+              fill: true  
+            },
+            {  
+              label: "Sales Invoices",
+              data: this.SalesInvoices,  
+              borderColor: '#3cba9f',  
+              backgroundColor: [  
+                "#3cb371",  
+                "#0000FF",  
+                "#9966FF",  
+                "#4C4CFF",  
+                "#00FFFF",  
+                "#f990a7",  
+                "#aad2ed",  
+                "#FF00FF",  
+                "Blue",  
+                "Red",  
+                "Blue"  
+              ],  
+              fill: true  
+            }      
           ]  
         },  
         options: {  
@@ -71,4 +121,16 @@ export class DashboardComponent implements OnInit {
       });  
     });  
   }  
+
+  getProjectsList() {
+    this.apiservice.getProjects().subscribe(
+      (response: any) => {
+        this.projectsListItems = response
+      },
+      error => {
+        console.log(error);
+
+      }
+    )
+  }
 }

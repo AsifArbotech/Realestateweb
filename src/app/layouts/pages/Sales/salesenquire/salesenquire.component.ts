@@ -6,6 +6,7 @@ import { Property } from '../../../../_models/property';
 import { Associate } from '../../../../_models/Associate';
 import { Salesenquire, Sales } from '../../../../_models/Sales';
 import { NotifierService } from 'angular-notifier';
+import {ReportsComponent} from '../../../Reports/reports/reports.component'
 
 
 @Component({
@@ -26,12 +27,28 @@ export class SalesenquireComponent implements OnInit {
 
   constructor(
     private apiservice: ApiService,
-    private notifier: NotifierService
+    private notifier: NotifierService,
+    private reports:ReportsComponent
   ) { }
 
   ngOnInit(): void {
 
     this.getSalesEnquireList();
+  }
+
+  senddatatoreport(){
+    let object = {
+      columns: ["Sales EnquireNo", "Customer Name", "Date", "Project Name", "Plot No", "Consultant Name", "Amount", "Remark"],
+      keys: ["salesenquireno", "customername", "createdon", "projectname", "plotno", "consultantname", "amount", "remark"],
+      data: this.getSalesEnquirelistItems()
+    }
+    return object;
+  }
+
+  downloadfile() {
+    this.reports.generateReport(["Sales EnquireNo", "Customer Name", "Date", "Project Name", "Plot No", "Consultant Name", "Amount", "Remark"], 
+                                ["salesenquireno", "customername", "createdon", "projectname", "plotno", "consultantname", "amount", "remark"],
+                                this.getSalesEnquirelistItems());
   }
 
   getSalesEnquireList() {

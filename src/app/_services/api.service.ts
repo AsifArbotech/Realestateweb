@@ -444,4 +444,8 @@ export class ApiService {
   AddRegistration(data :any){
     return this.http.post(this.BASEURL + '/Registration/AddRegistration', data, this.getAuthHeadersJSON());
   }
+
+  getGraphdata(){
+    return this.http.get(this.BASEURL + '/Graph/GetAllGraphData', this.getAuthHeadersJSON());
+  }
 }

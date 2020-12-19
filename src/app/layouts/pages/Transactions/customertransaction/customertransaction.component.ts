@@ -35,6 +35,22 @@ export class CustomerTransactionComponent implements OnInit {
     this.getTransactionList();
   }
 
+  senddatatoreport(){
+    debugger;
+    let object = {
+      columns: ["Cust TransactionNo", "Date", "Project Name", "Plot No", "Customer Name", "Amount Paid", "Total Amount", "Balance Amount"],
+      keys: ["custtransactionno", "createdon", "projectname", "plotno", "customername", "amountpaid", "totalamount", "balanceamount"],
+      data: this.getTransactionlistItems()
+    }
+    return object;
+  }
+
+  downloadfile() {
+    this.reports.generateReport(["Cust TransactionNo", "Date", "Project Name", "Plot No", "Customer Name", "Amount Paid", "Total Amount", "Balance Amount"], 
+                                ["custtransactionno", "createdon", "projectname", "plotno", "customername", "amountpaid", "totalamount", "balanceamount"],
+                                this.getTransactionlistItems());
+  }
+
   getTransactionList() {
     this.apiservice.getCustTransaction().subscribe(
       (response: any) => {

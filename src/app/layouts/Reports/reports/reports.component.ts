@@ -28,7 +28,7 @@ export class ReportsComponent implements OnInit {
   public generateReport(Columns: any, Keys: any, Data: any) {
     debugger;
     var object: any; let temprows: any[]; var html = '';
-    html = html + '<html><head></head><body><style> #tblreport{background-color:red;border: solid;} tr td {padding:10px;} </style>'
+    html = html + '<html><head></head><body><style> #tblreport{background-color:red;} tr td {padding:10px;padding-top:0px} </style>'
     html = html + '<table id="tblreport"><thead><tr>'
     Columns.forEach(element => {
       html = html + '<td>' + element + '</td>'
