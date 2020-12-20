@@ -51,6 +51,10 @@ export class UserMenusComponent implements OnInit {
         }
       )
     }
+    else{
+      this.selectedmenus = [];
+      this.menuxusers=[];
+    }
   }
 
   onCheckboxChange(event) {

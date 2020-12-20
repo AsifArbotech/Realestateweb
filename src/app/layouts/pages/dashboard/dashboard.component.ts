@@ -13,7 +13,7 @@ import { Chart, ChartDataSets, ChartType , ChartOptions  } from 'chart.js';
 })
 export class DashboardComponent implements OnInit {
   
-  public dashboardListItems: Array<DashboardBox> = new Array<DashboardBox>();
+  public dashboardListItems: DashboardBox = new DashboardBox();
   public projectsListItems: Array<Project> = new Array<Project>();
   url = 'http://localhost:61352/api/Graph/GetAllGraphData';
   projectname: String = '';
@@ -131,7 +131,8 @@ export class DashboardComponent implements OnInit {
   getDashboardBox(){
     this.apiservice.getDashboardBoxdata().subscribe(
       (response: any) => {
-        this.dashboardListItems = response.result;
+        debugger;
+        this.dashboardListItems = response.result[0];
       },
       error => {
         console.log(error);
