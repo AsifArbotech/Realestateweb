@@ -28,8 +28,8 @@ export class ReportsComponent implements OnInit {
   public generateReport(Columns: any, Keys: any, Data: any) {
     debugger;
     var object: any; let temprows: any[]; var html = '';
-    html = html + '<html><head></head><body><style> #tblreport{background-color:red;} tr td {padding:10px;padding-top:0px} </style>'
-    html = html + '<table id="tblreport"><thead><tr>'
+    html = html + '<html><head><meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"><link href="/assets/css/Report.css" rel="stylesheet"/></head><body class="container">'
+    html = html + '<table id="tblreport" class="table table-striped"><thead><tr>'
     Columns.forEach(element => {
       html = html + '<td>' + element + '</td>'
     });
@@ -45,7 +45,7 @@ export class ReportsComponent implements OnInit {
       this.rows.push(temprows);
       html = html + '</tr>';
     }
-    html = html + '<tbody> </table><img width="300" height="86" src="http://www.arbotechsolutions.com/wp-content/uploads/2020/11/logo.png" class="" alt="" loading="lazy" data-pagespeed-url-hash="2054198886" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"><script> setTimeout(function () { window.print(); }, 1000);</script></body></html>';
+    html = html + '<tbody> </table><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script><script> setTimeout(function () { window.print(); }, 1000);</script></body></html>';
     if (this.rows.length > 0)
       setTimeout(() => {
         this.downloadAsPDF(html);

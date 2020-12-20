@@ -1,4 +1,5 @@
-#tblreport{
 
+thead tr td{
+   font-weight: 900;
+   font-size: 16px;
 }
-tr td {padding:10px;padding-top:0px} 
