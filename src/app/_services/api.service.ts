@@ -448,6 +448,11 @@ export class ApiService {
   getGraphdata(){
     return this.http.get(this.BASEURL + '/Graph/GetAllGraphData', this.getAuthHeadersJSON());
   }
+
+  getDashboardBoxdata(){
+    return this.http.get(this.BASEURL + '/Graph/GetAllDashboardBoxData', this.getAuthHeadersJSON());
+  }
+
   GetMenusbyUserID(userid) {
     return this.http.get(this.BASEURL + '/UserMenus/GetMenusByUserID?userid=' + userid, this.getAuthHeadersJSON());
   }

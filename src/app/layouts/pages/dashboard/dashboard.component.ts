@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../../_services/api.service';
 import { Project } from '../../../_models/project';
 import { Graph } from '../../../_models/graph';
+import { DashboardBox } from '../../../_models/dashboardbox';
 import { Chart, ChartDataSets, ChartType , ChartOptions  } from 'chart.js';
 
 @Component({
@@ -12,8 +13,11 @@ import { Chart, ChartDataSets, ChartType , ChartOptions  } from 'chart.js';
 })
 export class DashboardComponent implements OnInit {
   
+  public dashboardListItems: Array<DashboardBox> = new Array<DashboardBox>();
   public projectsListItems: Array<Project> = new Array<Project>();
   url = 'http://localhost:61352/api/Graph/GetAllGraphData';
+  projectname: String = '';
+  data2: DashboardBox [];
   data: Graph []; 
   barchart = []; 
   Projects = [] ; 
@@ -24,6 +28,8 @@ export class DashboardComponent implements OnInit {
               private apiservice:ApiService,) { }
 
   ngOnInit() {
+    this.getDashboardBox();
+    this.getProjectsList();
     this.httpClient.get(this.url).subscribe((re: any) => {  
       re.result.forEach(x => {  
         this.Projects.push(x.project);  
@@ -121,6 +127,18 @@ export class DashboardComponent implements OnInit {
       });  
     });  
   }  
+
+  getDashboardBox(){
+    this.apiservice.getDashboardBoxdata().subscribe(
+      (response: any) => {
+        this.dashboardListItems = response.result;
+      },
+      error => {
+        console.log(error);
+
+      }
+    )
+  }
 
   getProjectsList() {
     this.apiservice.getProjects().subscribe(

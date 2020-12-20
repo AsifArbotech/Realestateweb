@@ -68,6 +68,14 @@ export class LoginComponent implements OnInit {
         });
   }
 
+ // refresh():void{
+ //   //window.location.reload();
+ //   //this.router.navigate(['/OfflineChat']);
+ //   this.router.navigate(["/Dashboard"]).then(() => {
+ //     location.reload();
+ //   })
+ // }
+
   onNavigate(url: string) {
     this.router.navigateByUrl(url);
   }
