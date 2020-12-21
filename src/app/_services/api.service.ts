@@ -429,10 +429,11 @@ export class ApiService {
   }
 
   AddPaymentPay(PaymentPay) {
-    if (PaymentPay.paymentto = "Owner") {
+    debugger;
+    if (PaymentPay.paymentto == "Owner") {
       return this.http.post(this.BASEURL + '/PaymentPayables/AddPaymentPayOwner', PaymentPay, this.getAuthHeadersJSON());
     }
-    if (PaymentPay.paymentto = "Associate") {
+    if (PaymentPay.paymentto == "Associate") {
       return this.http.post(this.BASEURL + '/PaymentPayables/AddPaymentPayAss', PaymentPay, this.getAuthHeadersJSON());
     }
   }

@@ -25,17 +25,16 @@
                         </tr>
                       </thead>
                         <tbody>
-                        
-                          <tr>
-                            <td hidden></td>
-                            <td class="font-medium"></td>
-                            <td></td>
-                            <td></td>                            
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                          <tr *ngFor="let item of getPaymentPaylistItems()">
+                            <td hidden>{{item.paymentrecid}}</td>
+                            <td>{{item.createdon}}</td>
+                            <td>{{item.paymenttype}}</td>
+                            <td>{{item.projectname}}</td>
+                            <td>{{item.plotno}}</td>
+                            <td>{{item.ownername}}</td>                            
+                            <td>{{item.amount}}</td>
+                            <td>{{item.totalamount}}</td>
+                            <td>{{item.balanceamount}}</td>
                           </tr>
                         </tbody>
                     </table>
@@ -56,10 +55,10 @@
               <div class="row  clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                   <label>Payment To <strong>:</strong> </label>&nbsp;
-                    <input type="radio" name="options" value="Associate" [checked]='true' (click)="setradio('Associate')" [(ngModel)]="addPaymentPay.paymentto">&nbsp;
+                    <input type="radio" name="options" value="Associate"  (click)="setradio('Associate')" [(ngModel)]="addPaymentPay.paymentto">&nbsp;
                     <label>Associate</label>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="radio" name="options" value="Owner" (click)="setradio('Owner')" [(ngModel)]="addPaymentPay.paymentto">&nbsp;
+                    <input type="radio" name="options" value="Owner"  (click)="setradio('Owner')" [(ngModel)]="addPaymentPay.paymentto">&nbsp;
                     <label>Owner</label>
                 </div>
                       <input type="hidden" *ngIf="isSelected('Associate')" [(ngModel)]="addPaymentPay.paymentpayableassid" name="ID" #ID="ngModel">

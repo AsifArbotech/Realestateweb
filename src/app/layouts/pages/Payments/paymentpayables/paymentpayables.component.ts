@@ -6,7 +6,7 @@ import { Project } from '../../../../_models/project';
 import { Property } from '../../../../_models/property';
 import { Owner } from '../../../../_models/owners';
 import { Associate } from '../../../../_models/Associate';
-import { Payment , PaymentPay } from '../../../../_models/payments';
+import { Payment, PaymentPay } from '../../../../_models/payments';
 
 @Component({
   selector: 'app-paymentpayables',
@@ -67,6 +67,7 @@ export class PaymentPayablesComponent implements OnInit {
   }
 
   SavePaymentPay() {
+    debugger;
     if ((<HTMLInputElement>document.getElementById('Projectid')).value)
       this.addPaymentPay.projectid = this.projectsListItems.find(f => f.projectname == (<HTMLInputElement>document.getElementById('Projectid')).value).projectid;
     else {
@@ -74,23 +75,23 @@ export class PaymentPayablesComponent implements OnInit {
       return;
     }
 
-      if(this.isSelected == null){
-    if ((<HTMLInputElement>document.getElementById('Ownerid')).value)
-      this.addPaymentPay.ownerid = this.ownerListItems.find(f => f.ownername == (<HTMLInputElement>document.getElementById('Ownerid')).value).ownerid;
-    else {
-      alert("Please select Owner from list");
-    return true;
+    if (this.selectedLink == "Owner") {
+      if ((<HTMLInputElement>document.getElementById('Ownerid')).value)
+        this.addPaymentPay.ownerid = this.ownerListItems.find(f => f.ownername == (<HTMLInputElement>document.getElementById('Ownerid')).value).ownerid;
+      else {
+        alert("Please select Owner from list");
+        return true;
+      }
     }
-  }
 
-  if(this.isSelected == null){
-    if ((<HTMLInputElement>document.getElementById('Associateid')).value)
-      this.addPaymentPay.consultantid = this.AssociateList.find(f => f.name == (<HTMLInputElement>document.getElementById('Associateid')).value).id;
-    else {
-      alert("Please select Associate form list");
-    return true;
+    if (this.selectedLink == "Associate") {
+      if ((<HTMLInputElement>document.getElementById('Associateid')).value)
+        this.addPaymentPay.consultantid = this.AssociateList.find(f => f.name == (<HTMLInputElement>document.getElementById('Associateid')).value).id;
+      else {
+        alert("Please select Associate form list");
+        return true;
+      }
     }
-  }
 
     if ((<HTMLInputElement>document.getElementById('Propertyid')).value)
       this.addPaymentPay.unitid = this.propertyListItems.find(f => f.plotno == (<HTMLInputElement>document.getElementById('Propertyid')).value).id;
@@ -102,18 +103,18 @@ export class PaymentPayablesComponent implements OnInit {
     this.addPaymentPay.totalamount = Number(this.addPaymentPay.totalamount);
     //this.addPaymentPay.percentage = Number(this.addPaymentPay.percentage);
     this.apiservice.AddPaymentPay(this.addPaymentPay)
-    .subscribe((response: any) => {
-      if (response) {
-        if (response.responseCode == 0) {
-          this.notifier.notify("error", response.responseMsg);
-        } else if (response.responseCode == 1) {
-          this.notifier.notify("success", response.responseMsg);
+      .subscribe((response: any) => {
+        if (response) {
+          if (response.responseCode == 0) {
+            this.notifier.notify("error", response.responseMsg);
+          } else if (response.responseCode == 1) {
+            this.notifier.notify("success", response.responseMsg);
+          }
+          else {
+            this.notifier.notify("error", "Something went wrong");
+          }
         }
-        else {
-          this.notifier.notify("error", "Something went wrong");
-        }
-      }
-    })
+      })
   }
 
   getCustomerslist() {
@@ -167,22 +168,20 @@ export class PaymentPayablesComponent implements OnInit {
       (response: any) => {
         this.ownerListItems = response
       },
-        error => {
-          console.log(error);
-        })
+      error => {
+        console.log(error);
+      })
   }
 
-  private selectedLink: string="Associate";        
-  
-  setradio(e: string): void   
-  {  
-    this.selectedLink = e;       
-  }  
-    isSelected(name: string): boolean   
-  {  
-        if (!this.selectedLink) { // if no radio button is selected, always return false so every nothing is shown  
-            return false;  
-  }  
-        return (this.selectedLink === name); // if current radio button is selected, return true, else return false  
-  }  
+  private selectedLink: string = "Associate";
+
+  setradio(e: string): void {
+    this.selectedLink = e;
+  }
+  isSelected(name: string): boolean {
+    if (!this.selectedLink) { // if no radio button is selected, always return false so every nothing is shown  
+      return false;
+    }
+    return (this.selectedLink === name); // if current radio button is selected, return true, else return false  
+  }
 }
