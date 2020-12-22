@@ -43,6 +43,10 @@ export class DashboardComponent implements OnInit {
          // label: this.Projects,
           datasets: [  
             {  
+              barPercentage: 0.3,
+              //barThickness: 6,
+              //maxBarThickness: 8,
+              //minBarLength: 2,
               label: "Projects",
               data: this.Projects,  
               borderColor: '#3cba9f',  
@@ -62,6 +66,7 @@ export class DashboardComponent implements OnInit {
               fill: true  
             },
             {  
+              barPercentage: 0.3,
               label: "Properties",
               data: this.Properties,  
               borderColor: '#3cba9f',  
@@ -81,6 +86,7 @@ export class DashboardComponent implements OnInit {
               fill: true  
             },
             {  
+              barPercentage: 0.3,
               label: "Bookings",
               data: this.Bokings,  
               borderColor: '#3cba9f',  
@@ -91,6 +97,7 @@ export class DashboardComponent implements OnInit {
               fill: true  
             },
             {  
+              barPercentage: 0.3,
               label: "Sales Invoices",
               data: this.SalesInvoices,  
               borderColor: '#3cba9f',  
@@ -117,7 +124,7 @@ export class DashboardComponent implements OnInit {
           },  
           scales: {  
             xAxes: [{  
-              display: true  
+              display: true
             }],  
             yAxes: [{  
               display: true  
@@ -131,7 +138,6 @@ export class DashboardComponent implements OnInit {
   getDashboardBox(){
     this.apiservice.getDashboardBoxdata().subscribe(
       (response: any) => {
-        debugger;
         this.dashboardListItems = response.result[0];
       },
       error => {

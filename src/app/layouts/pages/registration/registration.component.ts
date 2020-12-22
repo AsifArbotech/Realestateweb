@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../../../_services/api.service';
 import { Registration } from '../../../_models/registration';
-import { NotifierService } from 'angular-notifier';
+import { Property } from '../../../_models/property';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registration',
@@ -14,16 +15,19 @@ export class RegistrationComponent implements OnInit {
 
   public regListItems: Array<Registration>;
   public registrationItems: Registration=new Registration();
+  public propertyListItems: Array<Property> = new Array<Property>();
   model: any = {};
   page = 1;
   pageSize = 10;
 
   constructor(private router: Router,
     private apiservice: ApiService,
-    private notifier: NotifierService,) { }
+    private toastr: ToastrService,
+    private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getRegistrations();
+    this.getPropertyList();
   }
 
   getRegistrations() {
@@ -33,7 +37,7 @@ export class RegistrationComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
   }
@@ -51,22 +55,44 @@ export class RegistrationComponent implements OnInit {
   }
 
   SaveRegistration() {
-    
+    if ((<HTMLInputElement>document.getElementById('Propertyid')).value)
+    this.registrationItems.unitid = this.propertyListItems.find(f => f.plotno == (<HTMLInputElement>document.getElementById('Propertyid')).value).id;
+  else {
+    alert("Please select Property form list");
+    return;
+  }
     this.registrationItems.regvalue = Number(this.registrationItems.regvalue);
     this.apiservice.AddRegistration(this.registrationItems)
       .subscribe((response: any) => {
         if (response) {
           if (response.responseCode == 0) {
-            this.notifier.notify("error", response.responseMsg);
+            this.toastr.error(response.responseMsg);
           } else if (response.responseCode == 1) {
-            this.notifier.notify("success", response.responseMsg);
-            this.getRegistrations();
+            this.modalService.dismissAll();
+            this.toastr.success(response.responseMsg);
           }
           else {
-            this.notifier.notify("error", "Something went wrong");
+            this.toastr.error('Something went wrong');
           }
+          this.getRegistrations();
         }
       })
   }
 
+  getPropertyList() {
+    this.apiservice.getProperties().subscribe(
+      (response: any) => {
+        this.propertyListItems = response
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  openModal(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    }, (reason) => {
+    });
+  };
 }

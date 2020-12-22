@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../../../_services/api.service';
 import { AddUser } from '../../../_models/user';
-import { NotifierService } from 'angular-notifier';
+import { ToastrService } from 'ngx-toastr';
 import {ReportsComponent} from '../../Reports/reports/reports.component'
 
 @Component({
@@ -22,7 +22,7 @@ export class UsersComponent implements OnInit {
 
   constructor(private router: Router,
     private apiservice: ApiService,
-    private notifier: NotifierService,
+    private toastr: ToastrService,
     private modalService: NgbModal,
     private Report:ReportsComponent
     ) {
@@ -43,7 +43,7 @@ export class UsersComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.success('Something went wrong');
       }
     )
   }
@@ -67,7 +67,7 @@ export class UsersComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.success('Something went wrong');
       }
     )
   }
@@ -78,15 +78,15 @@ export class UsersComponent implements OnInit {
       .subscribe((response: any) => {
         if (response) {
           if (response.responseCode == 0) {
-            this.notifier.notify("error", response.responseMsg);
+            this.toastr.error(response.responseMsg);
           } else if (response.responseCode == 1) {
             this.modalService.dismissAll();
-            this.notifier.notify("success", response.responseMsg);
+            this.toastr.success(response.responseMsg);
             this.clearfields();
             this.getUsers();
           }
           else {
-            this.notifier.notify("error", "Something went wrong");
+            this.toastr.success('Something went wrong');
           }
         }
       })
@@ -98,9 +98,9 @@ export class UsersComponent implements OnInit {
         .subscribe((response: any) => {
           if (response) {
             if (response.responseCode == 0) {
-              this.notifier.notify("error", response.responseMsg);
+              this.toastr.error(response.responseMsg);
             } else if (response.responseCode == 1) {
-              this.notifier.notify("success", response.responseMsg);
+              this.toastr.success(response.responseMsg);
               this.getUsers();
             }
           }
@@ -114,10 +114,10 @@ export class UsersComponent implements OnInit {
         this.usersListItems = response
         if (response) {
           if (response.responseCode == 0) {
-            this.notifier.notify("error", response.responseMsg);
+            this.toastr.error(response.responseMsg);
           } else if (response.responseCode == 1) {
             this.modalService.dismissAll();
-            this.notifier.notify("success", response.responseMsg);
+            this.toastr.success(response.responseMsg);
             this.getUsers();
           }
         }

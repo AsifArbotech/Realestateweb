@@ -5,7 +5,8 @@ import { Project } from '../../../../_models/project';
 import { Property } from '../../../../_models/property';
 import { Associate } from '../../../../_models/Associate';
 import { Salesenquire, Sales } from '../../../../_models/Sales';
-import { NotifierService } from 'angular-notifier';
+import { ToastrService } from 'ngx-toastr';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import {ReportsComponent} from '../../../Reports/reports/reports.component'
 
 
@@ -27,8 +28,9 @@ export class SalesenquireComponent implements OnInit {
 
   constructor(
     private apiservice: ApiService,
-    private notifier: NotifierService,
-    private reports:ReportsComponent
+    private toastr: ToastrService,
+    private reports:ReportsComponent,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
@@ -58,7 +60,7 @@ export class SalesenquireComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
   }
@@ -109,12 +111,13 @@ export class SalesenquireComponent implements OnInit {
       .subscribe((response: any) => {
         if (response) {
           if (response.responseCode == 0) {
-            this.notifier.notify("error", response.responseMsg);
+            this.toastr.error(response.responseMsg);
           } else if (response.responseCode == 1) {
-            this.notifier.notify("success", response.responseMsg);
+            this.modalService.dismissAll();
+            this.toastr.success(response.responseMsg);
           }
           else {
-            this.notifier.notify("error", "Something went wrong");
+            this.toastr.error('Something went wrong');
           }
           this.clearfields();
           this.getSalesEnquireList();
@@ -140,7 +143,7 @@ export class SalesenquireComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
 
@@ -177,11 +180,11 @@ export class SalesenquireComponent implements OnInit {
         .subscribe((response: any) => {
           if (response) {
             if (response.responseCode == 0) {
-              this.notifier.notify("error", response.responseMsg);
+              this.toastr.error(response.responseMsg);
             } else if (response.responseCode == 1) {
-              this.notifier.notify("success", response.responseMsg);
-              this.getSalesEnquireList();
+              this.toastr.success(response.responseMsg);
             }
+            this.getSalesEnquireList();
           }
         })
     }
@@ -233,10 +236,10 @@ export class SalesenquireComponent implements OnInit {
     )
   }
 
-  //openModal(content) {
-  //  this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-  //  }, (reason) => {
-  //  });
-  //};
+  openModal(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    }, (reason) => {
+    });
+  };
 
 }

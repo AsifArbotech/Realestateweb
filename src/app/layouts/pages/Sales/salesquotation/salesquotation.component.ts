@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../../_services/api.service';
 import { Salesenquire, Sales, SalesInvoice, SalesQuotation } from '../../../../_models/Sales';
-import { NotifierService } from 'angular-notifier';
+import { ToastrService } from 'ngx-toastr';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-salesquotation',
@@ -24,7 +25,8 @@ export class SalesquotationComponent implements OnInit {
    enquireno = '';
 
   constructor( private apiservice: ApiService,
-               private notifier: NotifierService) { }
+               private toastr: ToastrService,
+               private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getSalesQuotationList();
@@ -38,7 +40,7 @@ export class SalesquotationComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.success('Something went wrong');
       }
     )
   }
@@ -66,12 +68,13 @@ export class SalesquotationComponent implements OnInit {
       .subscribe((response: any) => {
         if (response) {
           if (response.responseCode == 0) {
-            this.notifier.notify("error", response.responseMsg);
+            this.toastr.error(response.responseMsg);
           } else if (response.responseCode == 1) {
-            this.notifier.notify("success", response.responseMsg);
+            this.modalService.dismissAll();
+            this.toastr.success(response.responseMsg);
           }
           else {
-            this.notifier.notify("error", "Something went wrong");
+            this.toastr.success('Something went wrong');
           }
           this.salesQuotation = new SalesQuotation();
           this.getSalesQuotationList();
@@ -98,7 +101,7 @@ export class SalesquotationComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.success('Something went wrong');
       }
     )
 
@@ -111,9 +114,9 @@ export class SalesquotationComponent implements OnInit {
         .subscribe((response: any) => {
           if (response) {
             if (response.responseCode == 0) {
-              this.notifier.notify("error", response.responseMsg);
+              this.toastr.error(response.responseMsg);
             } else if (response.responseCode == 1) {
-              this.notifier.notify("success", response.responseMsg);
+              this.toastr.success(response.responseMsg);
               this.getSalesQuotationList();
             }
           }
@@ -159,5 +162,9 @@ export class SalesquotationComponent implements OnInit {
     this.enquireno = '';
   }
 
-
+  openModal(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    }, (reason) => {
+    });
+  };
 }

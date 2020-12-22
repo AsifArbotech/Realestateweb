@@ -14,12 +14,24 @@ export class PaymentRec{
     modifiedon: Date;
 }
 
-export class PaymentPay{
+export class PaymentPayOwner{
     paymentpayableownerid: Number;
-    paymentpayableassid:Number;
-    paymentto: Number;
-    consultantid: Number;
+    paymentto: string;
     ownerid: Number;
+    projectid: Number;
+    unitid: Number;
+    amountpaid: Number;
+    totalamount: Number;
+    createdby: string;
+    createdon: Date;
+    modifiedby: string;
+    modifiedon: Date;
+}
+
+export class PaymentPayAss{
+    paymentpayableassid:Number;
+    paymentto: string;
+    consultantid: Number;
     projectid: Number;
     unitid: Number;
     amountpaid: Number;

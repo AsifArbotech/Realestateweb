@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../../../../_services/api.service';
+import { ToastrService } from 'ngx-toastr';
 import { Bookings, BookingCancellation } from '../../../../_models/Booking';
-import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-bookingcancellation',
@@ -23,7 +24,8 @@ export class BookingcancellationComponent implements OnInit {
    bookingno = '';
 
   constructor(private apiservice: ApiService,
-              private notifier: NotifierService) { }
+              private toastr: ToastrService,
+              private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getBookingCancList();
@@ -37,7 +39,7 @@ export class BookingcancellationComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
   }
@@ -77,12 +79,13 @@ export class BookingcancellationComponent implements OnInit {
       .subscribe((response: any) => {
         if (response) {
           if (response.responseCode == 0) {
-            this.notifier.notify("error", response.responseMsg);
+            this.toastr.error(response.responseMsg);
           } else if (response.responseCode == 1) {
-            this.notifier.notify("success", response.responseMsg);
+            this.modalService.dismissAll();
+            this.toastr.success(response.responseMsg);
           }
           else {
-            this.notifier.notify("error", "Something went wrong");
+            this.toastr.error('Something went wrong');
           }
           this.Bookingcanc = new BookingCancellation();
           this.getBookingCancList();
@@ -109,7 +112,7 @@ export class BookingcancellationComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
 
@@ -122,9 +125,9 @@ export class BookingcancellationComponent implements OnInit {
         .subscribe((response: any) => {
           if (response) {
             if (response.responseCode == 0) {
-              this.notifier.notify("error", response.responseMsg);
+              this.toastr.error(response.responseMsg);
             } else if (response.responseCode == 1) {
-              this.notifier.notify("success", response.responseMsg);
+              this.toastr.success(response.responseMsg);
               this.getBookingCancList();
             }
           }
@@ -155,5 +158,11 @@ export class BookingcancellationComponent implements OnInit {
     this.customername = '';
     this.bookingno = '';
   }
+
+  openModal(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    }, (reason) => {
+    });
+  };
 
 }

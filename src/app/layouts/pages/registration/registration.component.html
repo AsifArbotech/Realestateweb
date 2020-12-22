@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">                
-                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light" data-toggle="modal" data-target="#AddRegistration" type="button">
+                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light" (click)="openModal(AddRegistration)" type="button">
                     <i class="zmdi zmdi-plus"></i> Add New Registration 
                 </button>   
             </div>
@@ -15,6 +15,7 @@
                           <tr>
                             <td hidden>Registration Id</td>
                             <td>Registration No</td>
+                            <td>Plot No</td>
                             <td class="font-medium">Reg Date</td>
                             <td>Sro</td>
                             <td>Reg Name</td>
@@ -25,7 +26,8 @@
                           <tbody>
                             <tr *ngFor="let item of getRegistrationlistItems()">
                               <td hidden>{{item.regid}}</td>
-                              <td >{{item.regdocno}}</td>
+                              <td>{{item.regdocno}}</td>
+                              <td>{{item.plotno}}</td>
                               <td class="font-medium">{{item.regdate | date:'MM/dd/yyyy'}}</td>
                               <td>{{item.sro}}</td>
                               <td>{{item.regname}}</td>
@@ -40,58 +42,65 @@
     </div>
 </section>
 
-<div id="AddRegistration" class="modal fade">
-	<div class="modal-dialog modal-login">
-		<div class="modal-content">
-				<div class="modal-header text-center l-cyan" style="display: block !important;">				
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title text-center">Add New Registration</h4>
-				</div>
-				    <div class="modal-body">
-              <div class="row  clearfix">
-                      <input type="hidden" [(ngModel)]="registrationItems.regid" name="ID" #ID="ngModel">                
-                          <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                              <label> Registration No(Govn)</label>
-                              <input type="text" class="form-control" placeholder="Registration No(Govn)" [(ngModel)]="registrationItems.regdocno" name="CREATEDON" required="required">
-                            </div>
-                          </div>
-                          <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                              <label> Registration Date</label>
-                              <input type="text" class="form-control" placeholder="Registration Date" [(ngModel)]="registrationItems.regdate" name="AMOUNT" required="required">
-                            </div>
-                          </div>
-                          <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                              <label> Registration Name</label>
-                              <input type="text" class="form-control" placeholder="Registration Date" [(ngModel)]="registrationItems.regname" name="AMOUNT" required="required">
-                            </div>
-                          </div>
-                          <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                              <label>Sro</label>
-                              <input type="text" class="form-control" placeholder="Sro" [(ngModel)]="registrationItems.sro" name="AMOUNT" required="required">
-                            </div>
-                          </div>
-                          <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                              <label>Registration value(rs)</label>
-                              <input type="text" class="form-control" placeholder="Registration value(rs)" [(ngModel)]="registrationItems.regvalue" name="TOTALAMOUNT" required="required">
-                            </div>
-                          </div>
-                          <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="form-group">
-                              <label>Remark</label>
-                              <input type="text" class="form-control" placeholder="Remark" [(ngModel)]="registrationItems.remark" name="PERCENTAGE" required="required">
-                            </div>
-                          </div>
-                    </div>
-                  <div class="row clearfix">
-                    <div class="col-lg-4 col-md-4 col-sm-12">
-                      <button type="button" class="btn btn-primary btn-round" (click)="SaveRegistration()">Save</button>
+<ng-template #AddRegistration let-modal>
+  <div class="modal-header text-center l-cyan" style="display: block !important;">				
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title text-center">Add New Registration</h4>
+</div>
+    <div class="modal-body">
+      <div class="row  clearfix">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="form-group">
+              <label>Property</label>
+              <input type="text" class="form-control" list="Propertylist" id="Propertyid" placeholder="Property" required="required">
+              <datalist id="Propertylist">
+                <option *ngFor="let item of propertyListItems" [data-property]="item.id">{{item.plotno}}</option>
+              </datalist>
+          </div>
+        </div>
+              <input type="hidden" [(ngModel)]="registrationItems.regid" name="ID" #ID="ngModel">                
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <label> Registration No(Govn)</label>
+                      <input type="text" class="form-control" placeholder="Registration No(Govn)" [(ngModel)]="registrationItems.regdocno" name="CREATEDON" required="required">
                     </div>
                   </div>
-		</div>
-	</div>
-</div>    
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <label> Registration Date</label>
+                      <input type="text" class="form-control" placeholder="Registration Date" [(ngModel)]="registrationItems.regdate" name="AMOUNT" required="required">
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <label> Registration Name</label>
+                      <input type="text" class="form-control" placeholder="Registration Date" [(ngModel)]="registrationItems.regname" name="AMOUNT" required="required">
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <label>Sro</label>
+                      <input type="text" class="form-control" placeholder="Sro" [(ngModel)]="registrationItems.sro" name="AMOUNT" required="required">
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <label>Registration value(rs)</label>
+                      <input type="text" class="form-control" placeholder="Registration value(rs)" [(ngModel)]="registrationItems.regvalue" name="TOTALAMOUNT" required="required">
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="form-group">
+                      <label>Remark</label>
+                      <input type="text" class="form-control" placeholder="Remark" [(ngModel)]="registrationItems.remark" name="PERCENTAGE" required="required">
+                    </div>
+                  </div>
+            </div>
+          <div class="row clearfix">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <button type="button" class="btn btn-primary btn-round" (click)="SaveRegistration()">Save</button>
+            </div>
+          </div>
+</div>   
+</ng-template>
+				

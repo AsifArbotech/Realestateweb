@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NotifierService } from 'angular-notifier';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../../../_services/api.service';
 import { Contract,ContractTerminate } from '../../../../_models/contract'
 
@@ -21,7 +22,8 @@ export class ContractterminateComponent implements OnInit {
   contractno = '';
 
   constructor(private apiservice: ApiService,
-              private notifier: NotifierService) { }
+              private toastr: ToastrService,
+              private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getContractTerList();
@@ -35,7 +37,7 @@ export class ContractterminateComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
   }
@@ -62,12 +64,13 @@ export class ContractterminateComponent implements OnInit {
       .subscribe((response: any) => {
         if (response) {
           if (response.responseCode == 0) {
-            this.notifier.notify("error", response.responseMsg);
+            this.toastr.error(response.responseMsg);
           } else if (response.responseCode == 1) {
-            this.notifier.notify("success", response.responseMsg);
+            this.modalService.dismissAll();
+            this.toastr.success(response.responseMsg);
           }
           else {
-            this.notifier.notify("error", "Something went wrong");
+            this.toastr.error('Something went wrong');
           }
           this.TerminateContract = new ContractTerminate();
           this.getContractTerList();
@@ -107,4 +110,10 @@ export class ContractterminateComponent implements OnInit {
       }
     }
   }
+
+  openModal(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    }, (reason) => {
+    });
+  };
 }

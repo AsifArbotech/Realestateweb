@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AssociateTransaction } from '../../../../_models/Associate';
 import { ApiService } from '../../../../_services/api.service';
-import { NotifierService } from 'angular-notifier';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-associatetran',
@@ -15,7 +15,7 @@ export class AssociateTranComponent implements OnInit {
   pageSize = 10;
 
   constructor(private apiservice: ApiService,
-    private notifier: NotifierService) { }
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getAssTransactionList();
@@ -28,7 +28,7 @@ export class AssociateTranComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.success('Something went wrong');
       }
     )
   }

@@ -1,6 +1,8 @@
 
 export class Registration {
-    regid: 0;
+    regid: Number;
+    unitid: Number;
+    plotno: String;
     regdocno: Number;
     regdate: Date;
     sro: string;

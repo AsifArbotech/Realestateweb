@@ -18,7 +18,7 @@ export class AssociateTransaction{
   asstransactionno: Number;
   paymentpayableid: Number;
   consultantid: Number;
-  name: string;
+  consultantname: string;
   projectid: Number;
   projectname: null;
   unitid: Number;

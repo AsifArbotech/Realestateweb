@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../../_services/api.service';
-import { NotifierService } from 'angular-notifier';
+import { ToastrService } from 'ngx-toastr';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Customers } from '../../../../_models/Customers';
 import { Project } from '../../../../_models/project';
 import { Property } from '../../../../_models/property';
@@ -25,7 +26,8 @@ export class PaymentReceivablesComponent implements OnInit {
   customername: String = '';
 
   constructor(private apiservice: ApiService,
-    private notifier: NotifierService) { }
+    private toastr: ToastrService,
+    private modalService: NgbModal) { }
 
   ngOnInit(): void {
       this.getPaymentRecList();
@@ -41,7 +43,7 @@ export class PaymentReceivablesComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');    
       }
     )
   }
@@ -87,12 +89,13 @@ export class PaymentReceivablesComponent implements OnInit {
     .subscribe((response: any) => {
       if (response) {
         if (response.responseCode == 0) {
-          this.notifier.notify("error", response.responseMsg);
+          this.toastr.error(response.responseMsg);
         } else if (response.responseCode == 1) {
-          this.notifier.notify("success", response.responseMsg);
+          this.modalService.dismissAll();
+          this.toastr.success(response.responseMsg);
         }
         else {
-          this.notifier.notify("error", "Something went wrong");
+          this.toastr.error('Something went wrong');    
         }
         this.clearfields();
         this.getPaymentRecList();
@@ -141,4 +144,10 @@ export class PaymentReceivablesComponent implements OnInit {
     (<HTMLInputElement>document.getElementById('Propertyid')).value = "";
     this.addPaymentRec = new PaymentRec();
   }
+
+  openModal(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    }, (reason) => {
+    });
+  };
 }

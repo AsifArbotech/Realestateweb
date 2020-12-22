@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../../../_services/api.service';
 import { Dispute } from '../../../_models/dispute'
-import { NotifierService } from 'angular-notifier';
+import { ToastrService } from 'ngx-toastr';
 import { Property } from '../../../_models/property';
 
 @Component({
@@ -20,7 +21,8 @@ export class DisputeComponent implements OnInit {
   unit: String = '';
 
   constructor(private apiservice: ApiService,
-    private notifier: NotifierService) { }
+    private toastr: ToastrService,
+    private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getDisputeList();
@@ -34,7 +36,7 @@ export class DisputeComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
   }
@@ -63,12 +65,13 @@ export class DisputeComponent implements OnInit {
     .subscribe((response: any) => {
       if (response) {
         if (response.responseCode == 0) {
-          this.notifier.notify("error", response.responseMsg);
+          this.toastr.error(response.responseMsg);
         } else if (response.responseCode == 1) {
-          this.notifier.notify("success", response.responseMsg);
+          this.modalService.dismissAll();
+          this.toastr.success(response.responseMsg);
         }
         else {
-          this.notifier.notify("error", "Something went wrong");
+          this.toastr.error('Something went wrong');
         }
         this.clearfields();
         this.getDisputeList();
@@ -88,7 +91,7 @@ export class DisputeComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
 
@@ -101,9 +104,10 @@ export class DisputeComponent implements OnInit {
         .subscribe((response: any) => {
           if (response) {
             if (response.responseCode == 0) {
-              this.notifier.notify("error", response.responseMsg);
+              this.toastr.error(response.responseMsg);
             } else if (response.responseCode == 1) {
-              this.notifier.notify("success", response.responseMsg);
+              this.modalService.dismissAll();
+              this.toastr.success(response.responseMsg);
               this.getDisputeList();
             }
           }
@@ -134,4 +138,9 @@ export class DisputeComponent implements OnInit {
       this.getPropertyList();
   }
 
+  openModal(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    }, (reason) => {
+    });
+  };
 }

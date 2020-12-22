@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">                
-                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light" data-toggle="modal" data-target="#AddPaymentPay" type="button">
+                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light" (click)="openModal(AddPaymentPay)" type="button">
                     <i class="zmdi zmdi-plus"></i> Add Payment Payables 
                 </button>   
             </div>
@@ -19,22 +19,22 @@
                           <td>Project</td>
                           <td>Property</td>
                           <td>Owner</td>
+                          <td>Associate</td>
                           <td>Amount</td>
                           <td>Total Amount</td>
-                          <td>Balance Amount</td>
                         </tr>
                       </thead>
                         <tbody>
                           <tr *ngFor="let item of getPaymentPaylistItems()">
                             <td hidden>{{item.paymentrecid}}</td>
-                            <td>{{item.createdon}}</td>
+                            <td>{{item.createdon | date:'MM/dd/yyyy'}}</td>
                             <td>{{item.paymenttype}}</td>
                             <td>{{item.projectname}}</td>
                             <td>{{item.plotno}}</td>
-                            <td>{{item.ownername}}</td>                            
+                            <td>{{item.ownername}}</td>     
+                            <td>{{item.name}}</td>                            
                             <td>{{item.amount}}</td>
                             <td>{{item.totalamount}}</td>
-                            <td>{{item.balanceamount}}</td>
                           </tr>
                         </tbody>
                     </table>
@@ -44,97 +44,110 @@
     </div>
 </section>
 
-<div id="AddPaymentPay" class="modal fade">
-	<div class="modal-dialog modal-login">
-		<div class="modal-content">
-				<div class="modal-header text-center l-cyan" style="display: block !important;">				
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title text-center">Add Payment Payables</h4>
-				</div>
-				    <div class="modal-body">
-              <div class="row  clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                  <label>Payment To <strong>:</strong> </label>&nbsp;
-                    <input type="radio" name="options" value="Associate"  (click)="setradio('Associate')" [(ngModel)]="addPaymentPay.paymentto">&nbsp;
+<ng-template #AddPaymentPay let-modal>
+  <div class="modal-header text-center l-cyan" style="display: block !important;">				
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title text-center">Add Payment Payables</h4>
+</div>
+    <div class="modal-body">
+      <div class="row  clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <label>Payment To <strong>:</strong> </label>&nbsp;
+            <input type="radio" name="options" value="Associate"  (click)="setradio('Associate')" [(ngModel)]="addPaymentPayass.paymentto">&nbsp;
+            <label>Associate</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="options" value="Owner"  (click)="setradio('Owner')" [(ngModel)]="addPaymentPayowner.paymentto">&nbsp;
+            <label>Owner</label>
+        </div>
+              <input type="hidden" *ngIf="isSelected('Associate')" [(ngModel)]="addPaymentPayass.paymentpayableassid" name="ID" #ID="ngModel">
+              <input type="hidden" *ngIf="isSelected('Owner')" [(ngModel)]="addPaymentPayowner.paymentpayableownerid" name="ID" #ID="ngModel">
+              <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="isSelected('Associate')">
+                <div class="form-group">
                     <label>Associate</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="radio" name="options" value="Owner"  (click)="setradio('Owner')" [(ngModel)]="addPaymentPay.paymentto">&nbsp;
-                    <label>Owner</label>
-                </div>
-                      <input type="hidden" *ngIf="isSelected('Associate')" [(ngModel)]="addPaymentPay.paymentpayableassid" name="ID" #ID="ngModel">
-                      <input type="hidden" *ngIf="isSelected('Owner')" [(ngModel)]="addPaymentPay.paymentpayableownerid" name="ID" #ID="ngModel">
-                      <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="isSelected('Associate')">
-                        <div class="form-group">
-                            <label>Associate</label>
-                            <input type="text" class="form-control" list="Associatelist" id="Associateid" placeholder="Associate Name" required="required">
-                          </div>
-                          <datalist id="Associatelist">
-                            <option *ngFor="let item of AssociateList" [data-associate]="item.id">{{item.name}}</option>
-                          </datalist>
-                      </div>
-                      <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="isSelected('Owner')">
-                      <div class="form-group">
-                        <label>Owner</label>
-                        <input type="text" class="form-control" list="OwnerList" id="Ownerid" placeholder="Owner Name" required="required">
-                        <datalist id="OwnerList">
-                            <option *ngFor="let item of ownerListItems" [data-owner]="item.ownerid">{{item.ownername}}</option>
+                    <input type="text" class="form-control" list="Associatelist" id="Associateid" placeholder="Associate Name" required="required">
+                  </div>
+                  <datalist id="Associatelist">
+                    <option *ngFor="let item of AssociateList" [data-associate]="item.id">{{item.name}}</option>
+                  </datalist>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="isSelected('Owner')">
+              <div class="form-group">
+                <label>Owner</label>
+                <input type="text" class="form-control" list="OwnerList" id="Ownerid" placeholder="Owner Name" required="required">
+                <datalist id="OwnerList">
+                    <option *ngFor="let item of ownerListItems" [data-owner]="item.ownerid">{{item.ownername}}</option>
+                </datalist>
+              </div>
+            </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">  
+                        <label>Projects</label>
+                        <input type="text" class="form-control" list="Projectlist" id="Projectid" placeholder="Projects" required="required">
+                        <datalist id="Projectlist">
+                          <option *ngFor="let item of projectsListItems" [data-property]="item.id">{{item.projectname}}</option>
                         </datalist>
-                      </div>
-                    </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">  
-                                <label>Projects</label>
-                                <input type="text" class="form-control" list="Projectlist" id="Projectid" placeholder="Projects" required="required">
-                                <datalist id="Projectlist">
-                                  <option *ngFor="let item of projectsListItems" [data-property]="item.id">{{item.projectname}}</option>
-                                </datalist>
-                                </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Property</label>
-                                <input type="text" class="form-control" list="Propertylist" id="Propertyid" placeholder="Property" required="required">
-                                <datalist id="Propertylist">
-                                    <option *ngFor="let item of propertyListItems" [data-property]="item.id">{{item.plotno}}</option>
-                                </datalist>
-                            </div>
-                        </div>
-                          <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                              <label> Date</label>
-                              <input type="text" class="form-control" placeholder="Date" [(ngModel)]="addPaymentPay.createdon" name="CREATEDON" required="required">
-                            </div>
-                          </div>
-                          <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="isSelected('Owner')">
-                            <div class="form-group">
-                              <label> Amount</label>
-                              <input type="text" class="form-control" placeholder="Amount" [(ngModel)]="addPaymentPay.amountpaid" name="AMOUNT" required="required">
-                            </div>
-                          </div>
-                          <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="isSelected('Associate')">
-                            <div class="form-group">
-                              <label>Fixed Amount</label>
-                              <input type="text" class="form-control" placeholder="Amount" [(ngModel)]="addPaymentPay.amountpaid" name="AMOUNT" required="required">
-                            </div>
-                          </div>
-                          <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                              <label>Total Amount</label>
-                              <input type="text" class="form-control" placeholder="Total Amount" [(ngModel)]="addPaymentPay.totalamount" name="TOTALAMOUNT" required="required">
-                            </div>
-                          </div>
-                          <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="isSelected('Associate')">
-                            <div class="form-group">
-                              <label>Percentage %</label>
-                              <input type="text" class="form-control" style="width: 45%;" placeholder="Percentage" [(ngModel)]="addPaymentPay.percentage" name="PERCENTAGE" required="required">
-                            </div>
-                          </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label>Property</label>
+                        <input type="text" class="form-control" list="Propertylist" id="Propertyid" placeholder="Property" required="required">
+                        <datalist id="Propertylist">
+                            <option *ngFor="let item of propertyListItems" [data-property]="item.id">{{item.plotno}}</option>
+                        </datalist>
                     </div>
-                  <div class="row clearfix">
-                    <div class="col-lg-4 col-md-4 col-sm-12">
-                      <button type="button" class="btn btn-primary btn-round" (click)="SavePaymentPay()">Save</button>
+                </div>
+                  <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="isSelected('Associate')">
+                    <div class="form-group">
+                      <label> Date</label>
+                      <input type="text" class="form-control" placeholder="Date" [(ngModel)]="addPaymentPayass.createdon" name="CREATEDON" required="required">
                     </div>
                   </div>
-		</div>
-	</div>
-</div>    
+                  <div class="col-lg-6 col-md-6 col-sm-12"  *ngIf="isSelected('Owner')">
+                    <div class="form-group">
+                      <label> Date</label>
+                      <input type="text" class="form-control" placeholder="Date" [(ngModel)]="addPaymentPayowner.createdon" name="CREATEDON" required="required">
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="isSelected('Owner')">
+                    <div class="form-group">
+                      <label> Amount</label>
+                      <input type="text" class="form-control" placeholder="Amount" [(ngModel)]="addPaymentPayowner.amountpaid" name="AMOUNT" required="required">
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="isSelected('Associate')">
+                    <div class="form-group">
+                      <label>Fixed Amount</label>
+                      <input type="text" class="form-control" placeholder="Amount" [(ngModel)]="addPaymentPayass.amountpaid" name="AMOUNT" required="required">
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="isSelected('Owner')">
+                    <div class="form-group">
+                      <label>Total Amount</label>
+                      <input type="text" class="form-control" placeholder="Total Amount" [(ngModel)]="addPaymentPayowner.totalamount" name="TOTALAMOUNT" required="required">
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-12"  *ngIf="isSelected('Associate')">
+                    <div class="form-group">
+                      <label>Total Amount</label>
+                      <input type="text" class="form-control" placeholder="Total Amount" [(ngModel)]="addPaymentPayass.totalamount" name="TOTALAMOUNT" required="required">
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="isSelected('Associate')">
+                    <div class="form-group">
+                      <label>Percentage %</label>
+                      <input type="text" class="form-control" style="width: 45%;" placeholder="Percentage" [(ngModel)]="addPaymentPayass.percentage" name="PERCENTAGE" required="required">
+                    </div>
+                  </div>
+            </div>
+          <div class="row clearfix">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <button type="button" class="btn btn-primary btn-round" (click)="SavePaymentPay()">Save</button>
+            </div>
+          </div>
+    </div>
+</ng-template>
+
+
+				
+   

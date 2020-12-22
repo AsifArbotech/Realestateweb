@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../../../../_services/api.service';
 import { Contract , ContractRenewal } from '../../../../_models/contract';
-import { NotifierService } from 'angular-notifier';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-contractrenewal',
@@ -22,7 +23,8 @@ export class ContractrenewalComponent implements OnInit {
   contractno = '';
 
   constructor(private apiservice: ApiService,
-              private notifier: NotifierService) { }
+              private toastr: ToastrService,
+              private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getContractRenList();
@@ -36,7 +38,7 @@ export class ContractrenewalComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
   }
@@ -63,12 +65,13 @@ export class ContractrenewalComponent implements OnInit {
       .subscribe((response: any) => {
         if (response) {
           if (response.responseCode == 0) {
-            this.notifier.notify("error", response.responseMsg);
+            this.toastr.error(response.responseMsg);
           } else if (response.responseCode == 1) {
-            this.notifier.notify("success", response.responseMsg);
+            this.modalService.dismissAll();
+            this.toastr.success(response.responseMsg);
           }
           else {
-            this.notifier.notify("error", "Something went wrong");
+            this.toastr.error('Something went wrong');
           }
           this.contractren = new ContractRenewal();
           this.getContractRenList();
@@ -108,4 +111,10 @@ export class ContractrenewalComponent implements OnInit {
       this.date = '';
       this.contractno = '';    
   }
+
+  openModal(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    }, (reason) => {
+    });
+  };
 }

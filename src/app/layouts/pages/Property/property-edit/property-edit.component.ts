@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../../../_services/api.service';
 import { Property } from '../../../../_models/property'
-import { NotifierService } from 'angular-notifier';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-property-edit',
@@ -16,7 +16,7 @@ export class PropertyEditComponent implements OnInit {
 
   constructor(private router: Router,
              private apiservice: ApiService,
-             private notifier: NotifierService, private activatedRoute: ActivatedRoute) { 
+             private toastr: ToastrService, private activatedRoute: ActivatedRoute) { 
               
               let params: any = this.activatedRoute.queryParams;
               this.propertyItems.id = +params.getValue("id").id;
@@ -34,7 +34,7 @@ export class PropertyEditComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
   }
@@ -92,12 +92,12 @@ export class PropertyEditComponent implements OnInit {
     .subscribe((response:any)=>{
       if (response) {
         if(response.ResponseCode == 0){
-          this.notifier.notify("error", response.ResponseMessage);
+          this.toastr.error(response.responseMsg);
         }else if(response.ResponseCode == 1){
-          this.notifier.notify("success", response.ResponseMessage);
+          this.toastr.success(response.responseMsg);
         }
       else{
-          this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
         }
       } 
    })

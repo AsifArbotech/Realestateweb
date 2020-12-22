@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../_services/api.service';
 import { Roles } from '../../../_models/roles';
-import { NotifierService } from 'angular-notifier';
+import { ToastrService } from 'ngx-toastr';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ReportsComponent } from '../../Reports/reports/reports.component'
 
 @Component({
@@ -19,7 +20,9 @@ export class RolesComponent implements OnInit {
 
   constructor(private router: Router,
     private apiservice: ApiService,
-    private notifier: NotifierService, private reports: ReportsComponent) {
+    private toastr: ToastrService, 
+    private reports: ReportsComponent,
+    private modalService: NgbModal) {
     this.clearfields();
   }
 
@@ -48,7 +51,7 @@ export class RolesComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
   }
@@ -70,13 +73,14 @@ export class RolesComponent implements OnInit {
       .subscribe((response: any) => {
         if (response) {
           if (response.ResponseCode == 0) {
-            this.notifier.notify("error", response.ResponseMessage);
+            this.toastr.error(response.responseMsg);
           } else if (response.ResponseCode == 1) {
-            this.notifier.notify("success", response.ResponseMessage);
+            this.modalService.dismissAll();
+            this.toastr.success(response.responseMsg);
             this.clearfields();
           }
           else {
-            this.notifier.notify("error", "Something went wrong");
+            this.toastr.error('Something went wrong');
           }
         }
       })
@@ -88,9 +92,9 @@ export class RolesComponent implements OnInit {
         .subscribe((response: any) => {
           if (response) {
             if (response.ResponseCode == 0) {
-              this.notifier.notify("error", response.ResponseMessage);
+              this.toastr.error(response.responseMsg);
             } else if (response.ResponseCode == 1) {
-              this.notifier.notify("success", response.ResponseMessage);
+              this.toastr.success(response.responseMsg);
             }
           }
         })
@@ -104,4 +108,9 @@ export class RolesComponent implements OnInit {
     }
   }
 
+  openModal(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    }, (reason) => {
+    });
+  };
 }

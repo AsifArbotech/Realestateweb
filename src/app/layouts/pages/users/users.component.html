@@ -55,11 +55,7 @@
 <!--Login modal-->
 
 <ng-template #addUserModel let-modal>
-    <div class="modal-dialog modal-login">
-		<div class="modal-content">
-			<form>
 				<div class="modal-header text-center l-cyan" style="display: block !important;">				
-                   
                     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
                     <h4 class="modal-title text-center">Add User</h4>
 				</div>
@@ -95,15 +91,9 @@
                    
 					<input type="submit" class="btn btn-primary btn-round" (click)="postUser()" value="Save">
 				</div>
-			</form>
-		</div>
-	</div>
 </ng-template>
 
 <ng-template #editUserModel let-modal>
-        <div class="modal-dialog modal-login">
-            <div class="modal-content">
-                <form>
                     <div class="modal-header text-center l-cyan" style="display: block !important;">				
                         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
                         <h4 class="modal-title text-center">Edit User</h4>
@@ -137,9 +127,6 @@
                     <div class="modal-footer justify-content-between">
                         <input type="submit" class="btn btn-primary btn-round" (click)=updateUser() value="Save">
                     </div>
-                </form>
-            </div>
-    </div>
     <div class="modal-footer">
     </div>
   </ng-template>

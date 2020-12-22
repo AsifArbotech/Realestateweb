@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../../_services/api.service';
 import { OwnerTransaction } from '../../../../_models/owners';
-import { NotifierService } from 'angular-notifier';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-ownertransaction',
@@ -14,7 +14,7 @@ export class OwnerTransactionComponent implements OnInit {
   pageSize = 10;
 
   constructor(private apiservice: ApiService,
-    private notifier: NotifierService) { }
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getOwnerTransactionList();
@@ -27,7 +27,7 @@ export class OwnerTransactionComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.success('Something went wrong');
       }
     )
   }

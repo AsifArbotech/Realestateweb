@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">                
-                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light"  data-toggle="modal" data-target="#AddContract" type="button">
+                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light" (click)="openModal(AddContract)" type="button">
                     <i class="zmdi zmdi-plus"></i> Add Agreement
                 </button>
             </div>
@@ -39,7 +39,7 @@
                             <td>{{item.customername}}</td>
                             <td>{{item.plotno}}</td>
                             <td>{{item.noofinstallments}}</td>
-                            <td>{{(item.status==1) ? 'Open' : (item.status==0) ? 'Terminated' : ''}}</td>
+                            <td>{{(item.status==1) ? 'Open' : (item.status==0) ? 'Terminated' : (item.status==2) ? 'Renewed':''}}</td>
                             <!-- <td>
                                 <button class="btn btn-primary btn-icon btn-round " type="button" (click)="EditContract(item.contractid)" data-toggle="modal" data-target="#AddContract">
                                     <i class="zmdi zmdi-edit" ></i>
@@ -60,71 +60,68 @@
     </div>
 </section>
 
-<!--Add Booking Transfer Modal Start-->
-<div id="AddContract" class="modal fade">
-	<div class="modal-dialog modal-login">
-		<div class="modal-content">
-				<div class="modal-header text-center l-cyan" style="display: block !important;">				
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title text-center">{{ActionType}}</h4>
-				</div>
-				<div class="modal-body">
-                    <div class="row  clearfix">
-                        <div class="col-lg-12 col-md-12 col-sm-12" *ngIf="ActionType!='Add Agreement'">
-                            <label>Agreement Code :{{Contract.contractcode}}</label>
-                        </div>
-                          <input type="hidden" [(ngModel)]="Contract.contractid" name="ID" #ID="ngModel" />
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control" [(ngModel)]="Contract.name" placeholder="Name" required="required">
-                            </div>                          
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Start-Date</label>
-                                <input type="email" class="form-control" [(ngModel)]="Contract.startdate" placeholder="Start-Date" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label>End-Date</label>
-                                <input type="text" class="form-control" [(ngModel)]="Contract.enddate" placeholder="End-Date" required="required">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Agreement Date</label>
-                                <input type="email" class="form-control" [(ngModel)]="Contract.contractdate" placeholder="Agreement Date" required="required">
-                            </div>
-                                <div class="form-group">
-                                  <label>Customer Name</label>
-                                  <input type="text" class="form-control" list="customerlist" id="Customerid" placeholder="Customer Name" required="required">
-                                  <datalist id="customerlist">
-                                    <option *ngFor="let item of customerslist" [data-id]="item.id">{{item.name}}</option>
-                                  </datalist>
-                                </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Property</label>
-                                <input type="text" class="form-control" list="Propertylist" id="Propertyid" placeholder="Property" required="required">
-                                <datalist id="Propertylist">
-                                    <option *ngFor="let item of propertyListItems" [data-property]="item.id">{{item.plotno}}</option>
-                                </datalist>
-                            </div>
-                        </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>No of installments</label>
-                                <input type="text" class="form-control" [(ngModel)]="Contract.noofinstallments" placeholder="No.Of Installments" required="required">
-                            </div>
-                        </div>
-                    </div>					
-                    <div class="row clearfix">
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <button type="button" class="btn btn-primary btn-round" (click)="SaveContract()">Save</button>
-                        </div>
-                    </div>
+<ng-template #AddContract let-modal>
+    <div class="modal-header text-center l-cyan" style="display: block !important;">				
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title text-center">{{ActionType}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row  clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12" *ngIf="ActionType!='Add Agreement'">
+                <label>Agreement Code :{{Contract.contractcode}}</label>
+            </div>
+              <input type="hidden" [(ngModel)]="Contract.contractid" name="ID" #ID="ngModel" />
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="Contract.name" placeholder="Name" required="required">
+                </div>                          
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label>Start-Date</label>
+                    <input type="email" class="form-control" [(ngModel)]="Contract.startdate" placeholder="Start-Date" required="required">
                 </div>
-		</div>
-	</div>
-</div>    
+                <div class="form-group">
+                    <label>End-Date</label>
+                    <input type="text" class="form-control" [(ngModel)]="Contract.enddate" placeholder="End-Date" required="required">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label>Agreement Date</label>
+                    <input type="email" class="form-control" [(ngModel)]="Contract.contractdate" placeholder="Agreement Date" required="required">
+                </div>
+                    <div class="form-group">
+                      <label>Customer Name</label>
+                      <input type="text" class="form-control" list="customerlist" id="Customerid" placeholder="Customer Name" required="required">
+                      <datalist id="customerlist">
+                        <option *ngFor="let item of customerslist" [data-id]="item.id">{{item.name}}</option>
+                      </datalist>
+                    </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label>Property</label>
+                    <input type="text" class="form-control" list="Propertylist" id="Propertyid" placeholder="Property" required="required">
+                    <datalist id="Propertylist">
+                        <option *ngFor="let item of propertyListItems" [data-property]="item.id">{{item.plotno}}</option>
+                    </datalist>
+                </div>
+            </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label>No of installments</label>
+                    <input type="text" class="form-control" [(ngModel)]="Contract.noofinstallments" placeholder="No.Of Installments" required="required">
+                </div>
+            </div>
+        </div>					
+        <div class="row clearfix">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <button type="button" class="btn btn-primary btn-round" (click)="SaveContract()">Save</button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+				   

@@ -15,7 +15,7 @@ export class Property{
   notessalesteam: string;
   ownerid: number;
   plotdimension: string;
-  facing: string;
+  facing: Number;
   facingsite: string;
   roadsite: string;
   cornerplot: number;

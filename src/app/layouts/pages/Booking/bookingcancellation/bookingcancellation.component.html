@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">                
-                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light" (click)="GetAllSuggesstion()" data-toggle="modal" data-target="#AddBookingCanc" type="button">
+                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light" (click)="GetAllSuggesstion()" (click)="openModal(addBookingCancModel)" type="button">
                     <i class="zmdi zmdi-plus"></i> Add Booking Cancellation
                 </button>    
             </div>
@@ -38,7 +38,7 @@
                             <td>{{item.refundamount}}</td>
                             <!--<td>{{(item.status==0) ? 'Cancelled' : ''}}</td>-->
                             <td>
-                                <button class="btn btn-primary btn-icon btn-round " type="button" (click)="EditBookingCanc(item.bookingcancid)" data-toggle="modal" data-target="#AddBookingCanc">
+                                <button class="btn btn-primary btn-icon btn-round " type="button" (click)="EditBookingCanc(item.bookingcancid)" (click)="openModal(addBookingCancModel)">
                                     <i class="zmdi zmdi-edit" ></i>
                                 </button>
                                 <button class="btn btn-primary btn-icon btn-round " type="button" (click)="DeleteBookingCanc(item.bookingcancid)">
@@ -54,62 +54,61 @@
     </div>
 </section>
 
-<div id="AddBookingCanc" class="modal fade">
-	<div class="modal-dialog modal-login">
-		<div class="modal-content">
-            <div class="modal-header text-center l-cyan" style="display: block !important;">				
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title text-center">{{ActionType}}</h4>
-            </div>
-				<div class="modal-body">
-                    <div class="row  clearfix">
-                        <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="ActionType!='Add Booking Cancellation'">
-                            <label>Booking Canc No :{{Bookingcanc.bookingcancno}}</label>
+<ng-template #addBookingCancModel let-modal>
+    <div class="modal-content">
+        <div class="modal-header text-center l-cyan" style="display: block !important;">				
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title text-center">{{ActionType}}</h4>
+        </div>
+            <div class="modal-body">
+                <div class="row  clearfix">
+                    <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="ActionType!='Add Booking Cancellation'">
+                        <label>Booking Canc No :{{Bookingcanc.bookingcancno}}</label>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="form-group">
+                      <input type="hidden" [(ngModel)]="Bookingcanc.bookingcancid" name="ID" #ID="ngModel" />
+                      <label>Booking No.</label>
+                      <input type="text" class="form-control" list="Bookingcanclist" id="bookingno" value="{{bookingno}}" (keyup)="getbookingdetails($event)" placeholder="Booking No" required="required">
+                      <datalist id="Bookingcanclist">
+                        <option *ngFor="let item of Bookingcanclist">{{item.bookingno}}</option>
+                      </datalist>
                     </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12">
+                  </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="form-group">
-                          <input type="hidden" [(ngModel)]="Bookingcanc.bookingcancid" name="ID" #ID="ngModel" />
-                          <label>Booking No.</label>
-                          <input type="text" class="form-control" list="Bookingcanclist" id="bookingno" value="{{bookingno}}" (keyup)="getbookingdetails($event)" placeholder="Booking No" required="required">
-                          <datalist id="Bookingcanclist">
-                            <option *ngFor="let item of Bookingcanclist">{{item.bookingno}}</option>
-                          </datalist>
+                            <label>Unit</label>
+                            <input type="text" class="form-control" id="Propertyid" placeholder="Unit" value="{{unit}}" required="required" disabled>
                         </div>
-                      </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Unit</label>
-                                <input type="text" class="form-control" id="Propertyid" placeholder="Unit" value="{{unit}}" required="required" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label>Customer Name</label>
-                                <input type="text" class="form-control" id="Customerid" placeholder="Customer Name" value="{{customername}}" required="required" disabled>
-                            </div>
+                        <div class="form-group">
+                            <label>Customer Name</label>
+                            <input type="text" class="form-control" id="Customerid" placeholder="Customer Name" value="{{customername}}" required="required" disabled>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <input type="hidden" [(ngModel)]="Bookingcanc.bookingid" name="ID" #ID="ngModel" />
-                                <label>Project</label>
-                                <input type="text" class="form-control" id="Projectid" placeholder="Project" value="{{projectname}}" required="required" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label>Cancellation Date</label>
-                                <input type="email" class="form-control" [(ngModel)]="Bookingcanc.createdon" name="CREATEDON" #CREATEDON="ngModel" placeholder="Cancellation Date" required="required">
-                            </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <input type="hidden" [(ngModel)]="Bookingcanc.bookingid" name="ID" #ID="ngModel" />
+                            <label>Project</label>
+                            <input type="text" class="form-control" id="Projectid" placeholder="Project" value="{{projectname}}" required="required" disabled>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Refund Amount</label>
-                                <input type="email" class="form-control" [(ngModel)]="Bookingcanc.amount" name="AMOUNT" #AMOUNT="ngModel" placeholder="Refund Amount" required="required">
-                            </div>
+                        <div class="form-group">
+                            <label>Cancellation Date</label>
+                            <input type="email" class="form-control" [(ngModel)]="Bookingcanc.createdon" name="CREATEDON" #CREATEDON="ngModel" placeholder="Cancellation Date" required="required">
                         </div>
-                    </div>					
-                    <div class="row clearfix">
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <button type="button" class="btn btn-primary btn-round" (click)="SaveBookingCanc()">Save</button>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label>Refund Amount</label>
+                            <input type="email" class="form-control" [(ngModel)]="Bookingcanc.amount" name="AMOUNT" #AMOUNT="ngModel" placeholder="Refund Amount" required="required">
                         </div>
+                    </div>
+                </div>					
+                <div class="row clearfix">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <button type="button" class="btn btn-primary btn-round" (click)="SaveBookingCanc()">Save</button>
                     </div>
                 </div>
-		</div>
-	</div>
-</div>    
+            </div>
+    </div>
+</ng-template>
+		   

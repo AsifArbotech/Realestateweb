@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../../../../_services/api.service';
 import { Bookings , AddBooking } from '../../../../_models/Booking';
-import { NotifierService } from 'angular-notifier';
+import { ToastrService } from 'ngx-toastr';
 import { Customers } from '../../../../_models/Customers';
 import { Project } from '../../../../_models/project';
 import { Property } from '../../../../_models/property';
@@ -30,7 +31,8 @@ export class CreatebookingComponent implements OnInit {
    associatename: String = '';
 
   constructor( private apiservice: ApiService,
-    private notifier: NotifierService) {
+    private toastr: ToastrService,
+    private modalService: NgbModal) {
     }
 
   ngOnInit(): void {
@@ -48,7 +50,7 @@ export class CreatebookingComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
   }
@@ -146,12 +148,13 @@ export class CreatebookingComponent implements OnInit {
     .subscribe((response: any) => {
       if (response) {
         if (response.responseCode == 0) {
-          this.notifier.notify("error", response.responseMsg);
+          this.toastr.error(response.responseMsg);
         } else if (response.responseCode == 1) {
-          this.notifier.notify("success", response.responseMsg);
+          this.modalService.dismissAll();
+          this.toastr.success(response.responseMsg);
         }
         else {
-          this.notifier.notify("error", "Something went wrong");
+          this.toastr.error('Something went wrong');
         }
         this.clearfields();
         this.getBookingList();
@@ -174,7 +177,7 @@ export class CreatebookingComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
 
@@ -187,9 +190,9 @@ export class CreatebookingComponent implements OnInit {
         .subscribe((response: any) => {
           if (response) {
             if (response.responseCode == 0) {
-              this.notifier.notify("error", response.responseMsg);
+              this.toastr.error(response.responseMsg);
             } else if (response.responseCode == 1) {
-              this.notifier.notify("success", response.responseMsg);
+              this.toastr.success(response.responseMsg);
               this.getBookingList();
             }
           }
@@ -219,6 +222,12 @@ export class CreatebookingComponent implements OnInit {
     if (this.AssociateList.length == 0)
       this.getAssociateList();
   }
+
+  openModal(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    }, (reason) => {
+    });
+  };
 
   //getenquiredetails(event: KeyboardEvent) {
   //  if (parseInt((event.target as HTMLInputElement).value) != NaN) {

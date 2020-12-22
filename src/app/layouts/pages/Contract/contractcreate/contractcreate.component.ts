@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../../../../_services/api.service';
 import { Contract , AddContract } from '../../../../_models/contract';
 import { Property } from '../../../../_models/property';
 import { Customers } from '../../../../_models/Customers';
-import { NotifierService } from 'angular-notifier';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-contractcreate',
@@ -24,7 +25,8 @@ export class ContractcreateComponent implements OnInit {
    unit: String = '';
 
   constructor(private apiservice: ApiService,
-              private notifier: NotifierService) { }
+    private toastr: ToastrService,
+    private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getContractList();
@@ -33,14 +35,13 @@ export class ContractcreateComponent implements OnInit {
   }
 
   getContractList() {
-    debugger;
     this.apiservice.getContractList().subscribe(
       (response: any) => {
         this.ContractList = response;
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
   }
@@ -92,7 +93,7 @@ export class ContractcreateComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
     this.ActionType = "Edit Agreement";
@@ -120,12 +121,13 @@ export class ContractcreateComponent implements OnInit {
     .subscribe((response: any) => {
       if (response) {
         if (response.responseCode == 0) {
-          this.notifier.notify("error", response.responseMsg);
+          this.toastr.error(response.responseMsg);
         } else if (response.responseCode == 1) {
-          this.notifier.notify("success", response.responseMsg);
+          this.modalService.dismissAll();
+          this.toastr.success(response.responseMsg);
         }
         else {
-          this.notifier.notify("error", "Something went wrong");
+          this.toastr.error('Something went wrong');
         }
         this.clearfields();
         this.getContractList();
@@ -139,9 +141,9 @@ export class ContractcreateComponent implements OnInit {
         .subscribe((response: any) => {
           if (response) {
             if (response.responseCode == 0) {
-              this.notifier.notify("error", response.responseMsg);
+              this.toastr.error(response.responseMsg);
             } else if (response.responseCode == 1) {
-              this.notifier.notify("success", response.responseMsg);
+              this.toastr.success(response.responseMsg);
               this.getContractList();
             }
           }
@@ -163,4 +165,10 @@ export class ContractcreateComponent implements OnInit {
     if (this.customerslist.length == 0)
       this.getCustomerslist();
   }
+
+  openModal(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    }, (reason) => {
+    });
+  };
 }

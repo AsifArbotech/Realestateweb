@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../_services/api.service';
-import { Pdc } from '../../../_models/Pdc'
-import { NotifierService } from 'angular-notifier';
+import { Pdc } from '../../../_models/Pdc';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { Customers } from '../../../_models/Customers';
 import { Property } from '../../../_models/property';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-pdc',
@@ -25,7 +25,7 @@ export class PdcComponent implements OnInit {
   customername: String = '';
 
   constructor(private apiservice: ApiService,
-              private notifier: NotifierService,
+              private toastr: ToastrService,
               private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -42,7 +42,7 @@ export class PdcComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');    
       }
     )
   }
@@ -77,13 +77,13 @@ export class PdcComponent implements OnInit {
     .subscribe((response: any) => {
       if (response) {
         if (response.responseCode == 0) {
-          this.notifier.notify("error", response.responseMsg);
+          this.toastr.error(response.responseMsg);
         } else if (response.responseCode == 1) {
-          this.notifier.notify("success", response.responseMsg);
           this.modalService.dismissAll();
+          this.toastr.success(response.responseMsg);
         }
         else {
-          this.notifier.notify("error", "Something went wrong");
+          this.toastr.error('Something went wrong');    
         }
         this.clearfields();
         this.getPdcList();
@@ -105,7 +105,7 @@ export class PdcComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');    
       }
     )
 
@@ -118,9 +118,9 @@ export class PdcComponent implements OnInit {
         .subscribe((response: any) => {
           if (response) {
             if (response.responseCode == 0) {
-              this.notifier.notify("error", response.responseMsg);
+              this.toastr.error(response.responseMsg);
             } else if (response.responseCode == 1) {
-              this.notifier.notify("success", response.responseMsg);
+              this.toastr.success(response.responseMsg);
               this.getPdcList();
             }
           }
@@ -165,4 +165,10 @@ export class PdcComponent implements OnInit {
     if (this.propertyListItems.length == 0)
       this.getPropertyList();
   }
+
+  openModal(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    }, (reason) => {
+    });
+  };
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Department } from '../../../_models/department'
 import { ApiService } from '../../../_services/api.service';
-import { NotifierService } from 'angular-notifier';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-departmet',
@@ -19,7 +19,7 @@ export class DepartmetComponent implements OnInit {
 
   constructor(private router: Router,
               private apiservice:ApiService,
-              private notifier: NotifierService) {
+              private toastr: ToastrService) {
                 this.clearfields();
                }
 
@@ -35,7 +35,7 @@ export class DepartmetComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
   }
@@ -58,7 +58,7 @@ export class DepartmetComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
   }
@@ -69,13 +69,13 @@ export class DepartmetComponent implements OnInit {
     .subscribe((response:any)=>{
       if (response) {
         if(response.ResponseCode == 0){
-          this.notifier.notify("error", response.ResponseMessage);
+          this.toastr.error(response.responseMsg);
         }else if(response.ResponseCode == 1){
-          this.notifier.notify("success", response.ResponseMessage);
+          this.toastr.success(response.responseMsg);
           this.clearfields();
         }
       else{
-          this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
         }
       } 
    })
@@ -88,9 +88,9 @@ export class DepartmetComponent implements OnInit {
     .subscribe((response:any)=>{
       if (response) {
         if(response.ResponseCode == 0){
-          this.notifier.notify("error", response.ResponseMessage);
+          this.toastr.error(response.responseMsg);
         }else if(response.ResponseCode == 1){
-          this.notifier.notify("success", response.ResponseMessage);
+          this.toastr.success(response.responseMsg);
     }
   }
   })
@@ -103,9 +103,9 @@ updateDept(id){
         this.departmentsListItems=response
         if (response) {
           if(response.ResponseCode == 0){
-            this.notifier.notify("error", response.ResponseMessage);
-          }else if(response.ResponseCode == 1){
-            this.notifier.notify("success", response.ResponseMessage);
+            this.toastr.error(response.responseMsg);
+          } else if (response.responseCode == 1) {
+            this.toastr.success(response.responseMsg);
       }
     }
     })

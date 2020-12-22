@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">                
-                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light"  data-toggle="modal" data-target="#AddContractRen" type="button">
+                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light"  (click)="openModal(AddContractRen)" type="button">
                     <i class="zmdi zmdi-plus"></i> Add Agreement Renewal
                 </button>
                                
@@ -21,7 +21,7 @@
                                 <td>Customer Name</td>
                                 <td>Renewal Date</td>
                                 <td>Remark</td>
-                                <td>View</td>
+                               <!-- <td>View</td>--> 
                             </tr>
                         </thead>
                         <tbody>
@@ -34,7 +34,7 @@
                             <td>{{item.renewaldate | date:'MM/dd/yyyy'}}</td>
                             <td>{{item.notes}}</td>
                             <!--<td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>-->
-                            <td>
+                            <!--<td>
                                 <button class="btn btn-primary btn-icon btn-round " type="button">
                                     <i class="zmdi zmdi-edit" ></i>
                                 </button>
@@ -44,7 +44,7 @@
                                 <button class="btn btn-primary btn-icon btn-round " type="button"  data-toggle="modal" data-target="#PreviewProject">
                                     <i class="zmdi zmdi-eye" ></i>
                                 </button>
-                            </td>
+                            </td>-->
                         </tr>
                         </tbody>
                     </table>
@@ -54,78 +54,75 @@
     </div>
 </section>
 
-<div id="AddContractRen" class="modal fade">
-	<div class="modal-dialog modal-login">
-		<div class="modal-content">
-				<div class="modal-header text-center l-cyan" style="display: block !important;">				
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title text-center">{{ActionType}}</h4>
-				</div>
-				<div class="modal-body">
-                    <div class="row  clearfix">
-                        <div class="col-lg-12 col-md-12 col-sm-12" *ngIf="ActionType!='Add Contract Renewal'">
-                            <label>Contract Renewal No:{{contractren.contractrenewalno}}</label>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="form-group">
-                                <input type="hidden" [(ngModel)]="contractren.contractrenewalid" name="ID" #ID="ngModel" />
-                                <label>Agreement No.</label>
-                                <input type="text" class="form-control" list="allcontractlist" id="contractcode"
-                                     value="{{contractno}}" (keyup)="getcontractdetails($event)" placeholder="Agreement No" required="required">
-                                <datalist id="allcontractlist">
-                                    <option *ngFor="let item of allcontractlist">{{item.contractcode}}</option>
-                                </datalist>     
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Customer Name</label>
-                                <input type="text" class="form-control" id="Customerid" placeholder="Customer Name"
-                                    value="{{customername}}" required="required" disabled>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Property</label>
-                                <input type="text" class="form-control" id="Propertyid" placeholder="Property" value="{{unit}}"
-                                    required="required" disabled>
-                            </div>
-                        </div>
-                         <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Agreement Date</label>
-                                <input type="email" class="form-control" placeholder="Contract Date" value="{{date}}" required="required" disabled>
-                            </div>
-                        </div>
-                        <!--<div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="form-group">
-                              <input type="hidden" [(ngModel)]="contractren.contractrenewalid" name="ID" #ID="ngModel" />
-                              <label>Contract Code.</label>
-                              <input type="text" class="form-control" list="contractlist" id="contractcode" value="{{contractcode}}" (keyup)="getcontractdetails($event)" placeholder="Contract Code" required="required">
-                              <datalist id="contractlist">
-                                <option *ngFor="let item of ContractList">{{item.contractcode}}</option>
-                              </datalist>
-                            </div>
-                          </div>-->
-                          <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Renewal Date</label>
-                                <input type="email" class="form-control" placeholder="Renewal Date" [(ngModel)]="contractren.renewaldate" required="required">
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="form-group">
-                                <label>Remark</label>
-                                <input type="text" class="form-control" [(ngModel)]="contractren.notes" placeholder="Notes" required="required">
-                            </div>
-                        </div>
-                    </div>					
-                    <div class="row clearfix">
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <button type="button" class="btn btn-primary btn-round" (click)="Savecontractren()">Save</button>
-                        </div>
-                    </div>
+<ng-template #AddContractRen let-modal>
+    <div class="modal-header text-center l-cyan" style="display: block !important;">				
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title text-center">{{ActionType}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row  clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12" *ngIf="ActionType!='Add Contract Renewal'">
+                <label>Contract Renewal No:{{contractren.contractrenewalno}}</label>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <input type="hidden" [(ngModel)]="contractren.contractrenewalid" name="ID" #ID="ngModel" />
+                    <label>Agreement No.</label>
+                    <input type="text" class="form-control" list="allcontractlist" id="contractcode"
+                         value="{{contractno}}" (keyup)="getcontractdetails($event)" placeholder="Agreement No" required="required">
+                    <datalist id="allcontractlist">
+                        <option *ngFor="let item of allcontractlist">{{item.contractcode}}</option>
+                    </datalist>     
                 </div>
-		</div>
-	</div>
-</div>   
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label>Customer Name</label>
+                    <input type="text" class="form-control" id="Customerid" placeholder="Customer Name"
+                        value="{{customername}}" required="required" disabled>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label>Property</label>
+                    <input type="text" class="form-control" id="Propertyid" placeholder="Property" value="{{unit}}"
+                        required="required" disabled>
+                </div>
+            </div>
+             <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label>Agreement Date</label>
+                    <input type="email" class="form-control" placeholder="Contract Date" value="{{date}}" required="required" disabled>
+                </div>
+            </div>
+            <!--<div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="form-group">
+                  <input type="hidden" [(ngModel)]="contractren.contractrenewalid" name="ID" #ID="ngModel" />
+                  <label>Contract Code.</label>
+                  <input type="text" class="form-control" list="contractlist" id="contractcode" value="{{contractcode}}" (keyup)="getcontractdetails($event)" placeholder="Contract Code" required="required">
+                  <datalist id="contractlist">
+                    <option *ngFor="let item of ContractList">{{item.contractcode}}</option>
+                  </datalist>
+                </div>
+              </div>-->
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label>Renewal Date</label>
+                    <input type="email" class="form-control" placeholder="Renewal Date" [(ngModel)]="contractren.renewaldate" required="required">
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label>Remark</label>
+                    <input type="text" class="form-control" [(ngModel)]="contractren.notes" placeholder="Notes" required="required">
+                </div>
+            </div>
+        </div>					
+        <div class="row clearfix">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <button type="button" class="btn btn-primary btn-round" (click)="Savecontractren()">Save</button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+				  

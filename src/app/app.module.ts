@@ -5,6 +5,8 @@ import { NotifierModule } from "angular-notifier";
 import customNotifierOptions from './notifier.config';
 import { FormsModule } from '@angular/forms';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr'
 
 import { AuthenticationService } from './_services/authentication.service';
 import { ApiService } from './_services/api.service';
@@ -64,10 +66,17 @@ import { UserMenusComponent } from './layouts/pages/user-menus/user-menus.compon
     AppRoutingModule,
     RoutingModule,
     HttpClientModule,
-    NotifierModule.withConfig(customNotifierOptions),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 1000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates:true,
+      progressAnimation: 'increasing',
+      progressBar:true,
+    }),
+    //NotifierModule.withConfig(customNotifierOptions),
     FormsModule,
     NgbModule,
-    //NgbModal,
   ],
   providers: [
     AppConfig,

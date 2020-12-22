@@ -5,7 +5,8 @@ import { Project } from '../../../../_models/project';
 import { Property } from '../../../../_models/property';
 import { Associate } from '../../../../_models/Associate';
 import { Salesenquire, Sales, SalesInvoice } from '../../../../_models/Sales';
-import { NotifierService } from 'angular-notifier';
+import { ToastrService } from 'ngx-toastr';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class SalesinvoiceComponent implements OnInit {
 
   constructor(
     private apiservice: ApiService,
-    private notifier: NotifierService
+    private toastr: ToastrService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
@@ -44,7 +46,7 @@ export class SalesinvoiceComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
   }
@@ -72,12 +74,13 @@ export class SalesinvoiceComponent implements OnInit {
       .subscribe((response: any) => {
         if (response) {
           if (response.responseCode == 0) {
-            this.notifier.notify("error", response.responseMsg);
+            this.toastr.error(response.responseMsg);
           } else if (response.responseCode == 1) {
-            this.notifier.notify("success", response.responseMsg);
+            this.modalService.dismissAll();
+            this.toastr.success(response.responseMsg);
           }
           else {
-            this.notifier.notify("error", "Something went wrong");
+            this.toastr.error('Something went wrong');
           }
           this.clearfields();
           this.getSalesInvoiceList();
@@ -105,7 +108,7 @@ export class SalesinvoiceComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
 
@@ -147,9 +150,9 @@ export class SalesinvoiceComponent implements OnInit {
         .subscribe((response: any) => {
           if (response) {
             if (response.responseCode == 0) {
-              this.notifier.notify("error", response.responseMsg);
+              this.toastr.error(response.responseMsg);
             } else if (response.responseCode == 1) {
-              this.notifier.notify("success", response.responseMsg);
+              this.toastr.success(response.responseMsg);
               this.getSalesInvoiceList();
             }
           }
@@ -171,6 +174,10 @@ export class SalesinvoiceComponent implements OnInit {
       
   }
 
-
+  openModal(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    }, (reason) => {
+    });
+  };
 
 }

@@ -37,9 +37,9 @@
                      </div>
                    </div>
                    <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Site Units</label>
+                     <label  class="col-sm-4 col-form-label">Size Units</label>
                      <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="model.siteunits" #siteunits="ngModel" placeholder="Site Units">
+                       <input type="text" class="form-control" [(ngModel)]="model.siteunits" #siteunits="ngModel" placeholder="Site Units">/Sq. Yards
                      </div>
                    </div>
                    <div class="form-group row">
@@ -56,6 +56,13 @@
                      <label  class="col-sm-4 col-form-label">Facing</label>
                      <div class="col-sm-8">
                        <input type="text" class="form-control" [(ngModel)]="model.facing" #facing="ngModel" placeholder="Facing">
+                       <select class="form-control" [(ngModel)]="model.facing" #facing>
+                        <option value="">Select Option</option>
+                        <option value="0">North</option>
+                        <option value="1">South</option>
+                        <option value="2">East</option>
+                        <option value="3">West</option>
+                    </select>
                      </div>
                    </div>
                    <div class="form-group row">
@@ -65,13 +72,7 @@
                      </div>
                    </div>
                    <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Owner Id</label>
-                     <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="model.ownerid" #ownerid="ngModel" placeholder="Owner Id">
-                     </div>
-                   </div>
-                   <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Facing Site</label>
+                     <label  class="col-sm-4 col-form-label">Facing Size(width)</label>
                      <div class="col-sm-8">
                        <input type="text" class="form-control" [(ngModel)]="model.facingsite" #facingsite="ngModel" placeholder="Facing Site">
                      </div>
@@ -91,31 +92,13 @@
                      </div>
                    </div>
                    <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Plot Site</label>
+                     <label  class="col-sm-4 col-form-label">Plot Size</label>
                      <div class="col-sm-8">
                        <input type="text" class="form-control" [(ngModel)]="model.plotsite" #plotsite="ngModel" placeholder="Plot Site">
                      </div>
-                   </div>
+                   </div>              
                    <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Notes SuperUser</label>
-                     <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="model.notessuperuser" #notessuperuser="ngModel" placeholder="Notes SuperUser">
-                     </div>
-                   </div>
-                   <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Notes Management</label>
-                     <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="model.notesmanagemen" #notesmanagemen="ngModel" placeholder="Notes Management">
-                     </div>
-                   </div>
-                   <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Notes SalesTeam</label>
-                     <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="model.notessalesteam" #notessalesteam="ngModel" placeholder="Notes SalesTeam">
-                     </div>
-                   </div>
-                   <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Road Site</label>
+                     <label  class="col-sm-4 col-form-label">Front Road Size</label>
                      <div class="col-sm-8">
                        <input type="text" class="form-control" [(ngModel)]="model.roadsite" #roadsite="ngModel" placeholder="Road Site">
                      </div>
@@ -173,36 +156,13 @@
                            <input type="text" class="form-control" [(ngModel)]="model.salesdate" #salesdate="ngModel" placeholder="Sales Date">
                          </div>
                        </div>-->
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">OnHold</label>
-                         <div class="col-sm-8" >
-                          <select class="form-control" [(ngModel)]="model.onhold" #onhold>
-                            <option value="">Select Option</option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                         </div>
-                       </div>
                        <!--<div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Hold Date</label>
                          <div class="col-sm-8">
                            <input type="text" class="form-control" [(ngModel)]="model.holddate" #holddate="ngModel" placeholder="Hold Date">
                          </div>
                        </div>-->
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Hold DurationInDays</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.holddurationindays" #holddurationindays="ngModel" placeholder="Hold DurationInDays">
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">HolderId AgentId</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.holderidagentid" #holderidagentid="ngModel" placeholder="HolderId AgentId">
-                         </div>
-                       </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-6 col-md-6">
+                    
                      <!--<div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Dispute</label>
                          <div class="col-sm-8" >
@@ -222,16 +182,6 @@
                          </div>
                        </div>
                        <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Noc Issued</label>
-                         <div class="col-sm-8" >
-                          <select class="form-control" [(ngModel)]="model.nocissued" #nocissued>
-                            <option value="">Select Option</option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                         </div>
-                       </div>
-                       <div class="form-group row">
                          <label  class="col-sm-4 col-form-label">Noc Copy</label>
                          <div class="col-sm-8">
                            <input type="text" class="form-control" [(ngModel)]="model.noccopy" #noccopy="ngModel" placeholder="Noc Copy">
@@ -244,7 +194,7 @@
                          </div>
                        </div>
                        <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Amount Paid</label>
+                         <label  class="col-sm-4 col-form-label">Amount Received</label>
                          <div class="col-sm-8">
                            <input type="text" class="form-control" [(ngModel)]="model.amountpaid" #amountpaid="ngModel" placeholder="mount Paid">
                          </div>
@@ -255,144 +205,11 @@
                            <input type="text" class="form-control" [(ngModel)]="model.amountbalance" #amountbalance="ngModel" placeholder="Amount Balance">
                          </div>
                        </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Instalments</label>
-                         <div class="col-sm-8" >
-                          <select class="form-control" [(ngModel)]="model.instalments" #instalments>
-                            <option value="">Select Option</option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                         </div>
-                       </div>
                  </div>
                   
                   </div>
              </div>
-             
-             <br>
-             <!--<div class="container" style="border:1px solid blue">
-                 <div class="form-group">
-                     <h4>Advance Information</h4>
-                 </div>
-                 <div class="row clearfix">
-                    <div class="col-sm-12 col-lg-6 col-md-6">
-                      <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Instalment Id</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.instalmentid" #instalmentid="ngModel" placeholder="Instalment Id">
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Instalment Term</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.instalmentterm" #instalmentterm="ngModel" placeholder="Instalment Term">
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Agreement Done</label>
-                         <div class="col-sm-8" >
-                          <select class="form-control" [(ngModel)]="model.agreementdone" #agreementdone>
-                            <option value="">Select Option</option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Agreement ScancopyLink</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.agreementscancopylink" #agreementscancopylink="ngModel" placeholder="Agreement ScancopyLink">
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Registration Id</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.registrationid" #registrationid="ngModel" placeholder="Registration Id">
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Registration Done</label>
-                         <div class="col-sm-8" >
-                          <select class="form-control" [(ngModel)]="model.registrationdone" #registrationdone>
-                            <option value="">Select Option</option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Registration Scancopylink</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.registrationscancopylink" #registrationscancopylink="ngModel" placeholder="Registration Scancopylink">
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Itr Done</label>
-                         <div class="col-sm-8" >
-                          <select class="form-control" [(ngModel)]="model.itrdone" #itrdone>
-                            <option value="">Select Option</option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                         </div>
-                       </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-6 col-md-6">
-                     <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Itr No</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.itrno" #itrno="ngModel" placeholder="Itr No">
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Re-Sell</label>
-                         <div class="col-sm-8" >
-                          <select class="form-control" [(ngModel)]="model.resell" #resell>
-                            <option value="">Select Option</option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Re-SellerId</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.resellerid" #resellerid="ngModel" placeholder="Re-SellerId">
-                         </div>
-                       </div>-->
-                       <!--<div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Agreement</label>
-                         <div class="col-sm-8">
-                          <select class="form-control" [(ngModel)]="model.agreement" #agreement>
-                            <option value="">Select Option</option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Agreement Id</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.agreementid" #agreementid="ngModel" placeholder="Agreement Id">
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Re-Agreement</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="model.reagreement" #reagreement="ngModel" placeholder="Re-Agreement">
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Re-AgreementId</label>
-                         <div class="col-sm-8">
-                          <input type="text" class="form-control" [(ngModel)]="model.reagreementid" #reagreementid="ngModel" placeholder="Re-Agreement Id">
-                         </div>
-                       </div>
-                       
-                 </div>-->
-                  
-                  
+             <br>  
              </div>
              <br>
              <div class="row clearfix">

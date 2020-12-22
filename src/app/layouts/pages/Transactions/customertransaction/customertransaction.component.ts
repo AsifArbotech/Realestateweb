@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CustomerTransaction } from '../../../../_models/Customers';
 import { ApiService } from '../../../../_services/api.service';
-import { NotifierService } from 'angular-notifier';
+import { ToastrService } from 'ngx-toastr';
 import {ReportsComponent} from '../../../Reports/reports/reports.component'
 
 //import * as jsPDF from 'jspdf';
@@ -28,7 +28,7 @@ export class CustomerTransactionComponent implements OnInit {
   pageSize = 10;
 
   constructor( private apiservice: ApiService,
-    private notifier: NotifierService,
+    private toastr: ToastrService,
     private reports:ReportsComponent) { }
 
   ngOnInit(): void {
@@ -58,7 +58,7 @@ export class CustomerTransactionComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.success('Something went wrong');
       }
     )
   }

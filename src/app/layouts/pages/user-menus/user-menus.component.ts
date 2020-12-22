@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NotifierService } from 'angular-notifier';
-import { AddUser } from 'src/app/_models/user';
-import { MenuXUsers } from 'src/app/_models/Menus';
-import { ApiService } from 'src/app/_services/api.service';
+import { ToastrService } from 'ngx-toastr';
+import { AddUser } from '../../../_models/user';
+import { MenuXUsers } from '../../../_models/Menus';
+import { ApiService } from '../../../_services/api.service';
 
 @Component({
   selector: 'app-user-menus',
@@ -15,7 +15,7 @@ export class UserMenusComponent implements OnInit {
   menuxusers: MenuXUsers[];
   selectedmenus: number[] = [];
   constructor(private apiservice: ApiService,
-    private notifier: NotifierService,) { }
+    private toastr: ToastrService,) { }
 
   ngOnInit(): void {
     this.setusers();
@@ -28,7 +28,7 @@ export class UserMenusComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.success('Something went wrong');
       }
     )
   }
@@ -47,7 +47,7 @@ export class UserMenusComponent implements OnInit {
       },
         error => {
           console.log(error);
-          this.notifier.notify("error", "Something went wrong");
+          this.toastr.success('Something went wrong');
         }
       )
     }
@@ -101,7 +101,7 @@ export class UserMenusComponent implements OnInit {
     },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.success('Something went wrong');
       }
     )
   }

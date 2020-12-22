@@ -2,11 +2,10 @@
 
     <div class="container-fluid">
         <div class="row clearfix">
-            <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">                
-                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light" type="button" routerLink="/UnitAdd">
-                    <i class="zmdi zmdi-plus"></i> Add Unit
+            <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">               <!-- routerLink="/UnitAdd"-->  
+                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light" (click)="openModal(AddpropertyModel)" type="button">
+                    <i class="zmdi zmdi-plus"></i> Add Property
                 </button>
-                               
             </div>
         </div>
         <div class="row clearfix">
@@ -17,10 +16,11 @@
                         <tr>
                           <td hidden>Property ID</td>
                           <td class="font-medium">Plot No</td>
-                          <td>Phase No</td>
-                          <td>Block No</td>
-                          <td>Survey No</td>
-                          <td>Landmark</td>
+                          <td>Corner Plot</td>
+                          <td>Plot Size</td>
+                          <td>Facing</td>
+                          <td>Size Unit</td>
+                          <td>SoldOut</td>
                           <td>Status</td>
                           <td>View</td>
                       </tr>
@@ -30,13 +30,14 @@
                         <tr *ngFor="let item of getPropertytItems()">
                             <td hidden>{{item.id}}</td>
                             <td class="font-medium">{{item.plotno}}</td>
-                            <td>{{item.phaseno}}</td>
-                            <td>{{item.blockno}}</td>
-                            <td>{{item.surveyno}}</td>
-                            <td>{{item.landmark}}</td>
-                            <td>{{(item.status==1) ? 'Booked' : (item.status==0) ? 'Cancelled' : (item.status==2) ? 'Transfered' : ''}}</td>
+                            <td>{{(item.cornerplot==1) ? 'Yes' : (item.cornerplot==0) ? 'No' : '' }}</td>
+                            <td>{{item.plotsite}}</td>
+                            <td>{{(item.facing==0) ? 'North' : (item.facing==1) ? 'South' : (item.facing==2) ? 'East' : (item.facing==3) ? 'West' : '' }}</td>
+                            <td>{{item.siteunits}}</td>
+                            <td>{{(item.soldout==1) ? 'Yes' : (item.cornerplot==0) ? 'No' : 'Pending' }}</td>
+                            <td>{{(item.status==1) ? 'Booked' : (item.status==0) ? 'Cancelled' : (item.status==2) ? 'Transfered' : 'Open'}}</td>
                             <td>
-                                <button class="btn btn-primary btn-icon btn-round " type="button" (click)="goEdit(item.id)">
+                                <button class="btn btn-primary btn-icon btn-round " type="button" (click)="getProperty(item.id)" (click)="openModal(EditpropertyModel)">
                                     <i class="zmdi zmdi-edit"></i>
                                 </button>
                                 <button class="btn btn-primary btn-icon btn-round " type="button" (click)="deleteProperty(item.id,item.plotno)">
@@ -56,398 +57,402 @@
     </div>
 </section>
 
+<ng-template #AddpropertyModel let-modal>
+  <div class="modal-content">
+    <div class="modal-header text-center l-cyan" style="display: block !important;">				
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
+      <h4 class="modal-title text-center">{{ActionType}}</h4>
+  </div>
+  <div class="modal-body">
+    <div class="row  clearfix">
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">  
+          <label>Select Project</label>
+          <input type="text" class="form-control" list="Projectlist" id="Projectid" placeholder="Select Project" required="required">
+          <datalist id="Projectlist">
+            <option *ngFor="let item of projectsListItems" [data-property]="item.id">{{item.projectname}}</option>
+          </datalist>
+        </div>
+        <div class="form-group">
+            <label>Plot No</label>
+            <input type="text" class="form-control" [(ngModel)]="model.plotno" #plotno="ngModel" placeholder="Plot No">
+        </div>
+        <div class="form-group">
+            <label>Phase No</label>
+            <input type="text" class="form-control" [(ngModel)]="model.phaseno" #phaseno="ngModel" placeholder="Phase No">
+        </div> 
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+          <label>Block No</label>
+          <input type="text" class="form-control" [(ngModel)]="model.blockno" #blockno="ngModel" placeholder="Block No">
+        </div>
+        <div class="form-group">
+          <label>Size Units</label>
+            <input type="text" class="form-control" [(ngModel)]="model.siteunits" #siteunits="ngModel" placeholder="Site Units">
+        </div>
+        <div class="form-group">
+          <label>Cross Plot</label>
+          <select class="form-control" [(ngModel)]="model.crossplot" #crossplot>
+            <option value="" selected>Select Option</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+          <label>Facing</label>
+          <select class="form-control" [(ngModel)]="model.facing" #facing>
+            <option value="" selected>Select Option</option>
+            <option value="0">North</option>
+            <option value="1">South</option>
+            <option value="2">East</option>
+            <option value="3">West</option>
+        </select>
+        </div>
+        <div class="form-group">
+          <label>Plot Dimension</label>
+            <input type="text" class="form-control" [(ngModel)]="model.plotdimension" #plotdimension="ngModel" placeholder="Plot Dimension">
+        </div>
+        <div class="form-group">
+          <label>Facing Size(Width)</label>
+            <input type="text" class="form-control" [(ngModel)]="model.facingsite" #facingsite="ngModel" placeholder="Facing Site">
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+          <label>Survey No</label>
+            <input type="text" class="form-control" [(ngModel)]="model.surveyno" #surveyno="ngModel" placeholder="Survey No">
+        </div>
+        <div class="form-group">
+          <label>Landmark</label>
+            <input type="text" class="form-control" [(ngModel)]="model.landmark" #landmark="ngModel" placeholder="Landmark">
+        </div>
+        <div class="form-group">
+          <label>Plot Size</label>
+            <input type="text" class="form-control" [(ngModel)]="model.plotsite" #plotsite="ngModel" placeholder="Plot Site">
+        </div> 
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+          <label>Front Road Size</label>
+            <input type="text" class="form-control" [(ngModel)]="model.roadsite" #roadsite="ngModel" placeholder="Road Site">
+        </div>
+        <div class="form-group">
+          <label>Corner Plot</label>
+          <select class="form-control" [(ngModel)]="model.cornerplot" #cornerplot>
+            <option value="" selected>Select Option</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+        </div>
+        <div class="form-group">
+          <label>CornerPlot Dimension</label>
+            <input type="text" class="form-control" [(ngModel)]="model.cornerplotdimensions" #cornerplotdimensions="ngModel" placeholder="CornerPlot Dimension">
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+          <label>ParkSide plot</label>
+          <select class="form-control" [(ngModel)]="model.parksideplot" #parksideplot>
+            <option value="" selected>Select Option</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+        </div>
+        <div class="form-group">
+          <label>Dispute Note</label>
+          <input type="text" class="form-control" [(ngModel)]="model.dispute" #dispute="ngModel" placeholder="CornerPlot Dimension">
+        </div>
+        <div class="form-group">
+          <label>Noc Copy</label>
+          <input type="text" class="form-control" [(ngModel)]="model.noccopy" #noccopy="ngModel" placeholder="Noc Copy">
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+          <label>Plot Sold Amount</label>
+            <input type="text" class="form-control" [(ngModel)]="model.plotsoldamount" #plotsoldamount="ngModel" placeholder="Plot Sold Amount">
+        </div>
+        <div class="form-group">
+          <label>Amount Paid</label>
+            <input type="text" class="form-control" [(ngModel)]="model.amountpaid" #amountpaid="ngModel" placeholder="mount Paid">
+        </div>
+        <div class="form-group">
+          <label>Amount Balance</label>
+            <input type="text" class="form-control" [(ngModel)]="model.amountbalance" #amountbalance="ngModel" placeholder="Amount Balance">
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-lg-4 col-md-4 col-sm-12 offset-4 text-center">
+        <button type="button" class="btn btn-primary btn-round" (click)="postUnit()">Save</button>
+      </div>
+    </div>
+  </div>
+  </div>
+</ng-template>
 
 <ng-template #PrevpropertyModel let-modal>
-    <div class="">
-		<div class="modal-content">
-            <div class="modal-header text-center l-cyan" style="display: block !important;">				
-                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
-                <h4 class="modal-title text-center">Preview Project</h4>
-            </div>
-            <div class="modal-body">
-         <div class="container" style="border:1px solid blue">
-             <div class="form-group">
-                 <h4>Basic Information</h4>
-             </div>
-             <div class="row clearfix">
-                <div class="col-sm-12 col-lg-6 col-md-6">
-                   <div class="form-group row">
-                        <label  class="col-sm-4 col-form-label">Plot No</label>
-                        <div class="col-sm-8">
-                          <input type="text" class="form-control" [(ngModel)]="propertyItems.plotno" #plotno="ngModel" placeholder="Plot No" readonly>
-                        </div>
-                      </div>
-                   <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Phase No</label>
-                     <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.phaseno" #phaseno="ngModel" placeholder="Phase No" readonly>
-                     </div>
-                   </div>
-                   <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Block No</label>
-                     <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.blockno" #blockno="ngModel" placeholder="Block No" readonly>
-                     </div>
-                   </div>
-                   <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Site Units</label>
-                     <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.siteunits" #siteunits="ngModel" placeholder="Site Units" readonly>
-                     </div>
-                   </div>
-                   <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Cross Plot</label>
-                     <div class="col-sm-8" >
-                      <select class="form-control" [(ngModel)]="propertyItems.crossplot" #crossplot>
-                        <option value="">Select Option</option>
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
-                    </select>
-                     </div>
-                   </div>
-                   <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Facing</label>
-                     <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.facing" #facing="ngModel" placeholder="Facing" readonly>
-                     </div>
-                   </div>
-                   <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Plot Dimension</label>
-                     <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.plotdimension" #plotdimension="ngModel" placeholder="Plot Dimension" readonly>
-                     </div>
-                   </div>
-                   <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Owner Id</label>
-                     <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.ownerid" #ownerid="ngModel" placeholder="Owner Id" readonly>
-                     </div>
-                   </div>
-                   <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Facing Site</label>
-                     <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.facingsite" #facingsite="ngModel" placeholder="Facing Site" readonly>
-                     </div>
-                   </div>
-                </div>
-                <div class="col-sm-12 col-lg-6 col-md-6">
-                 <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Survey No</label>
-                     <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.surveyno" #surveyno="ngModel" placeholder="Survey No" readonly>
-                     </div>
-                   </div>
-                   <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Landmark</label>
-                     <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.landmark" #landmark="ngModel" placeholder="Landmark" readonly>
-                     </div>
-                   </div>
-                   <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Plot Site</label>
-                     <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.plotsite" #plotsite="ngModel" placeholder="Plot Site" readonly>
-                     </div>
-                   </div>
-                   <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Notes SuperUser</label>
-                     <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.notessuperuser" #notessuperuser="ngModel" placeholder="Notes SuperUser" readonly>
-                     </div>
-                   </div>
-                   <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Notes Management</label>
-                     <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.notesmanagemen" #notesmanagemen="ngModel" placeholder="Notes Management" readonly>
-                     </div>
-                   </div>
-                   <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Notes SalesTeam</label>
-                     <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.notessalesteam" #notessalesteam="ngModel" placeholder="Notes SalesTeam" readonly>
-                     </div>
-                   </div>
-                   <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Road Site</label>
-                     <div class="col-sm-8">
-                       <input type="text" class="form-control" [(ngModel)]="propertyItems.roadsite" #roadsite="ngModel" placeholder="Road Site" readonly>
-                     </div>
-                   </div>
-                   <div class="form-group row">
-                     <label  class="col-sm-4 col-form-label">Corner Plot</label>
-                     <div class="col-sm-8" >
-                      <select class="form-control" [(ngModel)]="propertyItems.cornerplot" #cornerplot>
-                        <option value="">Select Option</option>
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
-                    </select>
-                     </div>
-                   </div>
-             </div>
-              
-              </div>
-         </div>
-             <br>
-             <div class="container" style="border:1px solid blue">
-                 <div class="form-group">
-                     <h4>Plot Information</h4>
-                 </div>
-                 <div class="row clearfix">
-                    <div class="col-sm-12 col-lg-6 col-md-6">
-                     <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">CornerPlot Dimension</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.cornerplotdimensions" #cornerplotdimensions="ngModel" placeholder="CornerPlot Dimension" readonly>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">ParkSide plot</label>
-                         <div class="col-sm-8" >
-                          <select class="form-control" [(ngModel)]="propertyItems.parksideplot" #parksideplot>
-                            <option value="">Select Option</option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">SoldOut</label>
-                         <div class="col-sm-8" >
-                          <select class="form-control" [(ngModel)]="propertyItems.soldout" #soldout>
-                            <option value="">Select Option</option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                         </div>
-                       </div>
-                       <!--<div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Sales Date</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.salesdate" #salesdate="ngModel" placeholder="Sales Date">
-                         </div>
-                       </div>-->
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">OnHold</label>
-                         <div class="col-sm-8" >
-                          <select class="form-control" [(ngModel)]="propertyItems.onhold" #onhold>
-                            <option value="">Select Option</option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                         </div>
-                       </div>
-                       <!--<div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Hold Date</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.holddate" #holddate="ngModel" placeholder="Hold Date">
-                         </div>
-                       </div>-->
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Hold DurationInDays</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.holddurationindays" #holddurationindays="ngModel" placeholder="Hold DurationInDays" readonly>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">HolderId AgentId</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.holderidagentid" #holderidagentid="ngModel" placeholder="HolderId AgentId" readonly>
-                         </div>
-                       </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-6 col-md-6">
-                     <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Dispute</label>
-                         <div class="col-sm-8" >
-                          <select class="form-control" [(ngModel)]="propertyItems.dispute" #dispute>
-                            <option value="">Select Option</option>
-                            <option value="0">Government</option>
-                            <option value="1">Owners</option>
-                            <option value="2">Buyers</option>
-                            <option value="3">Others</option>
-                        </select>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Dispute Notes</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.disputenotes" #disputenotes="ngModel" placeholder="Dispute Notes" readonly>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Noc Issued</label>
-                         <div class="col-sm-8" >
-                          <select class="form-control" [(ngModel)]="propertyItems.nocissued" #nocissued>
-                            <option value="">Select Option</option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Noc Copy</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.noccopy" #noccopy="ngModel" placeholder="Noc Copy" readonly>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Plot Sold Amount</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.plotsoldamount" #plotsoldamount="ngModel" placeholder="Plot Sold Amount" readonly>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Amount Paid</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.amountpaid" #amountpaid="ngModel" placeholder="mount Paid" readonly>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Amount Balance</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.amountbalance" #amountbalance="ngModel" placeholder="Amount Balance" readonly>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Instalments</label>
-                         <div class="col-sm-8" >
-                          <select class="form-control" [(ngModel)]="propertyItems.instalments" #instalments>
-                            <option value="">Select Option</option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                         </div>
-                       </div>
-                 </div>
-                  
-                  </div>
-             </div>
-             
-             <br>
-             <div class="container" style="border:1px solid blue">
-                 <div class="form-group">
-                     <h4>Advance Information</h4>
-                 </div>
-                 <div class="row clearfix">
-                    <div class="col-sm-12 col-lg-6 col-md-6">
-                     <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Instalment Id</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.instalmentid" #instalmentid="ngModel" placeholder="Instalment Id" readonly>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Instalment Term</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.instalmentterm" #instalmentterm="ngModel" placeholder="Instalment Term" readonly>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Agreement Done</label>
-                         <div class="col-sm-8" >
-                          <select class="form-control" [(ngModel)]="propertyItems.agreementdone" #agreementdone>
-                            <option value="">Select Option</option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Agreement ScancopyLink</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.agreementscancopylink" #agreementscancopylink="ngModel" placeholder="Agreement ScancopyLink" readonly>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Registration Id</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.registrationid" #registrationid="ngModel" placeholder="Registration Id" readonly>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Registration Done</label>
-                         <div class="col-sm-8" >
-                          <select class="form-control" [(ngModel)]="propertyItems.registrationdone" #registrationdone>
-                            <option value="">Select Option</option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Registration Scancopylink</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.registrationscancopylink" #registrationscancopylink="ngModel" placeholder="Registration Scancopylink" readonly>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Itr Done</label>
-                         <div class="col-sm-8" >
-                          <select class="form-control" [(ngModel)]="propertyItems.itrdone" #itrdone>
-                            <option value="">Select Option</option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                         </div>
-                       </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-6 col-md-6">
-                     <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Itr No</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.itrno" #itrno="ngModel" placeholder="Itr No" readonly>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Re-Sell</label>
-                         <div class="col-sm-8" >
-                          <select class="form-control" [(ngModel)]="propertyItems.resell" #resell>
-                            <option value="">Select Option</option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Re-SellerId</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.resellerid" #resellerid="ngModel" placeholder="Re-SellerId" readonly>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Agreement</label>
-                         <div class="col-sm-8">
-                          <select class="form-control" [(ngModel)]="propertyItems.agreement" #agreement>
-                            <option value="">Select Option</option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Agreement Id</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.agreementid" #agreementid="ngModel" placeholder="Agreement Id" readonly>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Re-Agreement</label>
-                         <div class="col-sm-8">
-                           <input type="text" class="form-control" [(ngModel)]="propertyItems.reagreement" #reagreement="ngModel" placeholder="Re-Agreement" readonly>
-                         </div>
-                       </div>
-                       <div class="form-group row">
-                         <label  class="col-sm-4 col-form-label">Re-AgreementId</label>
-                         <div class="col-sm-8">
-                          <input type="text" class="form-control" [(ngModel)]="propertyItems.reagreementid" #reagreementid="ngModel" placeholder="Re-Agreement Id" readonly>
-                         </div>
-                       </div>
-                    </div>
-                 </div>
-                  
-                  </div>
-             </div>
-             <br>
+  <div class="modal-content">
+    <div class="modal-header text-center l-cyan" style="display: block !important;">				
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
+      <h4 class="modal-title text-center">Preview Property</h4>
+  </div>
+  <div class="modal-body">
+    <div class="row  clearfix">
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+            <label>Plot No</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.plotno" #plotno="ngModel" placeholder="Plot No" readonly>
         </div>
+        <div class="form-group">
+            <label>Phase No</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.phaseno" #phaseno="ngModel" placeholder="Phase No" readonly>
+        </div>
+        <div class="form-group">
+            <label>Block No</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.blockno" #blockno="ngModel" placeholder="Block No" readonly>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+          <label>Size Units</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.siteunits" #siteunits="ngModel" placeholder="Site Units" readonly>
+        </div>
+        <div class="form-group">
+          <label>Cross Plot</label>
+           <input type="text" class="form-control" [(ngModel)]="propertyItems.crossplot" #crossplot="ngModel" placeholder="Site Units" readonly>
+        </div>
+        <div class="form-group">
+          <label>Facing</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.facing" #facing="ngModel" placeholder="Facing" readonly>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+          <label>Plot Dimension</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.plotdimension" #plotdimension="ngModel" placeholder="Plot Dimension" readonly>
+        </div>
+        <div class="form-group">
+          <label>Owner Id</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.ownerid" #ownerid="ngModel" placeholder="Owner Id" readonly>
+        </div>
+        <div class="form-group">
+          <label>Facing Size(Width)</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.facingsite" #facingsite="ngModel" placeholder="Facing Site" readonly>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+          <label>Survey No</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.surveyno" #surveyno="ngModel" placeholder="Survey No" readonly>
+        </div>
+        <div class="form-group">
+          <label>Landmark</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.landmark" #landmark="ngModel" placeholder="Landmark" readonly>
+        </div>
+        <div class="form-group">
+          <label>Plot Size</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.plotsite" #plotsite="ngModel" placeholder="Plot Site" readonly>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+          <label>Front Road Size</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.roadsite" #roadsite="ngModel" placeholder="Road Site" readonly>
+        </div>
+        <div class="form-group">
+          <label>Corner Plot</label>
+           <input type="text" class="form-control" [(ngModel)]="propertyItems.cornerplot" #cornerplot="ngModel" placeholder="Road Site" readonly>
+        </div>
+        <div class="form-group">
+          <label>CornerPlot Dimension</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.cornerplotdimensions" #cornerplotdimensions="ngModel" placeholder="CornerPlot Dimension" readonly>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+          <label>CornerPlot Dimension</label>
+          <input type="text" class="form-control" [(ngModel)]="propertyItems.cornerplotdimensions" #cornerplotdimensions="ngModel" placeholder="CornerPlot Dimension" readonly>
+        </div>
+        <div class="form-group">
+          <label>ParkSide plot</label>
+          <input type="text" class="form-control" [(ngModel)]="propertyItems.parksideplot" #parksideplot="ngModel" placeholder="CornerPlot Dimension" readonly>
+        </div>
+        <div class="form-group">
+          <label>SoldOut</label>
+          <input type="text" class="form-control" [(ngModel)]="propertyItems.soldout" #soldout="ngModel" placeholder="CornerPlot Dimension" readonly>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+          <label>Dispute</label>
+          <input type="text" class="form-control" [(ngModel)]="propertyItems.dispute" #dispute="ngModel" placeholder="CornerPlot Dimension" readonly>
+        </div>
+        <div class="form-group">
+          <label>Noc Issued</label>
+           <input type="text" class="form-control" [(ngModel)]="propertyItems.nocissued" #nocissued="ngModel" placeholder="CornerPlot Dimension" readonly>
+        </div>
+        <div class="form-group">
+          <label>Noc Copy</label>
+          <input type="text" class="form-control" [(ngModel)]="propertyItems.noccopy" #noccopy="ngModel" placeholder="Noc Copy" readonly>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+          <label>Plot Sold Amount</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.plotsoldamount" #plotsoldamount="ngModel" placeholder="Plot Sold Amount" readonly>
+        </div>
+        <div class="form-group">
+          <label>Amount Paid</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.amountpaid" #amountpaid="ngModel" placeholder="mount Paid" readonly>
+        </div>
+        <div class="form-group">
+          <label>Amount Balance</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.amountbalance" #amountbalance="ngModel" placeholder="Amount Balance" readonly>
+        </div>
+      </div>
     </div>
+  </div>
+  </div>
 </ng-template>
+
+<ng-template #EditpropertyModel let-modal>
+  <div class="modal-content">
+    <div class="modal-header text-center l-cyan" style="display: block !important;">				
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
+      <h4 class="modal-title text-center">{{ActionType}}</h4>
+  </div>
+  <div class="modal-body">
+    <div class="row  clearfix">
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">  
+          <label>Select Project</label>
+          <input type="text" class="form-control" list="Projectlist" id="Projectid" placeholder="Select Project" required="required" readonly>
+          <datalist id="Projectlist">
+            <option *ngFor="let item of projectsListItems" [data-property]="item.id">{{item.projectname}}</option>
+          </datalist>
+        </div>
+        <div class="form-group">
+            <label>Plot No</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.plotno" #plotno="ngModel" placeholder="Plot No">
+        </div>
+        <div class="form-group">
+            <label>Phase No</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.phaseno" #phaseno="ngModel" placeholder="Phase No">
+        </div> 
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+          <label>Block No</label>
+          <input type="text" class="form-control" [(ngModel)]="propertyItems.blockno" #blockno="ngModel" placeholder="Block No">
+        </div>
+        <div class="form-group">
+          <label>Size Units</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.siteunits" #siteunits="ngModel" placeholder="Site Units">
+        </div>
+        <div class="form-group">
+          <label>Cross Plot</label>
+          <select class="form-control" [(ngModel)]="propertyItems.crossplot" #crossplot>
+            <option value="" selected>Select Option</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+          <label>Facing</label>
+          <select class="form-control" [(ngModel)]="propertyItems.facing" #facing>
+            <option value="" selected>Select Option</option>
+            <option value="0">North</option>
+            <option value="1">South</option>
+            <option value="2">East</option>
+            <option value="3">West</option>
+        </select>
+        </div>
+        <div class="form-group">
+          <label>Plot Dimension</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.plotdimension" #plotdimension="ngModel" placeholder="Plot Dimension">
+        </div>
+        <div class="form-group">
+          <label>Facing Size(Width)</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.facingsite" #facingsite="ngModel" placeholder="Facing Site">
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+          <label>Survey No</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.surveyno" #surveyno="ngModel" placeholder="Survey No">
+        </div>
+        <div class="form-group">
+          <label>Landmark</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.landmark" #landmark="ngModel" placeholder="Landmark">
+        </div>
+        <div class="form-group">
+          <label>Plot Size</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.plotsite" #plotsite="ngModel" placeholder="Plot Site">
+        </div> 
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+          <label>Front Road Size</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.roadsite" #roadsite="ngModel" placeholder="Road Site">
+        </div>
+        <div class="form-group">
+          <label>Corner Plot</label>
+          <select class="form-control" [(ngModel)]="propertyItems.cornerplot" #cornerplot>
+            <option value="" selected>Select Option</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+        </div>
+        <div class="form-group">
+          <label>CornerPlot Dimension</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.cornerplotdimensions" #cornerplotdimensions="ngModel" placeholder="CornerPlot Dimension">
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+          <label>ParkSide plot</label>
+          <select class="form-control" [(ngModel)]="propertyItems.parksideplot" #parksideplot>
+            <option value="" selected>Select Option</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+        </div>
+        <div class="form-group">
+          <label>Dispute Note</label>
+          <input type="text" class="form-control" [(ngModel)]="propertyItems.dispute" #dispute="ngModel" placeholder="CornerPlot Dimension">
+        </div>
+        <div class="form-group">
+          <label>Noc Copy</label>
+          <input type="text" class="form-control" [(ngModel)]="propertyItems.noccopy" #noccopy="ngModel" placeholder="Noc Copy">
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+          <label>Plot Sold Amount</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.plotsoldamount" #plotsoldamount="ngModel" placeholder="Plot Sold Amount">
+        </div>
+        <div class="form-group">
+          <label>Amount Paid</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.amountpaid" #amountpaid="ngModel" placeholder="mount Paid">
+        </div>
+        <div class="form-group">
+          <label>Amount Balance</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.amountbalance" #amountbalance="ngModel" placeholder="Amount Balance">
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-lg-4 col-md-4 col-sm-12 offset-4 text-center">
+        <button type="button" class="btn btn-primary btn-round" (click)="updateUnit()">Update</button>
+      </div>
+    </div>
+  </div>
+  </div>
+</ng-template>
+

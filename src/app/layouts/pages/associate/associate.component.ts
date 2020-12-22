@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Associate } from '../../../_models/Associate'
 import { ApiService } from '../../../_services/api.service';
-import { NotifierService } from 'angular-notifier';
+import { ToastrService } from 'ngx-toastr'
 
 @Component({
   selector: 'app-associate',
@@ -16,7 +17,8 @@ export class AssociateComponent implements OnInit {
   pageSize = 10;
   constructor(
     private apiservice: ApiService,
-    private notifier: NotifierService
+    private toastr: ToastrService,
+    private modalService: NgbModal,
   ) { }
 
   ngOnInit(): void {
@@ -30,7 +32,7 @@ export class AssociateComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
   }
@@ -53,14 +55,15 @@ export class AssociateComponent implements OnInit {
       .subscribe((response: any) => {
         if (response) {
           if (response.responseCode == 0) {
-            this.notifier.notify("error", response.responseMsg);
+            this.toastr.error(response.responseMsg);
           } else if (response.responseCode == 1) {
-            this.notifier.notify("success", response.responseMsg);
+            this.modalService.dismissAll();
+            this.toastr.success(response.responseMsg);
             this.Associate = new Associate();
             this.getAssociateList();
           }
           else {
-            this.notifier.notify("error", "Something went wrong");
+            this.toastr.error('Something went wrong');
           }
         }
       });
@@ -91,17 +94,23 @@ export class AssociateComponent implements OnInit {
       .subscribe((response: any) => {
         if (response) {
           if (response.responseCode == 0) {
-            this.notifier.notify("error", response.responseMsg);
+            this.toastr.error(response.responseMsg);
           } else if (response.responseCode == 1) {
-            this.notifier.notify("success", response.responseMsg);
+            this.toastr.success(response.responseMsg);
             this.Associate = new Associate();
             this.getAssociateList();
           }
           else {
-            this.notifier.notify("error", "Something went wrong");
+            this.toastr.error('Something went wrong');
           }
         }
       });
   }
+
+  openModal(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    }, (reason) => {
+    });
+  };
 
 }

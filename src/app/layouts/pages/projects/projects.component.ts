@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { Project } from '../../../_models/project'
+import { ToastrService } from 'ngx-toastr';
+import { Project } from '../../../_models/project';
 import { ApiService } from '../../../_services/api.service';
-import { NotifierService } from 'angular-notifier';
+//import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-projects',
@@ -21,8 +22,9 @@ export class ProjectsComponent implements OnInit {
 
   constructor(private router: Router,
     private apiservice: ApiService,
-    private notifier: NotifierService,
-    private modalService: NgbModal) {
+    //private notifier: NotifierService,
+    private modalService: NgbModal,
+    private toastr: ToastrService) {
     this.clearfields();
   }
 
@@ -37,7 +39,7 @@ export class ProjectsComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
   }
@@ -61,7 +63,7 @@ export class ProjectsComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.notifier.notify("error", "Something went wrong");
+        this.toastr.error('Something went wrong');
       }
     )
   }
@@ -72,10 +74,12 @@ export class ProjectsComponent implements OnInit {
         this.projectsItems = response
         if (response) {
           if (response.responseCode == 0) {
-            this.notifier.notify("error", response.responseMsg);
+            this.toastr.error(response.responseMsg);
+            //this.notifier.notify("error", response.responseMsg);
           } else if (response.responseCode == 1) {
             this.modalService.dismissAll();
-            this.notifier.notify("success", response.responseMsg);
+            this.toastr.success(response.responseMsg);
+            //this.notifier.notify("success", response.responseMsg);
             this.getProjectsList();
           }
         }
@@ -88,15 +92,15 @@ export class ProjectsComponent implements OnInit {
       .subscribe((response: any) => {
         if (response) {
           if (response.responseCode == 0) {
-            this.notifier.notify("error", response.responseMsg);
+            this.toastr.error(response.responseMsg);
           } else if (response.responseCode == 1) {
             this.modalService.dismissAll();
-            this.notifier.notify("success", response.responseMsg);
+            this.toastr.success(response.responseMsg);
             this.clearfields();
             this.getProjectsList()
           }
           else {
-            this.notifier.notify("error", "Something went wrong");
+            this.toastr.error('Something went wrong');
           }
         }
       })
@@ -109,9 +113,9 @@ export class ProjectsComponent implements OnInit {
         .subscribe((response: any) => {
           if (response) {
             if (response.responseCode == 0) {
-              this.notifier.notify("error", response.responseMsg);
+              this.toastr.error(response.responseMsg);
             } else if (response.responseCode == 1) {
-              this.notifier.notify("success", response.responseMsg);
+              this.toastr.success(response.responseMsg);
               this.getProjectsList();
             }
           }
