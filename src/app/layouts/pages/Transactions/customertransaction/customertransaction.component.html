@@ -52,7 +52,7 @@
       <td>Total Booking Amount</td>
       <td>Balance Amount</td>
     </tr>
-    <tr  *ngFor="let items of item">
+    <tr  *ngFor="let items of getTransactionlistItems()">
       <td>{{items.custtransactionno}}</td>
       <td class="font-medium">{{items.createdon | date:'MM/dd/yyyy'}}</td>
       <td>{{items.projectname}}</td>  

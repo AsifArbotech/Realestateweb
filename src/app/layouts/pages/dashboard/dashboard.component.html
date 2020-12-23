@@ -15,39 +15,39 @@
         <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-lg-3 col-md-6">
-                    <div class="card" style="background: linear-gradient(45deg,#78784b,rgb(212 94 68));height: 80px;">
-                        <div class="body" style="padding-top: 10px;padding-left: 40%;">
+                    <div class="card" style="background: linear-gradient(45deg,#78784b,rgb(212 94 68));height: 115px;">
+                        <div class="body" style="padding: 10px;">
                             <p style="color: whitesmoke;">Today's Bookings</p>
                             <h3 class="number count-to" style="color: whitesmoke;">{{dashboardListItems.bookings}}</h3> 
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="card" style="background: linear-gradient(45deg, rgb(224, 36, 45),rgb(194, 96, 96));height: 80px;">
-                        <div class="body" style="padding-top: 10px;padding-left: 35%;">
+                    <div class="card" style="background: linear-gradient(45deg, rgb(224, 36, 45),rgb(194, 96, 96));height: 115px;">
+                        <div class="body" style="padding: 10px;">
                             <p style="color: whitesmoke;">This Month Bookings</p>
                             <h3  style="color: whitesmoke;">{{dashboardListItems.monthlyBookings}}</h3>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="card" style="background: linear-gradient(45deg, darkgreen,rgb(100, 59, 73));height: 80px;">
-                        <div class="body" style="padding-top: 10px;padding-left: 40%;">
+                    <div class="card" style="background: linear-gradient(45deg, darkgreen,rgb(100, 59, 73));height: 115px;">
+                        <div class="body" style="padding: 10px;">
                             <p style="color: whitesmoke;">Sale's Enquires</p>
                             <h3 class="number count-to" style="color: whitesmoke;">{{dashboardListItems.salesEnquires}}</h3>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="card" style="background: linear-gradient(45deg, rgb(165 204 214),rgb(59 93 97));height: 80px;">
-                        <div class="body" style="padding-top: 10px;padding-left: 40%;">
+                    <div class="card" style="background: linear-gradient(45deg,#78784b,rgb(212 94 68));height: 115px;">
+                        <div class="body" style="padding: 10px;">
                             <p style="color: whitesmoke;">This Month Sales</p>
                             <h3 style="color: whitesmoke">{{dashboardListItems.sales}}/-</h3>
                         </div>
                     </div>
                 </div>            
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
+            <!-- <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-group">  
                   <label>Select Project</label>
                   <input type="text" class="form-control" list="Projectlist" id="Projectid" placeholder="Projects" required="required">
@@ -55,7 +55,7 @@
                     <option *ngFor="let item of projectsListItems" [data-property]="item.id">{{item.projectname}}</option>
                   </datalist>
                 </div>
-              </div>
+              </div> -->
             <div class="chart-container" style="position: relative; height:40vh; width:900px">    
                 <canvas id="canvas"></canvas>    
               </div>
@@ -101,7 +101,8 @@
                     </div>
                 </div>
             </div>-->
-                 
+            <br><br><br><br><br><br>     
         </div>
+       
     </section>
    
