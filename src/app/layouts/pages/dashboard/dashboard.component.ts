@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.getDashboardBox();
     this.getProjectsList();
-    this.httpClient.get(this.url).subscribe((re: any) => {  
+    this.apiservice.getGraphdata().subscribe((re: any) => {  
       re.result.forEach(x => {  
         this.Projects.push(x.project);  
         this.Properties.push(x.property);  
@@ -83,7 +83,7 @@ export class DashboardComponent implements OnInit {
                 "Red",  
                 "Blue"  
               ],  
-              fill: true  
+              //fill: true  
             },
             {  
               barPercentage: 0.3,
@@ -94,7 +94,7 @@ export class DashboardComponent implements OnInit {
                 "#42AAAB",  
                 "Blue"  
               ],  
-              fill: true  
+              //fill: true  
             },
             {  
               barPercentage: 0.3,

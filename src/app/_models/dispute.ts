@@ -4,6 +4,7 @@ export class Dispute{
     unitid: Number;
     disputetype: string;
     status: Number;
+    notes: string;
     createdby: string;
     createdon: Date;
     modifiedby: string;

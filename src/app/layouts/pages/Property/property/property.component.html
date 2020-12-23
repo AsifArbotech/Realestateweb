@@ -22,7 +22,7 @@
                           <td>Size Unit</td>
                           <td>SoldOut</td>
                           <td>Status</td>
-                          <td>View</td>
+                          <td>Actions</td>
                       </tr>
                       </thead>
                         <tbody>
@@ -211,16 +211,18 @@
             <label>Phase No</label>
             <input type="text" class="form-control" [(ngModel)]="propertyItems.phaseno" #phaseno="ngModel" placeholder="Phase No" readonly>
         </div>
-        <div class="form-group">
-            <label>Block No</label>
-            <input type="text" class="form-control" [(ngModel)]="propertyItems.blockno" #blockno="ngModel" placeholder="Block No" readonly>
-        </div>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group">
+          <label>Block No</label>
+          <input type="text" class="form-control" [(ngModel)]="propertyItems.blockno" #blockno="ngModel" placeholder="Block No" readonly>
+        </div>
         <div class="form-group">
           <label>Size Units</label>
             <input type="text" class="form-control" [(ngModel)]="propertyItems.siteunits" #siteunits="ngModel" placeholder="Site Units" readonly>
         </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group">
           <label>Cross Plot</label>
            <input type="text" class="form-control" [(ngModel)]="propertyItems.crossplot" #crossplot="ngModel" placeholder="Site Units" readonly>
@@ -239,16 +241,18 @@
           <label>Owner Id</label>
             <input type="text" class="form-control" [(ngModel)]="propertyItems.ownerid" #ownerid="ngModel" placeholder="Owner Id" readonly>
         </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group">
           <label>Facing Size(Width)</label>
             <input type="text" class="form-control" [(ngModel)]="propertyItems.facingsite" #facingsite="ngModel" placeholder="Facing Site" readonly>
         </div>
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group">
           <label>Survey No</label>
             <input type="text" class="form-control" [(ngModel)]="propertyItems.surveyno" #surveyno="ngModel" placeholder="Survey No" readonly>
         </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group">
           <label>Landmark</label>
             <input type="text" class="form-control" [(ngModel)]="propertyItems.landmark" #landmark="ngModel" placeholder="Landmark" readonly>
@@ -267,16 +271,18 @@
           <label>Corner Plot</label>
            <input type="text" class="form-control" [(ngModel)]="propertyItems.cornerplot" #cornerplot="ngModel" placeholder="Road Site" readonly>
         </div>
-        <div class="form-group">
-          <label>CornerPlot Dimension</label>
-            <input type="text" class="form-control" [(ngModel)]="propertyItems.cornerplotdimensions" #cornerplotdimensions="ngModel" placeholder="CornerPlot Dimension" readonly>
-        </div>
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="form-group">
-          <label>CornerPlot Dimension</label>
-          <input type="text" class="form-control" [(ngModel)]="propertyItems.cornerplotdimensions" #cornerplotdimensions="ngModel" placeholder="CornerPlot Dimension" readonly>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="form-group">
+            <label>CornerPlot Dimension</label>
+              <input type="text" class="form-control" [(ngModel)]="propertyItems.cornerplotdimensions" #cornerplotdimensions="ngModel" placeholder="CornerPlot Dimension" readonly>
+          </div>
+          <div class="form-group">
+            <label>CornerPlot Dimension</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.cornerplotdimensions" #cornerplotdimensions="ngModel" placeholder="CornerPlot Dimension" readonly>
+          </div>
         </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group">
           <label>ParkSide plot</label>
           <input type="text" class="form-control" [(ngModel)]="propertyItems.parksideplot" #parksideplot="ngModel" placeholder="CornerPlot Dimension" readonly>
@@ -292,14 +298,20 @@
           <input type="text" class="form-control" [(ngModel)]="propertyItems.dispute" #dispute="ngModel" placeholder="CornerPlot Dimension" readonly>
         </div>
         <div class="form-group">
-          <label>Noc Issued</label>
-           <input type="text" class="form-control" [(ngModel)]="propertyItems.nocissued" #nocissued="ngModel" placeholder="CornerPlot Dimension" readonly>
-        </div>
-        <div class="form-group">
-          <label>Noc Copy</label>
-          <input type="text" class="form-control" [(ngModel)]="propertyItems.noccopy" #noccopy="ngModel" placeholder="Noc Copy" readonly>
+          <label>Dispute Note</label>
+          <input type="text" class="form-control" [(ngModel)]="propertyItems.disputenotes" #dispute="ngModel" placeholder="CornerPlot Dimension" readonly>
         </div>
       </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="form-group">
+            <label>Noc Issued</label>
+             <input type="text" class="form-control" [(ngModel)]="propertyItems.nocissued" #nocissued="ngModel" placeholder="CornerPlot Dimension" readonly>
+          </div>
+          <div class="form-group">
+            <label>Noc Copy</label>
+            <input type="text" class="form-control" [(ngModel)]="propertyItems.noccopy" #noccopy="ngModel" placeholder="Noc Copy" readonly>
+          </div>
+        </div>
       <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group">
           <label>Plot Sold Amount</label>
@@ -309,13 +321,15 @@
           <label>Amount Paid</label>
             <input type="text" class="form-control" [(ngModel)]="propertyItems.amountpaid" #amountpaid="ngModel" placeholder="mount Paid" readonly>
         </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group">
           <label>Amount Balance</label>
             <input type="text" class="form-control" [(ngModel)]="propertyItems.amountbalance" #amountbalance="ngModel" placeholder="Amount Balance" readonly>
         </div>
-      </div>
-    </div>
+      </div>    
   </div>
+    </div>  
   </div>
 </ng-template>
 

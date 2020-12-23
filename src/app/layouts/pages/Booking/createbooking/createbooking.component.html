@@ -22,7 +22,7 @@
                           <td>Associate</td>
                           <td>Assign To</td>
                           <td>Status</td>
-                          <td>View</td>
+                          <td>Action</td>
                         </tr>
                       </thead>
                         <tbody>
@@ -51,6 +51,12 @@
                           </tr>
                         </tbody>
                     </table>
+                    <div class="d-flex justify-content-between p-2">
+
+                      <ngb-pagination [collectionSize]="addBookinglist ? addBookinglist.length  : 0" [(page)]="page"
+                        [pageSize]="pageSize">
+                      </ngb-pagination>
+                    </div>
                 </div>
             </div>
         </div>
