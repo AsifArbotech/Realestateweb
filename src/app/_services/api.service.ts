@@ -446,11 +446,11 @@ export class ApiService {
     return this.http.post(this.BASEURL + '/Registration/AddRegistration', data, this.getAuthHeadersJSON());
   }
 
-  getGraphdata(){
+  getGraphdata() {
     return this.http.get(this.BASEURL + '/Graph/GetAllGraphData', this.getAuthHeadersJSON());
   }
 
-  getDashboardBoxdata(){
+  getDashboardBoxdata() {
     return this.http.get(this.BASEURL + '/Graph/GetAllDashboardBoxData', this.getAuthHeadersJSON());
   }
 
@@ -466,11 +466,15 @@ export class ApiService {
     return this.http.post(this.BASEURL + '/UserMenus/POSTAddUserMenus?userid=' + userid, menuid, this.getAuthHeadersJSON());
   }
 
-  Getassignprojects(userid: any, projectid: any, status: any){
-    return this.http.get(this.BASEURL + '/UserXProjects/GETAssingProject?userid='+ userid + projectid + status , this.getAuthHeadersJSON());
+  Getassignprojects(userid: any, projectid: any, status: any) {
+    return this.http.get(this.BASEURL + '/UserXProjects/GETAssingProject?userid=' + userid + "&projectid=" + projectid + "&status=" + status, this.getAuthHeadersJSON());
   }
 
-  Removeassignprojects(){
+  Getallassignedprojects() {
+    return this.http.get(this.BASEURL + '/UserXProjects/GETAllAssignedProject', this.getAuthHeadersJSON());
+  }
+
+  Removeassignprojects() {
     return this.http.get(this.BASEURL + '/UserXProjects/GETRemoveProject', this.getAuthHeadersJSON());
   }
 }

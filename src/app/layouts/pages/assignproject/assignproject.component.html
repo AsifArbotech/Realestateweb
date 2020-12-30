@@ -26,7 +26,7 @@
                             <td hidden>{{item.id}}</td>
                             <td >{{item.username}}</td>
                             <td class="font-medium">{{item.projectname}}</td>
-                            <td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>
+                            <td>{{item.status=='1' ? 'Active' : 'InActive'}}</td>
                             <td>
                                 <!--<button class="btn btn-primary btn-icon btn-round " type="button" (click)="EditBooking(item.bookingid)" (click)="openModal(addBookingModel)">
                                     <i class="zmdi zmdi-edit" ></i>
@@ -54,14 +54,14 @@
             <h4 class="modal-title text-center">{{ActionType}}</h4>
         </div>
         <div class="modal-body">
-            <input type="hidden" name="ID" #ID="ngModel" />
+            <input type="hidden" name="ID" />
             <div class="row  clearfix">
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="form-group">  
                       <label>Users</label>
                       <input type="text" class="form-control" list="Userlist" id="Userid" placeholder="Users" required="required">
                       <datalist id="Userlist">
-                        <option *ngFor="let item of usersListItems" [data-property]="item.id">{{item.userName}}</option>
+                        <option *ngFor="let item of usersListItems" [data-property]="item.id">{{item.username}}</option>
                       </datalist>
                     </div>
                 </div>

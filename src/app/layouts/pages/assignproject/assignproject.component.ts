@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../../../_services/api.service';
 import { Project } from '../../../_models/project';
-import { User } from '../../../_models/user';
+import { AddUser } from '../../../_models/user';
 import { AssignProject } from '../../../_models/assignproject';
 import { ToastrService } from 'ngx-toastr';
 
@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AssignprojectComponent implements OnInit {
 
   public projectsListItems: Array<Project> = new Array<Project>();
-  public usersListItems: Array<User> = new Array<User>();
+  public usersListItems: Array<AddUser> = new Array<AddUser>();
   public assignprojectListItems: Array<AssignProject> = new Array<AssignProject>();
   assignproject: AssignProject = new AssignProject();
 
@@ -26,13 +26,13 @@ export class AssignprojectComponent implements OnInit {
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.getAssignProjectItems();
+    this.getAssignProjects();
     this.getProjectsList();
     this.getUsersList();
   }
 
   getAssignProjects() {
-    this.apiservice.Getassignprojects(this.assignproject.username,this.assignproject.projectname,this.assignproject.status).subscribe(
+    this.apiservice.Getallassignedprojects().subscribe(
       (items: any ) => {
         this.assignprojectListItems = items
       },
@@ -63,12 +63,13 @@ export class AssignprojectComponent implements OnInit {
       return;
     }
     if ((<HTMLInputElement>document.getElementById('Userid')).value)
-      this.assignproject.userid = this.usersListItems.find(f => f.userName == (<HTMLInputElement>document.getElementById('Userid')).value).Id;
+      this.assignproject.userid = this.usersListItems.find(f => f.username == (<HTMLInputElement>document.getElementById('Userid')).value).id;
     else {
       alert("Please select User form list");
       return;
     }
-    this.apiservice.Getassignprojects(this.assignproject.userid,this.assignproject.projectid,this.assignproject.status = 1)
+    this.assignproject.status = 1;
+    this.apiservice.Getassignprojects(this.assignproject.userid,this.assignproject.projectid,this.assignproject.status)
     .subscribe((response: any) => {
       if (response) {
         if (response.responseCode == 0) {
