@@ -50,6 +50,7 @@ import { CustomerTransactionComponent } from './layouts/pages/Transactions/custo
 import { RoutingModule } from './routing.module';
 import { ReportsComponent } from './layouts/Reports/reports/reports.component';
 import { UserMenusComponent } from './layouts/pages/user-menus/user-menus.component';
+import { AssignprojectComponent } from './layouts/pages/assignproject/assignproject.component';
 
 @NgModule({
   declarations: [
@@ -58,8 +59,9 @@ import { UserMenusComponent } from './layouts/pages/user-menus/user-menus.compon
     CreatebookingComponent, BookingcancellationComponent, BookingtransferComponent, ContractcreateComponent,
     ContractrenewalComponent, ContractterminateComponent, SalesenquireComponent, SalesinvoiceComponent, SalesquotationComponent,
     PdcComponent, AssociateComponent, DisputeComponent, RegistrationComponent, InstallmentComponent, PaymentPayablesComponent,
-    PaymentReceivablesComponent, AssociateTranComponent, OwnerTransactionComponent, CustomerTransactionComponent
-    , AssociateComponent, DisputeComponent,  RegistrationComponent, InstallmentComponent, ReportsComponent,UserMenusComponent
+    PaymentReceivablesComponent, AssociateTranComponent, OwnerTransactionComponent, CustomerTransactionComponent,
+    AssociateComponent, DisputeComponent,  RegistrationComponent, InstallmentComponent, ReportsComponent,UserMenusComponent,
+    AssignprojectComponent
   ],
   imports: [
     BrowserModule,

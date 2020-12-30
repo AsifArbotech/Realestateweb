@@ -465,4 +465,12 @@ export class ApiService {
   AddUserMenus(menuid: any, userid: any) {
     return this.http.post(this.BASEURL + '/UserMenus/POSTAddUserMenus?userid=' + userid, menuid, this.getAuthHeadersJSON());
   }
+
+  Getassignprojects(userid: any, projectid: any, status: any){
+    return this.http.get(this.BASEURL + '/UserXProjects/GETAssingProject?userid='+ userid + projectid + status , this.getAuthHeadersJSON());
+  }
+
+  Removeassignprojects(){
+    return this.http.get(this.BASEURL + '/UserXProjects/GETRemoveProject', this.getAuthHeadersJSON());
+  }
 }

@@ -1,0 +1,85 @@
+<section class="content home">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-3 col-lg-offset-9 col-md-offset-6 col-md-6 col-sm-12">                
+                <button class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light" (click)="openModal(projectassign)" type="button">
+                    <i class="zmdi zmdi-plus"></i> Add Project Assign 
+                </button>   
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12">
+                <div class="card weather2">
+                    <table class="table table-striped  m-b-0">
+                      <thead>
+                        <tr>
+                          <td hidden>Id</td>
+                          <td>User</td>
+                          <td class="font-medium">Project</td>
+                          <td>Status</td>
+                          <td>Action</td>
+                        </tr>
+                      </thead>
+                        <tbody>
+                          
+                          <tr *ngFor="let item of getAssignProjectItems()">
+                            <td hidden>{{item.id}}</td>
+                            <td >{{item.username}}</td>
+                            <td class="font-medium">{{item.projectname}}</td>
+                            <td>{{(item.status==1) ? 'Active' : (item.status==0) ? 'InActive' : ''}}</td>
+                            <td>
+                                <!--<button class="btn btn-primary btn-icon btn-round " type="button" (click)="EditBooking(item.bookingid)" (click)="openModal(addBookingModel)">
+                                    <i class="zmdi zmdi-edit" ></i>
+                                </button>
+                                <button class="btn btn-primary btn-icon btn-round " type="button" (click)="DeleteBooking(item.bookingid)">
+                                    <i class="zmdi zmdi-delete" ></i>
+                                </button>-->
+                                <!--<button class="btn btn-primary btn-icon btn-round " type="button"  data-toggle="modal" data-target="#PreviewProject">
+                                    <i class="zmdi zmdi-eye" ></i>
+                                </button>-->
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<ng-template #projectassign let-modal>
+    <div class="modal-content">
+        <div class="modal-header text-center l-cyan" style="display: block !important;">				
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title text-center">{{ActionType}}</h4>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" name="ID" #ID="ngModel" />
+            <div class="row  clearfix">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">  
+                      <label>Users</label>
+                      <input type="text" class="form-control" list="Userlist" id="Userid" placeholder="Users" required="required">
+                      <datalist id="Userlist">
+                        <option *ngFor="let item of usersListItems" [data-property]="item.id">{{item.userName}}</option>
+                      </datalist>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">  
+                      <label>Projects</label>
+                      <input type="text" class="form-control" list="Projectlist" id="Projectid" placeholder="Projects" required="required">
+                      <datalist id="Projectlist">
+                        <option *ngFor="let item of projectsListItems" [data-property]="item.id">{{item.projectname}}</option>
+                      </datalist>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                  <button type="button" class="btn btn-primary btn-round" (click)="AssignProject()">Save</button>
+                </div>
+              </div>
+        </div>
+    </div>
+</ng-template>
