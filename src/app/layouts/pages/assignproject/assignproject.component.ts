@@ -18,6 +18,7 @@ export class AssignprojectComponent implements OnInit {
   public assignprojectListItems: Array<AssignProject> = new Array<AssignProject>();
   assignproject: AssignProject = new AssignProject();
 
+  ActionType = "Add Assign Project";
   page = 1;
   pageSize = 10;
 
@@ -81,6 +82,7 @@ export class AssignprojectComponent implements OnInit {
         else {
           this.toastr.error('Something went wrong');
         }        
+        this.clearfields();
         this.getAssignProjects();
       }
     })
@@ -109,6 +111,11 @@ export class AssignprojectComponent implements OnInit {
 
       }
     )
+  }
+
+  clearfields() {
+    (<HTMLInputElement>document.getElementById('Projectid')).value = "";
+    (<HTMLInputElement>document.getElementById('Userid')).value = "";
   }
 
   openModal(content) {

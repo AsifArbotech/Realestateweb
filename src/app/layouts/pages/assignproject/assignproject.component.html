@@ -15,7 +15,7 @@
                         <tr>
                           <td hidden>Id</td>
                           <td>User</td>
-                          <td class="font-medium">Project</td>
+                          <td>Project</td>
                           <td>Status</td>
                           <td>Action</td>
                         </tr>
@@ -25,7 +25,7 @@
                           <tr *ngFor="let item of getAssignProjectItems()">
                             <td hidden>{{item.id}}</td>
                             <td >{{item.username}}</td>
-                            <td class="font-medium">{{item.projectname}}</td>
+                            <td >{{item.projectname}}</td>
                             <td>{{item.status=='1' ? 'Active' : 'InActive'}}</td>
                             <td>
                                 <!--<button class="btn btn-primary btn-icon btn-round " type="button" (click)="EditBooking(item.bookingid)" (click)="openModal(addBookingModel)">
